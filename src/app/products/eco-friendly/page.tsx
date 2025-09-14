@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import Link from "next/link"
 import { MessageCircle, Handshake, Package, Printer, Settings, ClipboardCheck, Truck } from "lucide-react"
 
 export default function Product4Page() {
@@ -65,11 +66,11 @@ export default function Product4Page() {
               
               <div className="text-sm sm:text-base text-[#555555]">
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <a href="/">Home</a>
+                  <Link href="/">Home</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <a href="/products">제품소개</a>
+                  <Link href="/products">제품소개</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
                 <span className="text-[#0A3D62] font-semibold">Product 4</span>
@@ -95,19 +96,19 @@ export default function Product4Page() {
               {/* Desktop Layout */}
               <div className="hidden lg:block">
                 {/* Top Row - Steps 1-4 */}
-                <div className="flex justify-center items-center mb-16">
-                  <div className="flex items-center space-x-16">
+                <div className="flex justify-center items-center mb-20">
+                  <div className="flex items-center space-x-24">
                     {processSteps.slice(0, 4).map((step, index) => (
                       <div key={step.step} className="flex flex-col items-center relative">
-                        <div className="w-24 h-24 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center mb-4 bg-white">
-                          <step.icon className="h-8 w-8 text-[#0A3D62]" />
+                        <div className="w-32 h-32 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center mb-6 bg-white hover:border-solid hover:border-4 hover:border-[#0A3D62] transition-all duration-500 ease-in-out cursor-pointer group shadow-lg hover:shadow-xl">
+                          <step.icon className="h-10 w-10 text-[#0A3D62] group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         <div className="text-center">
                           <div className="text-sm font-semibold text-[#0A3D62] mb-1">STEP {step.step}</div>
                           <div className="text-lg font-bold text-[#0A3D62]">{step.title}</div>
                         </div>
                         {index < 3 && (
-                          <div className="absolute top-12 left-full w-20 h-0.5 border-t-2 border-dashed border-gray-300 transform translate-x-0"></div>
+                          <div className="absolute top-16 left-full w-28 h-0.5 border-t-2 border-dashed border-gray-300 group-hover:border-solid group-hover:border-[#0A3D62] transition-all duration-500 transform translate-x-0"></div>
                         )}
                       </div>
                     ))}
@@ -116,18 +117,18 @@ export default function Product4Page() {
 
                 {/* Bottom Row - Steps 5-7 */}
                 <div className="flex justify-center items-center">
-                  <div className="flex items-center space-x-20">
+                  <div className="flex items-center space-x-32">
                     {processSteps.slice(4, 7).map((step, index) => (
                       <div key={step.step} className="flex flex-col items-center relative">
-                        <div className="w-24 h-24 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center mb-4 bg-white">
-                          <step.icon className="h-8 w-8 text-[#0A3D62]" />
+                        <div className="w-32 h-32 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center mb-6 bg-white hover:border-solid hover:border-4 hover:border-[#0A3D62] transition-all duration-500 ease-in-out cursor-pointer group shadow-lg hover:shadow-xl">
+                          <step.icon className="h-10 w-10 text-[#0A3D62] group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         <div className="text-center">
                           <div className="text-sm font-semibold text-[#0A3D62] mb-1">STEP {step.step}</div>
                           <div className="text-lg font-bold text-[#0A3D62]">{step.title}</div>
                         </div>
                         {index < 2 && (
-                          <div className="absolute top-12 left-full w-24 h-0.5 border-t-2 border-dashed border-gray-300 transform translate-x-0"></div>
+                          <div className="absolute top-16 left-full w-32 h-0.5 border-t-2 border-dashed border-gray-300 group-hover:border-solid group-hover:border-[#0A3D62] transition-all duration-500 transform translate-x-0"></div>
                         )}
                       </div>
                     ))}
@@ -139,7 +140,7 @@ export default function Product4Page() {
               <div className="lg:hidden space-y-8">
                 {processSteps.map((step, index) => (
                   <div key={step.step} className="flex items-center space-x-6">
-                    <div className="w-16 h-16 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center bg-white flex-shrink-0">
+                    <div className="w-16 h-16 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center bg-white flex-shrink-0 hover:border-solid hover:border-4 hover:border-[#0A3D62] transition-all duration-500">
                       <step.icon className="h-6 w-6 text-[#0A3D62]" />
                     </div>
                     <div className="flex-1">

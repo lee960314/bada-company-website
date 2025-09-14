@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import Link from "next/link"
 import { MessageCircle, Handshake, Package, Printer, Settings, ClipboardCheck, Truck } from "lucide-react"
 
 export default function Product1Page() {
@@ -65,11 +66,11 @@ export default function Product1Page() {
               
               <div className="text-sm sm:text-base text-[#555555]">
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <a href="/">Home</a>
+                  <Link href="/">Home</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <a href="/products">제품소개</a>
+                  <Link href="/products">제품소개</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
                 <span className="text-[#0A3D62] font-semibold">Product 1</span>

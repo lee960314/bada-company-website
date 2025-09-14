@@ -52,7 +52,7 @@ export default function ProductsPage() {
               
               <div className="text-sm sm:text-base text-[#555555]">
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <a href="/">Home</a>
+                  <Link href="/">Home</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
                 <span className="text-[#0A3D62] font-semibold">제품소개</span>
@@ -76,7 +76,7 @@ export default function ProductsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {products.map((product, index) => (
+              {products.map((product) => (
                 <Link
                   key={product.title}
                   href={product.href}

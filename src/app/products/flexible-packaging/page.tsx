@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import Link from "next/link"
 import { MessageCircle, Handshake, Package, Printer, Settings, ClipboardCheck, Truck } from "lucide-react"
 
 export default function Product2Page() {
@@ -65,11 +66,11 @@ export default function Product2Page() {
               
               <div className="text-sm sm:text-base text-[#555555]">
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <a href="/">Home</a>
+                  <Link href="/">Home</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <a href="/products">제품소개</a>
+                  <Link href="/products">제품소개</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
                 <span className="text-[#0A3D62] font-semibold">Product 2</span>
@@ -99,7 +100,7 @@ export default function Product2Page() {
                   <div className="flex items-center space-x-24">
                     {processSteps.slice(0, 4).map((step, index) => (
                       <div key={step.step} className="flex flex-col items-center relative">
-                        <div className="w-32 h-32 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center mb-6 bg-white hover:border-4 hover:border-[#0A3D62] transition-all duration-300 ease-in-out cursor-pointer group shadow-lg hover:shadow-xl">
+                        <div className="w-32 h-32 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center mb-6 bg-white hover:border-solid hover:border-4 hover:border-[#0A3D62] transition-all duration-500 ease-in-out cursor-pointer group shadow-lg hover:shadow-xl">
                           <step.icon className="h-10 w-10 text-[#0A3D62] group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         <div className="text-center">
@@ -107,7 +108,7 @@ export default function Product2Page() {
                           <div className="text-lg font-bold text-[#0A3D62]">{step.title}</div>
                         </div>
                         {index < 3 && (
-                          <div className="absolute top-16 left-full w-28 h-0.5 border-t-2 border-dashed border-gray-300 transform translate-x-0"></div>
+                          <div className="absolute top-16 left-full w-28 h-0.5 border-t-2 border-dashed border-gray-300 group-hover:border-solid group-hover:border-[#0A3D62] transition-all duration-500 transform translate-x-0"></div>
                         )}
                       </div>
                     ))}
@@ -119,7 +120,7 @@ export default function Product2Page() {
                   <div className="flex items-center space-x-32">
                     {processSteps.slice(4, 7).map((step, index) => (
                       <div key={step.step} className="flex flex-col items-center relative">
-                        <div className="w-32 h-32 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center mb-6 bg-white hover:border-4 hover:border-[#0A3D62] transition-all duration-300 ease-in-out cursor-pointer group shadow-lg hover:shadow-xl">
+                        <div className="w-32 h-32 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center mb-6 bg-white hover:border-solid hover:border-4 hover:border-[#0A3D62] transition-all duration-500 ease-in-out cursor-pointer group shadow-lg hover:shadow-xl">
                           <step.icon className="h-10 w-10 text-[#0A3D62] group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         <div className="text-center">
@@ -127,7 +128,7 @@ export default function Product2Page() {
                           <div className="text-lg font-bold text-[#0A3D62]">{step.title}</div>
                         </div>
                         {index < 2 && (
-                          <div className="absolute top-16 left-full w-32 h-0.5 border-t-2 border-dashed border-gray-300 transform translate-x-0"></div>
+                          <div className="absolute top-16 left-full w-32 h-0.5 border-t-2 border-dashed border-gray-300 group-hover:border-solid group-hover:border-[#0A3D62] transition-all duration-500 transform translate-x-0"></div>
                         )}
                       </div>
                     ))}
@@ -139,7 +140,7 @@ export default function Product2Page() {
               <div className="lg:hidden space-y-8">
                 {processSteps.map((step, index) => (
                   <div key={step.step} className="flex items-center space-x-6">
-                    <div className="w-16 h-16 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center bg-white flex-shrink-0 hover:border-4 hover:border-[#0A3D62] transition-all duration-300">
+                    <div className="w-16 h-16 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center bg-white flex-shrink-0 hover:border-solid hover:border-4 hover:border-[#0A3D62] transition-all duration-500">
                       <step.icon className="h-6 w-6 text-[#0A3D62]" />
                     </div>
                     <div className="flex-1">
@@ -166,9 +167,6 @@ export default function Product2Page() {
               <h2 className="text-3xl sm:text-4xl font-bold text-[#0A3D62] mb-4">
                 Product 2 제품 특징
               </h2>
-              <p className="text-lg text-[#555555] max-w-3xl mx-auto">
-                고품질 소재와 정밀한 제작 공정을 통해 완벽한 Product 2를 제공합니다.
-              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
