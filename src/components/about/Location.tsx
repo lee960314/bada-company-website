@@ -1,7 +1,37 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 export default function Location() {
+  const contactInfo = [
+    {
+      icon: MapPin,
+      title: "Address",
+      content: "Gangnam-gu, Seoul\nTeheran-ro 123, 15th Floor",
+      bgColor: "bg-[#0A3D62]",
+      iconColor: "text-white"
+    },
+    {
+      icon: Phone,
+      title: "Tel",
+      content: "02-1234-5678~9",
+      bgColor: "bg-white",
+      iconColor: "text-[#0A3D62]"
+    },
+    {
+      icon: Mail,
+      title: "Fax",
+      content: "02-1234-5677",
+      bgColor: "bg-white",
+      iconColor: "text-[#0A3D62]"
+    },
+    {
+      icon: Clock,
+      title: "E-mail",
+      content: "info@bada.co.kr",
+      bgColor: "bg-white",
+      iconColor: "text-[#0A3D62]"
+    }
+  ]
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,131 +45,49 @@ export default function Location() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-[#F5F6FA] rounded-xl shadow-lg p-8 border border-[#E5E5E5]">
-              <h3 className="text-2xl font-bold text-[#0A3D62] mb-6">Contact Information</h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#FFC312] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-[#0A3D62]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-[#0A3D62] mb-1">Address</h4>
-                    <p className="text-[#555555]">
-                      Gangnam-gu, Seoul<br />
-                      Teheran-ro 123, 15th Floor
-                    </p>
-                  </div>
+        {/* Contact Cards Grid */}
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {contactInfo.map((item, index) => (
+              <div key={index} className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border border-[#E5E5E5]">
+                {/* Icon */}
+                <div className={`w-16 h-16 ${item.bgColor} rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#0A3D62]`}>
+                  <item.icon className={`h-8 w-8 ${item.iconColor}`} />
                 </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#FFC312] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-6 w-6 text-[#0A3D62]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-[#0A3D62] mb-1">Phone</h4>
-                    <p className="text-[#555555]">02-1234-5678</p>
-                    <p className="text-sm text-[#555555]">Main Line</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#FFC312] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-6 w-6 text-[#0A3D62]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-[#0A3D62] mb-1">Email</h4>
-                    <p className="text-[#555555]">info@bada.co.kr</p>
-                    <p className="text-sm text-[#555555]">General Inquiries</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#FFC312] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6 text-[#0A3D62]" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-[#0A3D62] mb-1">Business Hours</h4>
-                    <p className="text-[#555555]">Monday - Friday: 09:00 - 18:00</p>
-                    <p className="text-[#555555]">Saturday: 09:00 - 13:00</p>
-                    <p className="text-sm text-[#555555]">Closed on Sundays & Holidays</p>
-                  </div>
+                
+                {/* Title */}
+                <h3 className="text-lg font-bold text-[#0A3D62] mb-3">
+                  {item.title}
+                </h3>
+                
+                {/* Content */}
+                <div className="text-[#555555] text-sm leading-relaxed">
+                  {item.content.split('\n').map((line, lineIndex) => (
+                    <div key={lineIndex}>{line}</div>
+                  ))}
                 </div>
               </div>
-            </div>
-
-            <div className="bg-[#F5F6FA] rounded-xl shadow-lg p-8 border border-[#E5E5E5]">
-              <h3 className="text-2xl font-bold text-[#0A3D62] mb-6">Company Details</h3>
-              
-              <div className="space-y-4">
-                <div className="flex justify-between py-2 border-b border-[#E5E5E5]">
-                  <span className="font-medium text-[#0A3D62]">Company Name</span>
-                  <span className="text-[#555555]">Bada Co., Ltd</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[#E5E5E5]">
-                  <span className="font-medium text-[#0A3D62]">CEO</span>
-                  <span className="text-[#555555]">John Smith</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[#E5E5E5]">
-                  <span className="font-medium text-[#0A3D62]">Business Registration</span>
-                  <span className="text-[#555555]">123-45-67890</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[#E5E5E5]">
-                  <span className="font-medium text-[#0A3D62]">Established</span>
-                  <span className="text-[#555555]">2009</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Map Placeholder */}
-          <div className="bg-[#F5F6FA] rounded-xl shadow-lg p-8 border border-[#E5E5E5]">
-            <h3 className="text-2xl font-bold text-[#0A3D62] mb-6">Location Map</h3>
-            
-            <div className="aspect-video bg-white rounded-lg flex items-center justify-center mb-6 border border-[#E5E5E5]">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 text-[#0A3D62] mx-auto mb-4" />
-                <p className="text-[#555555]">Interactive Map</p>
-                <p className="text-sm text-[#555555]">Gangnam-gu, Seoul</p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <Button className="w-full bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] font-bold">
-                Get Directions
-              </Button>
-              <Button variant="outline" className="w-full border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white font-bold">
-                Schedule a Visit
-              </Button>
-            </div>
-
-            <div className="mt-6 p-4 bg-white rounded-lg border border-[#E5E5E5]">
-              <h4 className="font-semibold text-[#0A3D62] mb-2">Parking Information</h4>
-              <p className="text-sm text-[#555555]">
-                Free parking available for visitors. Please contact us in advance 
-                to reserve a parking space.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="bg-[#0A3D62] rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Ready to Visit?</h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+        {/* Additional Information */}
+        <div className="max-w-4xl mx-auto mt-16">
+          <div className="bg-[#F5F6FA] rounded-2xl p-8 text-center border border-[#E5E5E5]">
+            <h3 className="text-2xl font-bold text-[#0A3D62] mb-4">
+              Ready to Visit?
+            </h3>
+            <p className="text-[#555555] mb-6 max-w-2xl mx-auto">
               We welcome visitors to our facility. Please contact us to schedule 
               a tour and see our state-of-the-art manufacturing processes in action.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-[#FFC312] text-[#0A3D62] hover:bg-[#FFD93D] font-bold">
+              <button className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-8 py-3 rounded-lg font-bold transition-colors duration-300">
                 Schedule a Tour
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#0A3D62] font-bold">
+              </button>
+              <button className="border-2 border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-8 py-3 rounded-lg font-bold transition-colors duration-300">
                 Contact Us
-              </Button>
+              </button>
             </div>
           </div>
         </div>

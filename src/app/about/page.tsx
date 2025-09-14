@@ -1,7 +1,6 @@
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import AboutHero from "@/components/about/AboutHero"
-import CompanyStats from "@/components/about/CompanyStats"
 import CompanyHistory from "@/components/about/CompanyHistory"
 import Certifications from "@/components/about/Certifications"
 import Location from "@/components/about/Location"
@@ -12,7 +11,6 @@ export default function AboutPage() {
       <Header />
       <main>
         <AboutHero />
-        <CompanyStats />
         <CompanyHistory />
         <Certifications />
         <Location />

@@ -41,7 +41,7 @@ export default function Certifications() {
   ]
 
   return (
-    <section className="py-20 bg-[#F5F6FA]">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0A3D62] mb-4">
@@ -55,13 +55,13 @@ export default function Certifications() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certifications.map((cert, index) => (
-            <div key={index} className="bg-white rounded-xl p-8 text-center group hover:bg-[#F5F6FA] transition-colors duration-300 border border-[#E5E5E5] hover:border-[#FFC312]">
+            <div key={index} className="bg-[#F5F6FA] rounded-xl p-8 text-center group hover:bg-white transition-colors duration-300 border border-[#E5E5E5] hover:border-[#FFC312]">
               <div className="w-16 h-16 bg-[#0A3D62] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#FFC312] transition-colors duration-300">
                 <cert.icon className="h-8 w-8 text-white group-hover:text-[#0A3D62]" />
               </div>
               <h3 className="text-xl font-bold text-[#0A3D62] mb-2">{cert.title}</h3>
               <p className="text-[#555555] mb-3">{cert.description}</p>
-              <span className="inline-block bg-[#F5F6FA] text-[#0A3D62] px-3 py-1 rounded-full text-sm font-medium border border-[#E5E5E5]">
+              <span className="inline-block bg-white text-[#0A3D62] px-3 py-1 rounded-full text-sm font-medium border border-[#E5E5E5]">
                 {cert.type}
               </span>
             </div>
