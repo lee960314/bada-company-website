@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 
 export default function AboutHero() {
   const [counts, setCounts] = useState({
@@ -17,30 +18,29 @@ export default function AboutHero() {
     clients: 156
   };
 
+  const animateCount = useCallback((key: keyof typeof targetCounts) => {
+    const target = targetCounts[key];
+    const duration = 2000;
+    const steps = 60;
+    const stepDuration = duration / steps;
+    const increment = target / steps;
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      setCounts(prev => ({ ...prev, [key]: Math.floor(current) }));
+    }, stepDuration);
+  }, []);
+
   useEffect(() => {
     // 페이지 로드 시 애니메이션 시작
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 300);
-
-    const duration = 2000; // 2초 동안 애니메이션
-    const steps = 60; // 60프레임
-    const stepDuration = duration / steps;
-
-    const animateCount = (key: keyof typeof targetCounts) => {
-      const target = targetCounts[key];
-      const increment = target / steps;
-      let current = 0;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        setCounts(prev => ({ ...prev, [key]: Math.floor(current) }));
-      }, stepDuration);
-    };
 
     // 각 카운트를 순차적으로 시작
     setTimeout(() => animateCount('founded'), 1000);
@@ -48,7 +48,7 @@ export default function AboutHero() {
     setTimeout(() => animateCount('clients'), 1400);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [animateCount]);
 
   return (
     <>
@@ -71,7 +71,7 @@ export default function AboutHero() {
                 isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
               }`}>
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <a href="/">Home</a>
+                  <Link href="/">Home</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
                 <span className="text-[#0A3D62] font-semibold">About Us</span>
