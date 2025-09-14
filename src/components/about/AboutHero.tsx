@@ -26,7 +26,7 @@ export default function AboutHero() {
               expanding our business from basic plastic bags to comprehensive packaging solutions. 
               The first impression of your product is determined by its packaging. 
               In the rapidly changing packaging market, we create packaging that captures 
-              consumers' attention. With the same mindset we started with, we will always 
+              consumers&apos; attention. With the same mindset we started with, we will always 
               do our best for customer satisfaction.
             </p>
             

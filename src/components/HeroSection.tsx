@@ -67,7 +67,7 @@ export default function HeroSection() {
       }
     }, 5000) // Change slide every 5 seconds
     return () => clearInterval(timer)
-  }, [isAnimating])
+  }, [isAnimating, nextSlide])
 
   const currentSlideData = slides[currentSlide]
 

@@ -10,7 +10,7 @@ export default function Location() {
             Visit Our Facility
           </h2>
           <p className="text-lg text-[#555555] max-w-2xl mx-auto">
-            Located in the heart of Seoul's business district, our modern facility 
+            Located in the heart of Seoul&apos;s business district, our modern facility 
             is easily accessible and equipped with state-of-the-art manufacturing equipment
           </p>
         </div>

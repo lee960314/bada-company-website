@@ -23,7 +23,7 @@ export default function CompanyIntroSection() {
               <p className="text-lg text-[#555555] leading-relaxed">
                 The first impression of your product is determined by its packaging. 
                 In the rapidly changing packaging market, we create packaging that captures 
-                consumers' attention.
+                consumers&apos; attention.
               </p>
               
               <p className="text-lg text-[#555555] leading-relaxed">
@@ -54,8 +54,8 @@ export default function CompanyIntroSection() {
                 Bada is a factory-direct custom manufacturing company.
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                What moves people's hearts is not money, appearance, or power, 
-                but a very small 'sincerity'. Bada manufactures customer packaging with sincerity.
+                What moves people&apos;s hearts is not money, appearance, or power, 
+                but a very small &apos;sincerity&apos;. Bada manufactures customer packaging with sincerity.
               </p>
             </div>
           </div>
