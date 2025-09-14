@@ -4,16 +4,22 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu } from "lucide-react"
+import { Menu, ChevronDown } from "lucide-react"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isProductsOpen, setIsProductsOpen] = useState(false)
 
   const navigation = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Products", href: "/products" },
-    { name: "Contact", href: "/contact" },
+  ]
+
+  const products = [
+    { name: "Product 1", href: "/products/plastic-bags" },
+    { name: "Product 2", href: "/products/flexible-packaging" },
+    { name: "Product 3", href: "/products/custom-solutions" },
+    { name: "Product 4", href: "/products/eco-friendly" },
   ]
 
   return (
@@ -41,14 +47,49 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            
+            {/* Products 드롭다운 */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsProductsOpen(true)}
+              onMouseLeave={() => setIsProductsOpen(false)}
+            >
+              <button className="flex items-center space-x-1 text-white hover:text-[#FFC312] transition-colors duration-200 font-bold text-xl">
+                <span>Products</span>
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isProductsOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {/* 드롭다운 메뉴 */}
+              <div className={`absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-300 ease-in-out ${
+                isProductsOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+              }`}>
+                <div className="py-2">
+                  {products.map((product, index) => (
+                    <Link
+                      key={product.name}
+                      href={product.href}
+                      className={`block px-4 py-3 text-[#0A3D62] hover:bg-[#F5F6FA] hover:text-[#FFC312] transition-colors duration-200 font-semibold ${
+                        index === 0 ? 'rounded-t-lg' : ''
+                      } ${index === products.length - 1 ? 'rounded-b-lg' : ''}`}
+                    >
+                      {product.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
           </nav>
 
-          {/* CTA 버튼 (데스크톱) */}
+          {/* CTA 버튼들 (데스크톱) */}
           <div className="hidden md:flex items-center space-x-5">
             <Button variant="outline" size="lg" className="px-8 py-3 text-lg font-bold border-white text-[#0A3D62] hover:bg-white hover:text-[#0A3D62]">
               Get Quote
             </Button>
-
+            <Link href="/contact">
+              <Button size="lg" className="px-8 py-3 text-lg font-bold bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62]">
+                Contact
+              </Button>
+            </Link>
           </div>
 
           {/* 모바일 메뉴 버튼 */}
@@ -80,13 +121,30 @@ export default function Header() {
                     </Link>
                   ))}
                   
+                  {/* 모바일 Products 메뉴 */}
+                  <div className="space-y-2">
+                    <div className="text-[#0A3D62] font-bold py-2 text-xl">Products</div>
+                    {products.map((product) => (
+                      <Link
+                        key={product.name}
+                        href={product.href}
+                        className="block text-[#555555] hover:text-[#FFC312] transition-colors duration-200 font-semibold py-2 pl-4 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {product.name}
+                      </Link>
+                    ))}
+                  </div>
+                  
                   <div className="pt-8 border-t space-y-4">
                     <Button variant="outline" size="lg" className="w-full text-lg py-4 font-bold border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white">
                       Get Quote
                     </Button>
-                    <Button size="lg" className="w-full bg-[#FFC312] hover:bg-[#FFD93D] text-lg py-4 font-bold text-[#0A3D62]">
-                      Contact Us
-                    </Button>
+                    <Link href="/contact" onClick={() => setIsOpen(false)}>
+                      <Button size="lg" className="w-full bg-[#FFC312] hover:bg-[#FFD93D] text-lg py-4 font-bold text-[#0A3D62]">
+                        Contact
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </SheetContent>
