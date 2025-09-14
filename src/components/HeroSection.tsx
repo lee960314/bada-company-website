@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -15,8 +16,8 @@ export default function HeroSection() {
       subtitle: "high-quality packaging",
       description: "Catch customers' eyes with Quality packaging",
       content: "Packaging is the first face customers encounter with your product. Capture customers' attention with high-quality packaging.",
-      imagePlaceholder: "Hero Image 1",
-      imageSize: "1920x1080px"
+      image: "/desktop-heroimg1.png",
+      imageSize: "1980x800px"
     },
     {
       id: 2,
@@ -25,7 +26,7 @@ export default function HeroSection() {
       description: "Unique packaging helps solidify your brand image",
       content: "Create packaging that you can't find in ready-made products - one-of-a-kind packaging that stands out from the competition.",
       imagePlaceholder: "Hero Image 2",
-      imageSize: "1920x1080px"
+      imageSize: "1980x800px"
     },
     {
       id: 3,
@@ -34,16 +35,16 @@ export default function HeroSection() {
       description: "A promise to customers is like a promise to family",
       content: "We will faithfully keep every small promise. Fast delivery and exact timing are our commitment to customer satisfaction.",
       imagePlaceholder: "Hero Image 3",
-      imageSize: "1920x1080px"
+      imageSize: "1980x800px"
     }
   ]
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (isAnimating) return
     setIsAnimating(true)
     setCurrentSlide((prev) => (prev + 1) % slides.length)
     setTimeout(() => setIsAnimating(false), 1000)
-  }
+  }, [isAnimating, slides.length])
 
   const prevSlide = () => {
     if (isAnimating) return
@@ -72,7 +73,7 @@ export default function HeroSection() {
   const currentSlideData = slides[currentSlide]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F5F6FA]">
+    <section className="relative h-[800px] flex items-center justify-center overflow-hidden bg-[#F5F6FA]">
       {/* Background Images */}
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
@@ -82,13 +83,23 @@ export default function HeroSection() {
               index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <div className="w-full h-full bg-white flex items-center justify-center">
-              {/* TODO: Add hero background image here - Size: 1920x1080px */}
-              <div className="text-center text-gray-400">
-                <p className="font-semibold">{slide.imagePlaceholder}</p>
-                <p className="text-sm">{slide.imageSize}</p>
+            {slide.image ? (
+              <Image
+                src={slide.image}
+                alt={`Hero Image ${slide.id}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+              />
+            ) : (
+              <div className="w-full h-full bg-white flex items-center justify-center">
+                {/* TODO: Add hero background image here - Size: 1980x800px */}
+                <div className="text-center text-gray-400">
+                  <p className="font-semibold">{slide.imagePlaceholder}</p>
+                  <p className="text-sm">{slide.imageSize}</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         ))}
       </div>
