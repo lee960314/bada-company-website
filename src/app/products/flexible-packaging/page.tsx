@@ -1,9 +1,17 @@
+"use client"
+
+import { useState } from "react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import TabMenu from "@/components/TabMenu"
 import Link from "next/link"
 import { MessageCircle, Handshake, Package, Printer, Settings, ClipboardCheck, Truck } from "lucide-react"
 
 export default function Product2Page() {
+  const [activeTab, setActiveTab] = useState("SHAPE")
+  
+  const tabs = ["SHAPE", "FUNCTIONALITIES", "INDUSTRY"]
+  
   const processSteps = [
     {
       step: "01",
@@ -60,7 +68,7 @@ export default function Product2Page() {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
               <div className="mb-4 sm:mb-0">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0A3D62]">
-                  Product 2
+                  Flexible packaging
                 </h1>
               </div>
               
@@ -70,12 +78,25 @@ export default function Product2Page() {
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <Link href="/products">제품소개</Link>
+                  <Link href="/products"> Products</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
-                <span className="text-[#0A3D62] font-semibold">Product 2</span>
+                <span className="text-[#0A3D62] font-semibold"> Flexible packaging</span>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tab Menu Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <TabMenu 
+              tabs={tabs}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+            />
           </div>
         </div>
       </section>
@@ -141,7 +162,7 @@ export default function Product2Page() {
                 {processSteps.map((step, index) => (
                   <div key={step.step} className="flex items-center space-x-6">
                     <div className="w-16 h-16 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center bg-white flex-shrink-0 hover:border-solid hover:border-4 hover:border-[#0A3D62] transition-all duration-500">
-                      <step.icon className="h-6 w-6 text-[#0A3D62]" />
+                      <step.icon className="h-6 w-6 text-[#0A3D62]" />zmf
                     </div>
                     <div className="flex-1">
                       <div className="text-sm font-semibold text-[#0A3D62] mb-1">STEP {step.step}</div>

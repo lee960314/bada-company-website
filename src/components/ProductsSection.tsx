@@ -4,22 +4,22 @@ import { ArrowRight } from "lucide-react"
 export default function ProductsSection() {
   const products = [
     {
-      title: "Plastic Bags",
+      title: "Materials",
       subtitle: "Poly Bag",
       materials: "OPP / PP / PE / HDPE / ETC",
       imagePlaceholder: "Plastic Bags Image",
       imageSize: "400x300px"
     },
     {
-      title: "Flexible Packaging",
+      title: "Functionalities",
       subtitle: "Flexible Package", 
       materials: "Three-side / Stand / M-side / T-side",
       imagePlaceholder: "Flexible Packaging Image",
       imageSize: "400x300px"
     },
     {
-      title: "Injection Molding",
-      subtitle: "Injection Molding",
+      title: "Industries",
+      subtitle: "-",
       materials: "Plastic / ETC",
       imagePlaceholder: "Injection Molding Image", 
       imageSize: "400x300px"
@@ -31,7 +31,7 @@ export default function ProductsSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-[#0A3D62] mb-4">
-            Our Products
+            Flexible Packaging
           </h2>
           <p className="text-lg text-[#555555] max-w-2xl mx-auto">
             Comprehensive packaging solutions for all your business needs

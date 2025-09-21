@@ -13,13 +13,13 @@ export default function Header() {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
+    { name: "Products", href: "/products" },
   ]
 
   const products = [
-    { name: "Product 1", href: "/products/plastic-bags" },
-    { name: "Product 2", href: "/products/flexible-packaging" },
-    { name: "Product 3", href: "/products/custom-solutions" },
-    { name: "Product 4", href: "/products/eco-friendly" },
+    { name: "Manufacturing process", href: "/products/manufacturing-process" },
+    { name: "Materials", href: "/products/materials" },
+    { name: "flexible-packaging", href: "/products/flexible-packaging" },
   ]
 
   return (
