@@ -12,28 +12,28 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      title: "Bada promises",
-      subtitle: "high-quality packaging",
-      description: "Catch customers' eyes with Quality packaging",
-      content: "Packaging is the first face customers encounter with your product. Capture customers' attention with high-quality packaging.",
-      image: "/desktop-heroimg1.png",
+      title: "Premium Flexible",
+      subtitle: "Packaging Solutions",
+      description: "",
+      content: "Protecting freshness, quality, and trust for brands worldwide. is the first face customers encounter with your product. Capture customers' attention with high-quality packaging.",
+      image: "/desktop-heroimg1test.png",
       imageSize: "1980x800px"
     },
     {
       id: 2,
-      title: "Make your brand's",
-      subtitle: "Unique packaging",
-      description: "Unique packaging helps solidify your brand image",
-      content: "Create packaging that you can't find in ready-made products - one-of-a-kind packaging that stands out from the competition.",
+      title: "From Food to Everyday ",
+      subtitle: " Life and Beyond",
+      description: "",
+      content: "Our packaging goes further, connecting producers and consumers across industries.",
       imagePlaceholder: "Hero Image 2",
       imageSize: "1980x800px"
     },
     {
       id: 3,
-      title: "We promise",
-      subtitle: "Exact and Fast delivery",
-      description: "A promise to customers is like a promise to family",
-      content: "We will faithfully keep every small promise. Fast delivery and exact timing are our commitment to customer satisfaction.",
+      title: "Shaping the Future of",
+      subtitle: "Sustainable Packaging and Fast delivery",
+      description: "",
+      content: "Lightweight, reliable, and eco-conscious solutions for a changing world.",
       imagePlaceholder: "Hero Image 3",
       imageSize: "1980x800px"
     }
@@ -143,11 +143,11 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row gap-4 justify-center mt-8 animate-fade-in-up-enhanced-delay-4"
           >
             <Button size="lg" className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-8 py-4 text-lg font-bold">
-              Learn More
+            Get a Quote
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button size="lg" variant="outline" className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-8 py-4 text-lg font-bold">
-              Get Quote
+            Request Samples
             </Button>
           </div>
         </div>
