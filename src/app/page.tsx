@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import HeroSection from "@/components/HeroSection"
+import ServiceIntroSection from "@/components/ServiceIntroSection"
 import FeaturesSection from "@/components/FeaturesSection"
 import CompanyIntroSection from "@/components/CompanyIntroSection"
 import ProductsSection from "@/components/ProductsSection"
@@ -12,6 +13,7 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
+        <ServiceIntroSection />
         <FeaturesSection />
         <CompanyIntroSection />
         <ProductsSection />
