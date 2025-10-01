@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, Upload } from "lucide-react"
+import { supabase } from "@/lib/supabase"
 
 interface FormData {
   name: string
@@ -28,6 +29,8 @@ interface FormData {
 
 export default function QuoteForm() {
   const [currentStep, setCurrentStep] = useState(1)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
   const [formData, setFormData] = useState<FormData>({
     // Section 1: Contact Information
     name: "",
@@ -82,9 +85,104 @@ export default function QuoteForm() {
     }
   }
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData)
-    // Handle form submission here
+  const handleSubmit = async () => {
+    setIsSubmitting(true)
+    setSubmitMessage(null)
+
+    try {
+      // Upload file to Supabase Storage if exists
+      let fileUrl = null
+      if (formData.attachedFile) {
+        const fileName = `${Date.now()}_${formData.attachedFile.name}`
+        const { data: fileData, error: fileError } = await supabase.storage
+          .from('quote-attachments')
+          .upload(fileName, formData.attachedFile)
+
+        if (fileError) {
+          console.error('File upload error:', fileError)
+        } else {
+          // Get public URL
+          const { data: { publicUrl } } = supabase.storage
+            .from('quote-attachments')
+            .getPublicUrl(fileName)
+          fileUrl = publicUrl
+        }
+      }
+
+      // Insert quote data into database
+      console.log('Attempting to insert data...')
+      const { data, error } = await supabase
+        .from('quote_requests')
+        .insert([
+          {
+            name: formData.name,
+            phone: formData.phone,
+            company_name: formData.companyName,
+            email: formData.email,
+            product_type: formData.productType,
+            production_quantity: formData.productionQuantity,
+            width: formData.width,
+            height: formData.height,
+            bottom_side: formData.bottomSide,
+            printing_method: formData.printingMethod,
+            function: formData.function,
+            formulation: formData.formulation,
+            material: formData.material,
+            print_count: formData.printCount,
+            product_information: formData.productInformation,
+            additional_input: formData.additionalInput,
+            attached_file_url: fileUrl,
+            shape: formData.shape,
+            surface: formData.surface,
+          }
+        ])
+        .select()
+
+      console.log('Insert result:', { data, error })
+
+      if (error) {
+        console.error('Supabase error details:', error)
+        throw error
+      }
+
+      setSubmitMessage({
+        type: 'success',
+        text: 'Quote request submitted successfully! We will contact you soon.'
+      })
+
+      // Reset form
+      setFormData({
+        name: "",
+        phone: "",
+        companyName: "",
+        email: "",
+        productType: "",
+        productionQuantity: "",
+        width: "",
+        height: "",
+        bottomSide: "",
+        printingMethod: "",
+        function: "",
+        formulation: "",
+        material: "",
+        printCount: "",
+        productInformation: "",
+        additionalInput: "",
+        attachedFile: null,
+        shape: "",
+        surface: ""
+      })
+      setCurrentStep(1)
+
+    } catch (error) {
+      console.error('Error submitting quote:', error)
+      setSubmitMessage({
+        type: 'error',
+        text: 'Failed to submit quote request. Please try again.'
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -532,14 +630,25 @@ export default function QuoteForm() {
               ) : (
                 <Button
                   onClick={handleSubmit}
-                  disabled={!isStep3Valid}
+                  disabled={!isStep3Valid || isSubmitting}
                   size="lg"
                   className="px-8 py-3 bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Submit
+                  {isSubmitting ? 'Submitting...' : 'Submit'}
                 </Button>
               )}
             </div>
+
+            {/* Submit Message */}
+            {submitMessage && (
+              <div className={`mt-6 p-4 rounded-lg text-center ${
+                submitMessage.type === 'success' 
+                  ? 'bg-green-100 text-green-800 border border-green-300' 
+                  : 'bg-red-100 text-red-800 border border-red-300'
+              }`}>
+                {submitMessage.text}
+              </div>
+            )}
           </div>
         </div>
       </div>
