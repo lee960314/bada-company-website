@@ -16,9 +16,9 @@ export default function Header() {
   ]
 
   const products = [
-    { name: "Manufacturing process", href: "/products/manufacturing-process" },
-    { name: "Materials", href: "/products/materials" },
-    { name: "flexible-packaging", href: "/products/flexible-packaging" },
+    { name: "Manufacturing Process", href: "/manufacturing-process" },
+    { name: "Materials", href: "/materials" },
+    { name: "Flexible Packaging", href: "/products/flexible-packaging" },
   ]
 
   return (
@@ -59,7 +59,7 @@ export default function Header() {
               </button>
               
               {/* 드롭다운 메뉴 */}
-              <div className={`absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-300 ease-in-out ${
+              <div className={`absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-300 ease-in-out ${
                 isProductsOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
               }`}>
                 <div className="py-2">
