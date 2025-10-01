@@ -15,7 +15,10 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.error('Key:', supabaseAnonKey ? 'exists' : 'missing')
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Create a safe client even if credentials are missing (for build time)
+export const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : createClient('https://placeholder.supabase.co', 'placeholder-key')
 
 // Types for database tables
 export interface QuoteRequest {
