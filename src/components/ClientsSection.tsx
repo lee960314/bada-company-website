@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import Link from "next/link"
 
 const clientLogos = [
   { name: "Aushell", src: "/aushell_logo.png", width: 150, height: 100 },
@@ -50,19 +51,23 @@ export default function ClientsSection() {
         {/* Contact Section */}
         <div className="bg-[#F5F6FA] rounded-2xl p-12 lg:p-16 text-center border border-[#E5E5E5]">
           <h3 className="text-4xl sm:text-5xl font-bold text-[#0A3D62] mb-8">
-            Have Questions? <br/> Contact us through our consultation board.
+            Need assistance or a quote?
           </h3>
           <p className="text-xl text-[#555555] mb-10 max-w-4xl mx-auto">
-            We promise to always approach customers with friendly consultation.
+            Contact us through our consultation board. Our team is ready to help with friendly consultation.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button size="lg" className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-10 py-4 text-lg font-bold">
-              Custom Quote
-            </Button>
-            <Button size="lg" variant="outline" className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-10 py-4 text-lg font-bold">
-              Consultation Request
-            </Button>
+            <Link href="/quote">
+              <Button size="lg" className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-10 py-4 text-lg font-bold">
+                Get Quote
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button size="lg" variant="outline" className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-10 py-4 text-lg font-bold">
+                Get Consultation
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

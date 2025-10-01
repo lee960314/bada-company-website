@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, ChevronDown } from "lucide-react"
@@ -17,7 +18,6 @@ export default function Header() {
 
   const products = [
     { name: "Manufacturing Process", href: "/manufacturing-process" },
-    { name: "Materials", href: "/materials" },
     { name: "Flexible Packaging", href: "/products/flexible-packaging" },
   ]
 
@@ -27,11 +27,15 @@ export default function Header() {
         <div className="flex h-24 items-center justify-between">
           {/* 로고 */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-4">
-              <div className="h-12 w-12 rounded bg-[#FFC312] flex items-center justify-center">
-                <span className="text-[#0A3D62] font-black text-xl">B</span>
-              </div>
-              <span className="text-3xl font-black text-white">Bada Co., Ltd</span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/header_logo.png"
+                alt="KJ FLEX PACK"
+                width={400}
+                height={200}
+                className="h-30 w-auto"
+                priority
+              />
             </Link>
           </div>
 
@@ -59,7 +63,7 @@ export default function Header() {
               </button>
               
               {/* 드롭다운 메뉴 */}
-              <div className={`absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-300 ease-in-out ${
+              <div className={`absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-300 ease-in-out ${
                 isProductsOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
               }`}>
                 <div className="py-2">
@@ -83,7 +87,7 @@ export default function Header() {
               href="/quote"
               className="text-white hover:text-[#FFC312] transition-colors duration-200 font-bold text-xl"
             >
-              Get Quote
+              Get a Quote
             </Link>
           </nav>
 
@@ -107,11 +111,14 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[350px] sm:w-[450px]">
                 <div className="flex flex-col space-y-8 mt-10">
-                  <div className="flex items-center space-x-4 pb-8 border-b">
-                    <div className="h-12 w-12 rounded bg-[#FFC312] flex items-center justify-center">
-                      <span className="text-[#0A3D62] font-black text-xl">B</span>
-                    </div>
-                    <span className="text-3xl font-black text-[#0A3D62]">Bada Co., Ltd</span>
+                  <div className="flex items-center pb-8 border-b">
+                    <Image
+                      src="/header_logo.png"
+                      alt="KJ FLEX PACK"
+                      width={400}
+                      height={200}
+                      className="h-20 w-auto"
+                    />
                   </div>
                   
                   {navigation.map((item) => (

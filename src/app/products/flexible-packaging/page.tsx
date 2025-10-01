@@ -8,9 +8,9 @@ import Link from "next/link"
 import { MessageCircle, Handshake, Package, Printer, Settings, ClipboardCheck, Truck } from "lucide-react"
 
 export default function Product2Page() {
-  const [activeTab, setActiveTab] = useState("SHAPE")
+  const [activeTab, setActiveTab] = useState("MATERIALS")
   
-  const tabs = ["SHAPE", "FUNCTIONALITIES", "INDUSTRY"]
+  const tabs = ["MATERIALS", "SHAPE", "FUNCTIONALITIES", "INDUSTRY"]
   
   const processSteps = [
     {
@@ -77,11 +77,7 @@ export default function Product2Page() {
                   <Link href="/">Home</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
-                <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <Link href="/products"> Products</Link>
-                </span>
-                <span className="mx-2 text-[#0A3D62]">•</span>
-                <span className="text-[#0A3D62] font-semibold"> Flexible packaging</span>
+                <span className="text-[#0A3D62] font-semibold">Flexible packaging</span>
               </div>
             </div>
           </div>

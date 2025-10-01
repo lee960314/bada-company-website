@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -12,28 +13,28 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      title: "Premium Flexible",
-      subtitle: "Packaging Solutions",
+      title: "Premium Flexible Packaging Solutions",
+      subtitle: "",
       description: "",
-      content: "Protecting freshness, quality, and trust for brands worldwide. is the first face customers encounter with your product. Capture customers' attention with high-quality packaging.",
+      content: "Protecting product freshness, quality, and brand trust worldwide.",
       image: "/desktop-heroimg1test.png",
       imageSize: "1980x800px"
     },
     {
       id: 2,
-      title: "From Food to Everyday ",
-      subtitle: " Life and Beyond",
+      title: "From Food to Everyday Life and Beyond",
+      subtitle: "",
       description: "",
-      content: "Our packaging goes further, connecting producers and consumers across industries.",
+      content: "Connecting producers and consumers with reliable packaging across industries.",
       imagePlaceholder: "Hero Image 2",
       imageSize: "1980x800px"
     },
     {
       id: 3,
-      title: "Shaping the Future of",
-      subtitle: "Sustainable Packaging and Fast delivery",
+      title: "Shaping the Future of Packaging",
+      subtitle: "",
       description: "",
-      content: "Lightweight, reliable, and eco-conscious solutions for a changing world.",
+      content: "High-performance solutions with speed, precision, and consistency.",
       imagePlaceholder: "Hero Image 3",
       imageSize: "1980x800px"
     }
@@ -111,27 +112,14 @@ export default function HeroSection() {
           <div className="space-y-6">
             <h1 
               key={`title-${currentSlide}`}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0A3D62] leading-tight animate-fade-in-up-enhanced"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0A3D62] leading-tight animate-fade-in-up-enhanced mb-8"
             >
               {currentSlideData.title}
-              <span 
-                key={`subtitle-${currentSlide}`}
-                className="block text-[#FFC312] animate-fade-in-up-enhanced-delay-1"
-              >
-                {currentSlideData.subtitle}
-              </span>
             </h1>
-            
-            <div 
-              key={`description-${currentSlide}`}
-              className="text-2xl sm:text-3xl font-bold text-[#0A3D62] animate-fade-in-up-enhanced-delay-2"
-            >
-              {currentSlideData.description}
-            </div>
             
             <p 
               key={`content-${currentSlide}`}
-              className="text-lg sm:text-xl text-[#555555] max-w-3xl mx-auto leading-relaxed animate-fade-in-up-enhanced-delay-3"
+              className="text-xl sm:text-2xl text-[#555555] max-w-3xl mx-auto leading-relaxed animate-fade-in-up-enhanced-delay-2 font-medium"
             >
               {currentSlideData.content}
             </p>
@@ -140,15 +128,19 @@ export default function HeroSection() {
           {/* CTA Buttons */}
           <div 
             key={`buttons-${currentSlide}`}
-            className="flex flex-col sm:flex-row gap-4 justify-center mt-8 animate-fade-in-up-enhanced-delay-4"
+            className="flex flex-col sm:flex-row gap-4 justify-center mt-12 animate-fade-in-up-enhanced-delay-3"
           >
-            <Button size="lg" className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-8 py-4 text-lg font-bold">
-            Get a Quote
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-8 py-4 text-lg font-bold">
-            Request Samples
-            </Button>
+            <Link href="/quote">
+              <Button size="lg" className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-8 py-4 text-lg font-bold">
+                Get a Quote
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link href="/products/flexible-packaging">
+              <Button size="lg" variant="outline" className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-8 py-4 text-lg font-bold">
+                Learn More
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
