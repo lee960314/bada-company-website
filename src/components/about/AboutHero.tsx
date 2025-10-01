@@ -89,22 +89,19 @@ export default function AboutHero() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
               {/* Column 1: Company Logo/Image */}
               <div className="lg:col-span-1">
-                <div className={`bg-[#F5F6FA] rounded-2xl p-8 lg:p-12 text-center transition-all duration-1000 ease-out delay-300 ${
+                <div className={`text-center transition-all duration-1000 ease-out delay-300 ${
                   isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                 }`}>
-                  <div className="w-48 h-48 mx-auto mb-6 flex items-center justify-center">
+                  <div className="w-full h-auto mx-auto flex items-center justify-center">
                     <Image
                       src="/about_logo.png"
-                      alt="Bada Company Logo"
-                      width={192}
-                      height={192}
+                      alt="KJ FLEX PACK Logo"
+                      width={350}
+                      height={350}
                       className="object-contain"
                       priority
                     />
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-[#0A3D62] mb-4">
-                    KJ FLEX PACK
-                  </h2>
                 </div>
               </div>
               
@@ -119,7 +116,7 @@ export default function AboutHero() {
      
                   {/* Company Goal */}
                   <div className="space-y-2">
-                    <p className={`text-lg sm:text-xl lg:text-2xl font-bold text-[#0A3D62] leading-relaxed transition-all duration-1000 ease-out delay-500 ${
+                    <p className={`text-xl sm:text-2xl lg:text-3xl font-bold text-[#0A3D62] leading-relaxed transition-all duration-1000 ease-out delay-500 ${
                       isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                     }`}>
                       We create innovative, sustainable flexible packaging that drives brand success and lasting partnerships worldwide.

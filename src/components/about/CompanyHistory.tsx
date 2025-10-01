@@ -1,58 +1,56 @@
 "use client"
 
 import { useState } from "react"
-import { Calendar, Factory, Award, Globe } from "lucide-react"
+import { TrendingUp, Factory, Layers, Globe } from "lucide-react"
 
 export default function CompanyHistory() {
   const [selectedPeriod, setSelectedPeriod] = useState(0)
 
   const historyPeriods = [
     {
-      period: "2009 ~ 2012",
+      period: "2003 ~ 2008",
       title: "Foundation & Early Growth",
       achievements: [
-        "Plastic bag manufacturing facility established",
-        "First production line installation",
-        "Initial client partnerships formed",
-        "Quality control systems implemented"
+        "Founded as a family-operated workshop specializing in thermal transfer labels",
+        "Began manufacturing plastic packaging for local food and consumer goods companies",
+        "Built a foundation in flexible packaging by supplying regional distributors and manufacturers"
       ],
       icon: Factory
     },
     {
-      period: "2013 ~ 2016",
+      period: "2009 ~ 2015",
       title: "Expansion & Innovation",
       achievements: [
-        "Facility expansion and modernization",
-        "Advanced packaging equipment introduction",
-        "Export partnerships with international clients",
-        "Custom packaging solutions development",
-        "ISO quality management system certification"
+        "Expanded facilities with new production halls and upgraded utilities to increase output capacity",
+        "Installed the first fully integrated flexible packaging production line",
+        "Introduced computerized printing and slitting equipment to improve precision and consistency",
+        "Designed custom packaging formats tailored to client specifications across food, retail, and industrial sectors",
+        "Formed long-term supply contracts with leading regional brands",
+        "Established standardized quality management and inspection procedures"
       ],
-      icon: Award
+      icon: Layers
     },
     {
-      period: "2017 ~ 2020",
-      title: "Global Reach & Technology",
+      period: "2016 ~ 2022",
+      title: "Global Reach & Technology Advancement",
       achievements: [
-        "International market expansion",
-        "Automated production systems implementation",
-        "Eco-friendly packaging material development",
-        "Digital ordering system launch",
-        "Research and development center establishment"
+        "Added high-speed 9-color rotogravure presses and solventless lamination systems",
+        "Increased pouch-making capacity with advanced converting machinery for stand-up and spouted pouches",
+        "Developed high-barrier films for extended shelf life and launched recyclable, eco-friendly packaging materials",
+        "Entered international markets through export partnerships in Asia, Europe, and North America",
+        "Strengthened R&D capabilities to support product innovation and regulatory compliance"
       ],
       icon: Globe
     },
     {
-      period: "2021 ~ Present",
-      title: "Sustainability & Future",
+      period: "2023 ~ Present",
+      title: "Smart & Sustainable Growth",
       achievements: [
-        "Sustainable packaging material certification",
-        "Carbon-neutral production processes",
-        "AI-powered quality control systems",
-        "Global supply chain optimization",
-        "Innovation lab for next-gen packaging"
+        "Upgraded operations with smart manufacturing systems, including automated defect detection and inline quality inspection",
+        "Expanded product portfolio to serve global brands in food, beverage, pet food, household, and personal care industries",
+        "Positioning the company as a technology-driven packaging partner committed to customer success and long-term growth"
       ],
-      icon: Calendar
+      icon: TrendingUp
     }
   ]
 
