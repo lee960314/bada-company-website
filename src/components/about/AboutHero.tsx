@@ -12,14 +12,15 @@ export default function AboutHero() {
   });
 
   const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
-  const targetCounts = {
-    founded: 2003,
-    orders: 8500,
-    clients: 156
-  };
-
-  const animateCount = useCallback((key: keyof typeof targetCounts) => {
+  const animateCount = useCallback((key: 'founded' | 'orders' | 'clients') => {
+    const targetCounts = {
+      founded: 2003,
+      orders: 8500,
+      clients: 156
+    };
+    
     const target = targetCounts[key];
     const duration = 2000;
     const steps = 60;
@@ -35,21 +36,35 @@ export default function AboutHero() {
       }
       setCounts(prev => ({ ...prev, [key]: Math.floor(current) }));
     }, stepDuration);
-  }, [targetCounts]);
+  }, []);
 
   useEffect(() => {
+    // 이미 애니메이션이 실행되었다면 중복 실행 방지
+    if (hasAnimated) return;
+
     // 페이지 로드 시 애니메이션 시작
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 300);
 
     // 각 카운트를 순차적으로 시작
-    setTimeout(() => animateCount('founded'), 1000);
-    setTimeout(() => animateCount('orders'), 1200);
-    setTimeout(() => animateCount('clients'), 1400);
+    const timer1 = setTimeout(() => animateCount('founded'), 1000);
+    const timer2 = setTimeout(() => animateCount('orders'), 1200);
+    const timer3 = setTimeout(() => animateCount('clients'), 1400);
 
-    return () => clearTimeout(timer);
-  }, [animateCount]);
+    // 애니메이션 완료 후 플래그 설정
+    const completeTimer = setTimeout(() => {
+      setHasAnimated(true);
+    }, 4000);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(completeTimer);
+    };
+  }, [hasAnimated]); // hasAnimated를 의존성으로 추가
 
   return (
     <>
