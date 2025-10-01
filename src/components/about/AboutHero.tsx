@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AboutHero() {
   const [counts, setCounts] = useState({
@@ -13,7 +14,7 @@ export default function AboutHero() {
   const [isVisible, setIsVisible] = useState(false);
 
   const targetCounts = {
-    founded: 2009,
+    founded: 2003,
     orders: 8500,
     clients: 156
   };
@@ -91,11 +92,18 @@ export default function AboutHero() {
                 <div className={`bg-[#F5F6FA] rounded-2xl p-8 lg:p-12 text-center transition-all duration-1000 ease-out delay-300 ${
                   isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                 }`}>
-                  <div className="w-32 h-32 mx-auto mb-6 bg-[#0A3D62] rounded-full flex items-center justify-center">
-                    <span className="text-white text-2xl font-bold">BADA</span>
+                  <div className="w-48 h-48 mx-auto mb-6 flex items-center justify-center">
+                    <Image
+                      src="/about_logo.png"
+                      alt="Bada Company Logo"
+                      width={192}
+                      height={192}
+                      className="object-contain"
+                      priority
+                    />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-[#0A3D62] mb-4">
-                    Bada Co., Ltd
+                    KJ FLEX PACK
                   </h2>
                 </div>
               </div>
@@ -111,20 +119,10 @@ export default function AboutHero() {
      
                   {/* Company Goal */}
                   <div className="space-y-2">
-                    <p className={`text-lg sm:text-2xl lg:text-3xl font-bold text-[#0A3D62] leading-relaxed transition-all duration-1000 ease-out delay-500 ${
+                    <p className={`text-lg sm:text-xl lg:text-2xl font-bold text-[#0A3D62] leading-relaxed transition-all duration-1000 ease-out delay-500 ${
                       isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                     }`}>
-                      Bada aims to provide
-                    </p>
-                    <p className={`text-lg sm:text-xl lg:text-2xl font-bold text-[#0A3D62] leading-relaxed transition-all duration-1000 ease-out delay-600 ${
-                      isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
-                    }`}>
-                      custom packaging solutions
-                    </p>
-                    <p className={`text-lg sm:text-xl lg:text-2xl font-bold text-[#0A3D62] leading-relaxed transition-all duration-1000 ease-out delay-700 ${
-                      isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
-                    }`}>
-                      for all customer needs.
+                      We create innovative, sustainable flexible packaging that drives brand success and lasting partnerships worldwide.
                     </p>
                   </div>
                 </div>
@@ -136,19 +134,19 @@ export default function AboutHero() {
                   <p className={`text-base sm:text-lg text-[#555555] leading-relaxed transition-all duration-1000 ease-out delay-800 ${
                     isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                   }`}>
-                    Since 2009, Bada Co., Ltd has been expanding its business from plastic injection molding to comprehensive packaging solutions including poly bags and flexible packaging.
+                    Founded in 2003, KJ FLEX PACK is a global manufacturer of flexible packaging solutions, serving leading brands in food, beverage, pet care, household, and personal care.
                   </p>
                   
                   <p className={`text-base sm:text-lg text-[#555555] leading-relaxed transition-all duration-1000 ease-out delay-900 ${
                     isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                   }`}>
-                    The first impression of your product is determined by its packaging. In the rapidly changing packaging market, we create packaging that captures consumers&apos; attention.
+                    Equipped with high-speed 9-color printing, solventless lamination, and smart manufacturing systems, we deliver packaging that ensures product safety, shelf appeal, and supply chain efficiency.
                   </p>
                   
                   <p className={`text-base sm:text-lg text-[#555555] leading-relaxed transition-all duration-1000 ease-out delay-1000 ${
                     isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                   }`}>
-                    With the same mindset we started with, we will always do our best for customer satisfaction.
+                    With a commitment to innovation and sustainability, we provide eco-friendly, high-barrier packaging solutions that strengthen our partners&apos; competitiveness in global markets.
                   </p>
                 </div>
               </div>

@@ -4,9 +4,31 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, Upload } from "lucide-react"
 
+interface FormData {
+  name: string
+  phone: string
+  companyName: string
+  email: string
+  productType: string
+  productionQuantity: string
+  width: string
+  height: string
+  bottomSide: string
+  printingMethod: string
+  function: string
+  formulation: string
+  material: string
+  printCount: string
+  productInformation: string
+  additionalInput: string
+  attachedFile: File | null
+  shape: string
+  surface: string
+}
+
 export default function QuoteForm() {
   const [currentStep, setCurrentStep] = useState(1)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     // Section 1: Contact Information
     name: "",
     phone: "",
