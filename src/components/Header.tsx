@@ -13,7 +13,6 @@ export default function Header() {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Products", href: "/products" },
   ]
 
   const products = [
@@ -78,13 +77,18 @@ export default function Header() {
                 </div>
               </div>
             </div>
+
+            {/* Get Quote 링크 */}
+            <Link
+              href="/quote"
+              className="text-white hover:text-[#FFC312] transition-colors duration-200 font-bold text-xl"
+            >
+              Get Quote
+            </Link>
           </nav>
 
-          {/* CTA 버튼들 (데스크톱) */}
-          <div className="hidden md:flex items-center space-x-5">
-            <Button variant="outline" size="lg" className="px-8 py-3 text-lg font-bold border-white text-[#0A3D62] hover:bg-white hover:text-[#0A3D62]">
-              Get Quote
-            </Button>
+          {/* CTA 버튼 (데스크톱) */}
+          <div className="hidden md:flex items-center">
             <Link href="/contact">
               <Button size="lg" className="px-8 py-3 text-lg font-bold bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62]">
                 Contact
@@ -137,9 +141,13 @@ export default function Header() {
                   </div>
                   
                   <div className="pt-8 border-t space-y-4">
-                    <Button variant="outline" size="lg" className="w-full text-lg py-4 font-bold border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white">
+                    <Link 
+                      href="/quote" 
+                      className="block text-[#0A3D62] hover:text-[#FFC312] transition-colors duration-200 font-bold py-4 text-xl"
+                      onClick={() => setIsOpen(false)}
+                    >
                       Get Quote
-                    </Button>
+                    </Link>
                     <Link href="/contact" onClick={() => setIsOpen(false)}>
                       <Button size="lg" className="w-full bg-[#FFC312] hover:bg-[#FFD93D] text-lg py-4 font-bold text-[#0A3D62]">
                         Contact

@@ -1,4 +1,20 @@
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
+
+const clientLogos = [
+  { name: "Aushell", src: "/aushell_logo.png", width: 150, height: 100 },
+  { name: "Blondie Cafe", src: "/Blondie Cafe _logo.png", width: 150, height: 100 },
+  { name: "Comvita", src: "/Comvita _logo.png", width: 150, height: 100 },
+  { name: "Designer Brands", src: "/DB DESIGNER BRANDS _logo.png", width: 150, height: 100 },
+  { name: "FuMoTo Film", src: "/FuMoTo film_logo.png", width: 150, height: 100 },
+  { name: "Hive 175", src: "/HIVE 175 _logo.png", width: 150, height: 100 },
+  { name: "Lipbusy Care", src: "/Lipbusy care _logo.png", width: 150, height: 100 },
+  { name: "Midian", src: "/midian _logo.png", width: 180, height: 120 },
+  { name: "Shrine", src: "/SHRINE _logo.png", width: 150, height: 100 },
+  { name: "Waterpik", src: "/Waterpik_logo.png", width: 150, height: 100 },
+  { name: "Yan Wo Wang", src: "/Yan Wo Wang _logo.png", width: 150, height: 100 },
+  { name: "Yuanchu", src: "/yuanchu _logo.png", width: 180, height: 120 },
+]
 
 export default function ClientsSection() {
   return (
@@ -14,22 +30,27 @@ export default function ClientsSection() {
         </div>
 
         {/* Client Logos Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-10 mb-20">
-          {Array.from({ length: 12 }, (_, index) => (
-            <div key={index} className="bg-[#F5F6FA] rounded-xl p-8 flex items-center justify-center h-32 hover:shadow-lg transition-shadow duration-300 border border-[#E5E5E5] hover:border-[#FFC312]">
-              {/* TODO: Add client logo here - Size: 120x80px */}
-              <div className="text-center text-gray-400">
-                <p className="text-sm">Logo {index + 1}</p>
-                <p className="text-sm">120x80px</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-12 mb-20">
+          {clientLogos.map((client, index) => (
+            <div key={index} className="bg-[#F5F6FA] rounded-xl p-10 flex items-center justify-center h-40 hover:shadow-lg transition-shadow duration-300 border border-[#E5E5E5] hover:border-[#FFC312]">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={client.src}
+                  alt={`${client.name} logo`}
+                  width={client.width}
+                  height={client.height}
+                  className="object-contain max-w-full max-h-full"
+                  priority={index < 4}
+                />
               </div>
             </div>
           ))}
         </div>
-
+          
         {/* Contact Section */}
         <div className="bg-[#F5F6FA] rounded-2xl p-12 lg:p-16 text-center border border-[#E5E5E5]">
           <h3 className="text-4xl sm:text-5xl font-bold text-[#0A3D62] mb-8">
-            Have Questions? Contact us through our consultation board.
+            Have Questions? <br/> Contact us through our consultation board.
           </h3>
           <p className="text-xl text-[#555555] mb-10 max-w-4xl mx-auto">
             We promise to always approach customers with friendly consultation.

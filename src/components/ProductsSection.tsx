@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 export default function ProductsSection() {
   const products = [
@@ -43,12 +44,23 @@ export default function ProductsSection() {
             <div key={index} className="group">
               <div className="bg-white rounded-2xl p-8 text-center hover:bg-[#F5F6FA] transition-colors duration-300 border border-[#E5E5E5] hover:border-[#FFC312]">
                 {/* Product Image */}
-                 <div className="aspect-video bg-[#F5F6FA] rounded-xl mb-6 flex items-center justify-center">
-                   {/* TODO: Add product image here - Size: 400x300px */}
-                   <div className="text-center text-gray-400">
-                     <p className="font-semibold text-sm">{product.imagePlaceholder}</p>
-                     <p className="text-xs">{product.imageSize}</p>
-                   </div>
+                 <div className="aspect-video bg-[#F5F6FA] rounded-xl mb-6 overflow-hidden">
+                   {product.title === "Materials" ? (
+                     <Image
+                       src="/material_img.png"
+                       alt="Materials"
+                       width={400}
+                       height={300}
+                       className="w-full h-full object-cover"
+                     />
+                   ) : (
+                     <div className="w-full h-full flex items-center justify-center">
+                       <div className="text-center text-gray-400">
+                         <p className="font-semibold text-sm">{product.imagePlaceholder}</p>
+                         <p className="text-xs">{product.imageSize}</p>
+                       </div>
+                     </div>
+                   )}
                  </div>
 
                 {/* Product Info */}
