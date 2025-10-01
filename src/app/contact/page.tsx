@@ -44,6 +44,7 @@ export default function ContactPage() {
         message: ""
       })
     } catch (error) {
+      console.error('Contact form error:', error)
       setSubmitMessage({
         type: 'error',
         text: 'Failed to send message. Please try again.'
@@ -96,7 +97,7 @@ export default function ContactPage() {
                   </h2>
                   <p className="text-lg text-[#555555] leading-relaxed mb-8">
                     Have questions about our flexible packaging solutions? Our team is here to help. 
-                    Fill out the form and we'll get back to you as soon as possible.
+                    Fill out the form and we&apos;ll get back to you as soon as possible.
                   </p>
                 </div>
 

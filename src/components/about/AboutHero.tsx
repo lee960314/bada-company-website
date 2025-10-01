@@ -35,7 +35,7 @@ export default function AboutHero() {
       }
       setCounts(prev => ({ ...prev, [key]: Math.floor(current) }));
     }, stepDuration);
-  }, []);
+  }, [targetCounts]);
 
   useEffect(() => {
     // 페이지 로드 시 애니메이션 시작

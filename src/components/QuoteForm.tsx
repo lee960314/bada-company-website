@@ -94,7 +94,7 @@ export default function QuoteForm() {
       let fileUrl = null
       if (formData.attachedFile) {
         const fileName = `${Date.now()}_${formData.attachedFile.name}`
-        const { data: fileData, error: fileError } = await supabase.storage
+        const { error: fileError } = await supabase.storage
           .from('quote-attachments')
           .upload(fileName, formData.attachedFile)
 
