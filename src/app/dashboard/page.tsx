@@ -43,6 +43,10 @@ interface EditingItem extends QuoteRequestWithMemo {
   table?: 'quote_requests' | 'contacts'
 }
 
+interface SelectedItem extends QuoteRequestWithMemo {
+  table?: 'quote_requests' | 'contacts'
+}
+
 export default function DashboardPage() {
   const [quoteRequests, setQuoteRequests] = useState<QuoteRequestWithMemo[]>([])
   const [contacts, setContacts] = useState<ContactWithMemo[]>([])
@@ -52,7 +56,7 @@ export default function DashboardPage() {
   const [editDialogOpen, setEditDialogOpen] = useState(false)
   const [memoDialogOpen, setMemoDialogOpen] = useState(false)
   const [memoText, setMemoText] = useState("")
-  const [selectedItem, setSelectedItem] = useState<QuoteRequestWithMemo | ContactWithMemo | null>(null)
+  const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null)
   const [showSensitiveData, setShowSensitiveData] = useState<{ [key: string]: boolean }>({})
   const [error, setError] = useState<string | null>(null)
   const [attachmentModalOpen, setAttachmentModalOpen] = useState(false)
@@ -186,7 +190,7 @@ export default function DashboardPage() {
 
   // 메모 다이얼로그 열기
   const openMemoDialog = (item: QuoteRequestWithMemo | ContactWithMemo, table: 'quote_requests' | 'contacts') => {
-    setSelectedItem({ ...item, table })
+    setSelectedItem({ ...item, table } as SelectedItem)
     setMemoText(loadMemo(item.id || '', table))
     setMemoDialogOpen(true)
   }
@@ -229,7 +233,7 @@ export default function DashboardPage() {
       headers.join(','),
       ...data.map(row => 
         headers.map(header => {
-          const value = row[header]
+          const value = (row as any)[header]
           // CSV에서 쉼표나 따옴표가 포함된 값은 따옴표로 감싸기
           if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
             return `"${value.replace(/"/g, '""')}"`
@@ -563,22 +567,22 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                           </label>
                           {key === 'product_information' || key === 'additional_input' ? (
                             <textarea
-                              value={editingItem[key] || ''}
+                              value={(editingItem as any)[key] || ''}
                               onChange={(e) => setEditingItem({
                                 ...editingItem,
                                 [key]: e.target.value
-                              })}
+                              } as EditingItem)}
                               className="w-full px-3 py-2 border rounded-md h-24 resize-none"
                               placeholder={`Enter ${key.replace(/_/g, ' ')}...`}
                             />
                           ) : (
                             <input
                               type={key === 'email' ? 'email' : key === 'phone' ? 'tel' : 'text'}
-                              value={editingItem[key] || ''}
+                              value={(editingItem as any)[key] || ''}
                               onChange={(e) => setEditingItem({
                                 ...editingItem,
                                 [key]: e.target.value
-                              })}
+                              } as EditingItem)}
                               className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-[#0A3D62] focus:border-transparent"
                               placeholder={`Enter ${key.replace(/_/g, ' ')}...`}
                             />
@@ -597,9 +601,9 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                     </Button>
                     <Button
                       onClick={() => updateItem(
-                        editingItem.id, 
+                        editingItem.id || '', 
                         editingItem, 
-                        editingItem.table
+                        editingItem.table || 'quote_requests'
                       )}
                       className="px-6 py-2 bg-[#0A3D62] hover:bg-[#0A3D62]/90 text-white"
                     >
@@ -636,7 +640,7 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                       Cancel
                     </Button>
                     <Button
-                      onClick={() => saveMemo(selectedItem.id, selectedItem.table)}
+                      onClick={() => saveMemo(selectedItem.id || '', selectedItem.table || 'quote_requests')}
                     >
                       Save
                     </Button>
