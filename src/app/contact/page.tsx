@@ -32,7 +32,7 @@ export default function ContactPage() {
       const contactData: Omit<Contact, 'id' | 'created_at'> = {
         name: formData.name,
         email: formData.email,
-        whatsapp: formData.whatsapp || null,
+        whatsapp: formData.whatsapp || undefined,
         message: formData.message
       }
 
