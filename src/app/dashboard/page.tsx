@@ -233,7 +233,7 @@ export default function DashboardPage() {
       headers.join(','),
       ...data.map(row => 
         headers.map(header => {
-          const value = (row as any)[header]
+          const value = (row as unknown as Record<string, unknown>)[header]
           // CSV에서 쉼표나 따옴표가 포함된 값은 따옴표로 감싸기
           if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
             return `"${value.replace(/"/g, '""')}"`
@@ -567,7 +567,7 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                           </label>
                           {key === 'product_information' || key === 'additional_input' ? (
                             <textarea
-                              value={(editingItem as any)[key] || ''}
+                              value={(editingItem as unknown as Record<string, unknown>)[key] as string || ''}
                               onChange={(e) => setEditingItem({
                                 ...editingItem,
                                 [key]: e.target.value
@@ -578,7 +578,7 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                           ) : (
                             <input
                               type={key === 'email' ? 'email' : key === 'phone' ? 'tel' : 'text'}
-                              value={(editingItem as any)[key] || ''}
+                              value={(editingItem as unknown as Record<string, unknown>)[key] as string || ''}
                               onChange={(e) => setEditingItem({
                                 ...editingItem,
                                 [key]: e.target.value
