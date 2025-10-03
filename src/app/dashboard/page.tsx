@@ -16,8 +16,7 @@ import {
   Dialog, 
   DialogContent, 
   DialogHeader, 
-  DialogTitle, 
-  DialogTrigger 
+  DialogTitle 
 } from "@/components/ui/dialog"
 import { 
   Trash2, 
@@ -45,15 +44,15 @@ export default function DashboardPage() {
   const [contacts, setContacts] = useState<ContactWithMemo[]>([])
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'quotes' | 'contacts'>('quotes')
-  const [editingItem, setEditingItem] = useState<any>(null)
+  const [editingItem, setEditingItem] = useState<QuoteRequestWithMemo | ContactWithMemo | null>(null)
   const [editDialogOpen, setEditDialogOpen] = useState(false)
   const [memoDialogOpen, setMemoDialogOpen] = useState(false)
   const [memoText, setMemoText] = useState("")
-  const [selectedItem, setSelectedItem] = useState<any>(null)
+  const [selectedItem, setSelectedItem] = useState<QuoteRequestWithMemo | ContactWithMemo | null>(null)
   const [showSensitiveData, setShowSensitiveData] = useState<{ [key: string]: boolean }>({})
   const [error, setError] = useState<string | null>(null)
   const [attachmentModalOpen, setAttachmentModalOpen] = useState(false)
-  const [selectedAttachment, setSelectedAttachment] = useState<any>(null)
+  const [selectedAttachment, setSelectedAttachment] = useState<QuoteRequestWithMemo | null>(null)
 
   // 데이터 로드
   const loadData = async () => {
@@ -123,7 +122,7 @@ export default function DashboardPage() {
   }
 
   // 아이템 수정
-  const updateItem = async (id: string, updates: any, table: 'quote_requests' | 'contacts') => {
+  const updateItem = async (id: string, updates: Partial<QuoteRequestWithMemo | ContactWithMemo>, table: 'quote_requests' | 'contacts') => {
     try {
       // id와 created_at, table 필드 제거
       const cleanUpdates = { ...updates }
@@ -176,20 +175,20 @@ export default function DashboardPage() {
   }
 
   // 수정 다이얼로그 열기
-  const openEditDialog = (item: any, table: 'quote_requests' | 'contacts') => {
+  const openEditDialog = (item: QuoteRequestWithMemo | ContactWithMemo, table: 'quote_requests' | 'contacts') => {
     setEditingItem({ ...item, table })
     setEditDialogOpen(true)
   }
 
   // 메모 다이얼로그 열기
-  const openMemoDialog = (item: any, table: 'quote_requests' | 'contacts') => {
+  const openMemoDialog = (item: QuoteRequestWithMemo | ContactWithMemo, table: 'quote_requests' | 'contacts') => {
     setSelectedItem({ ...item, table })
-    setMemoText(loadMemo(item.id, table))
+    setMemoText(loadMemo(item.id || '', table))
     setMemoDialogOpen(true)
   }
 
   // 첨부 파일 모달 열기
-  const openAttachmentModal = (item: any) => {
+  const openAttachmentModal = (item: QuoteRequestWithMemo) => {
     setSelectedAttachment(item)
     setAttachmentModalOpen(true)
   }
@@ -215,7 +214,7 @@ export default function DashboardPage() {
   }
 
   // CSV 다운로드 함수
-  const downloadCSV = (data: any[], filename: string) => {
+  const downloadCSV = (data: (QuoteRequestWithMemo | ContactWithMemo)[], filename: string) => {
     if (data.length === 0) {
       alert('No data to download')
       return

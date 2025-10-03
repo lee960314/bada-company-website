@@ -64,7 +64,7 @@ export default function AboutHero() {
       clearTimeout(timer3);
       clearTimeout(completeTimer);
     };
-  }, [hasAnimated]); // hasAnimated를 의존성으로 추가
+  }, [hasAnimated, animateCount]); // animateCount를 의존성으로 추가
 
   return (
     <>
