@@ -39,12 +39,16 @@ interface ContactWithMemo extends Contact {
   memo?: string
 }
 
+interface EditingItem extends QuoteRequestWithMemo {
+  table?: 'quote_requests' | 'contacts'
+}
+
 export default function DashboardPage() {
   const [quoteRequests, setQuoteRequests] = useState<QuoteRequestWithMemo[]>([])
   const [contacts, setContacts] = useState<ContactWithMemo[]>([])
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'quotes' | 'contacts'>('quotes')
-  const [editingItem, setEditingItem] = useState<QuoteRequestWithMemo | ContactWithMemo | null>(null)
+  const [editingItem, setEditingItem] = useState<EditingItem | null>(null)
   const [editDialogOpen, setEditDialogOpen] = useState(false)
   const [memoDialogOpen, setMemoDialogOpen] = useState(false)
   const [memoText, setMemoText] = useState("")
@@ -122,7 +126,7 @@ export default function DashboardPage() {
   }
 
   // 아이템 수정
-  const updateItem = async (id: string, updates: Partial<QuoteRequestWithMemo | ContactWithMemo>, table: 'quote_requests' | 'contacts') => {
+  const updateItem = async (id: string, updates: Partial<EditingItem>, table: 'quote_requests' | 'contacts') => {
     try {
       // id와 created_at, table 필드 제거
       const cleanUpdates = { ...updates }
@@ -176,7 +180,7 @@ export default function DashboardPage() {
 
   // 수정 다이얼로그 열기
   const openEditDialog = (item: QuoteRequestWithMemo | ContactWithMemo, table: 'quote_requests' | 'contacts') => {
-    setEditingItem({ ...item, table })
+    setEditingItem({ ...item, table } as EditingItem)
     setEditDialogOpen(true)
   }
 
