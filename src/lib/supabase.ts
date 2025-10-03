@@ -44,3 +44,12 @@ export interface QuoteRequest {
   shape: string
   surface: string
 }
+
+export interface Contact {
+  id?: string
+  created_at?: string
+  name: string
+  email: string
+  whatsapp?: string
+  message: string
+}

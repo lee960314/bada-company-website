@@ -6,6 +6,7 @@ import Footer from "@/components/Footer"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Mail, MessageCircle, User, Send } from "lucide-react"
+import { supabase, Contact } from "@/lib/supabase"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -26,10 +27,23 @@ export default function ContactPage() {
     setIsSubmitting(true)
     setSubmitMessage(null)
 
-    // 여기에 실제 제출 로직 추가 가능
     try {
-      // 시뮬레이션
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      // Supabase에 contact 데이터 저장
+      const contactData: Omit<Contact, 'id' | 'created_at'> = {
+        name: formData.name,
+        email: formData.email,
+        whatsapp: formData.whatsapp || null,
+        message: formData.message
+      }
+
+      const { error } = await supabase
+        .from('contacts')
+        .insert([contactData])
+
+      if (error) {
+        console.error('Supabase error:', error)
+        throw error
+      }
       
       setSubmitMessage({
         type: 'success',
