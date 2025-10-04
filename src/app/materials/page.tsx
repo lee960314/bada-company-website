@@ -9,7 +9,22 @@ import Link from "next/link"
 import { Layers, Shield, Leaf, Sparkles, Droplets, Zap } from "lucide-react"
 
 export default function MaterialsPage() {
-  const { t } = useTranslation('common')
+  const { t, ready } = useTranslation('common')
+
+  // 번역이 준비되지 않았으면 로딩 상태 표시
+  if (!ready) {
+    return (
+      <div className="min-h-screen bg-[#F5F6FA]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center">
+            <div className="animate-pulse text-[#0A3D62] text-4xl font-bold mb-4">
+              Loading...
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
   const [activeTab, setActiveTab] = useState('STRUCTURE')
   
   const tabs = [t('materials_tab_structure'), t('materials_tab_properties'), t('materials_tab_applications')]

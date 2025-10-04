@@ -10,7 +10,12 @@ import { useTranslation } from "react-i18next"
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
-  const { t } = useTranslation('common')
+  const [mounted, setMounted] = useState(false)
+  const { t, ready } = useTranslation('common')
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const slides = [
     {
@@ -75,6 +80,19 @@ export default function HeroSection() {
 
   const currentSlideData = slides[currentSlide]
 
+  // 번역이 준비되지 않았거나 마운트되지 않았으면 로딩 상태 표시
+  if (!ready || !mounted) {
+    return (
+      <section className="relative h-screen bg-[#F5F6FA] flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-pulse text-[#0A3D62] text-3xl font-bold mb-4">
+            Loading...
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section className="relative h-[800px] flex items-center justify-center overflow-hidden bg-[#F5F6FA]">
       {/* Background Images */}
@@ -114,14 +132,14 @@ export default function HeroSection() {
           <div className="space-y-6">
             <h1 
               key={`title-${currentSlide}`}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0A3D62] leading-tight animate-fade-in-up-enhanced mb-8 whitespace-pre-line"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#0A3D62] leading-tight animate-fade-in-up-enhanced mb-6 md:mb-8 whitespace-pre-line"
             >
               {currentSlideData.title}
             </h1>
             
             <p 
               key={`content-${currentSlide}`}
-              className="text-xl sm:text-2xl text-[#555555] max-w-3xl mx-auto leading-relaxed animate-fade-in-up-enhanced-delay-2 font-medium"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#555555] max-w-3xl mx-auto leading-relaxed animate-fade-in-up-enhanced-delay-2 font-medium px-4"
             >
               {currentSlideData.content}
             </p>
@@ -130,16 +148,23 @@ export default function HeroSection() {
           {/* CTA Buttons */}
           <div 
             key={`buttons-${currentSlide}`}
-            className="flex flex-col sm:flex-row gap-4 justify-center mt-12 animate-fade-in-up-enhanced-delay-3"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-8 md:mt-12 animate-fade-in-up-enhanced-delay-3 px-4"
           >
             <Link href="/quote">
-              <Button size="lg" className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-8 py-4 text-lg font-bold">
+              <Button 
+                size="lg" 
+                className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold touch-manipulation min-h-[48px] w-full sm:w-auto"
+              >
                 {t('get_quote')}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </Link>
             <Link href="/products/flexible-packaging">
-              <Button size="lg" variant="outline" className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-8 py-4 text-lg font-bold">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold touch-manipulation min-h-[48px] w-full sm:w-auto"
+              >
                 {t('learn_more')}
               </Button>
             </Link>
@@ -150,27 +175,27 @@ export default function HeroSection() {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-[#0A3D62]/80 hover:bg-[#0A3D62] rounded-full p-3 shadow-lg transition-all duration-300"
+        className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-[#0A3D62]/80 hover:bg-[#0A3D62] rounded-full p-2 sm:p-3 shadow-lg transition-all duration-300 touch-manipulation min-h-[44px] min-w-[44px]"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-6 w-6 text-white" />
+        <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
       </button>
       
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-[#0A3D62]/80 hover:bg-[#0A3D62] rounded-full p-3 shadow-lg transition-all duration-300"
+        className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-[#0A3D62]/80 hover:bg-[#0A3D62] rounded-full p-2 sm:p-3 shadow-lg transition-all duration-300 touch-manipulation min-h-[44px] min-w-[44px]"
         aria-label="Next slide"
       >
-        <ChevronRight className="h-6 w-6 text-white" />
+        <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 sm:space-x-3">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 touch-manipulation ${
               index === currentSlide 
                 ? 'bg-[#FFC312] scale-125' 
                 : 'bg-white/50 hover:bg-white/75'

@@ -6,7 +6,20 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function AboutHero() {
-  const { t } = useTranslation('common')
+  const { t, ready } = useTranslation('common')
+
+  // 번역이 준비되지 않았으면 로딩 상태 표시
+  if (!ready) {
+    return (
+      <section className="relative h-screen bg-[#F5F6FA] flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-pulse text-[#0A3D62] text-3xl font-bold mb-4">
+            Loading...
+          </div>
+        </div>
+      </section>
+    )
+  }
   const [counts, setCounts] = useState({
     founded: 0,
     orders: 0,

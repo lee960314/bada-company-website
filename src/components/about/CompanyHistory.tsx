@@ -5,8 +5,23 @@ import { useTranslation } from "react-i18next"
 import { TrendingUp, Factory, Layers, Globe } from "lucide-react"
 
 export default function CompanyHistory() {
-  const { t } = useTranslation('common')
+  const { t, ready } = useTranslation('common')
   const [selectedPeriod, setSelectedPeriod] = useState(0)
+
+  // 번역이 준비되지 않았으면 로딩 상태 표시
+  if (!ready) {
+    return (
+      <section className="py-20 bg-[#F5F6FA]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-pulse text-[#0A3D62] text-4xl font-bold mb-4">
+              Loading...
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   const historyPeriods = [
     {

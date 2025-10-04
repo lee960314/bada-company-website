@@ -126,6 +126,22 @@
     @apply bg-background text-foreground;
   }
   
+  /* 모바일 터치 최적화 */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* 터치 영역 최적화 */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+  
+  /* 모바일 스크롤 최적화 */
+  html {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
   /* 언어별 폰트 설정 */
   [lang="zh-CN"],
   [lang="zh-TW"],
@@ -208,3 +224,134 @@
 .animate-fade-in-up-enhanced-delay-4 {
   animation: fadeInUpScale 1s ease-out 0.6s both;
 }
+
+/* 모바일 최적화 유틸리티 클래스 */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+.min-touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* 모바일 반응형 텍스트 */
+@media (max-width: 640px) {
+  .text-responsive {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .text-responsive-xl {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+/* 모바일 패딩 최적화 */
+@media (max-width: 640px) {
+  .mobile-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mobile-padding-y {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* 클라이언트 로고 스크롤 애니메이션 */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 15s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 15s linear infinite;
+}
+
+/* 모바일에서 애니메이션 일시정지 (호버 시) */
+@media (max-width: 768px) {
+  .animate-scroll-left:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* 모바일 사이드바 애니메이션 */
+@keyframes slide-down-from-header {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-left {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-down-from-header {
+  animation: slide-down-from-header 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.3s ease-out forwards;
+}
+
+.animate-fade-in-left {
+  animation: fade-in-left 0.3s ease-out forwards;
+}
+
+/* 메뉴 항목 순차 애니메이션 */
+.menu-item-1 { animation-delay: 0.1s; }
+.menu-item-2 { animation-delay: 0.15s; }
+.menu-item-3 { animation-delay: 0.2s; }
+.menu-item-4 { animation-delay: 0.25s; }
+.menu-item-5 { animation-delay: 0.3s; }
+.menu-item-6 { animation-delay: 0.35s; }
+.menu-item-7 { animation-delay: 0.4s; }
+.menu-item-8 { animation-delay: 0.45s; }
