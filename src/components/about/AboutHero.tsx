@@ -68,7 +68,7 @@ export default function AboutHero() {
       clearTimeout(timer3);
       clearTimeout(completeTimer);
     };
-  }, [hasAnimated, animateCount]); // animateCount를 의존성으로 추가
+  }, [hasAnimated, animateCount, ready]); // ready를 의존성으로 추가
 
   // 번역이 준비되지 않았으면 로딩 상태 표시
   if (!ready) {
