@@ -481,7 +481,7 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                 </TableHeader>
                 <TableBody>
                   {contacts.length === 0 ? (
-                    <TableRow>
+                    <TableRow key="no-data">
                       <TableCell colSpan={6} className="text-center py-8 text-gray-500">
                         {error ? 'Unable to load data.' : 'No inquiries found.'}
                       </TableCell>
@@ -558,10 +558,10 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
               {editingItem && (
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {Object.keys(editingItem).map((key) => {
+                    {Object.keys(editingItem).map((key, index) => {
                       if (key === 'id' || key === 'created_at' || key === 'table') return null
                       return (
-                        <div key={key} className="space-y-2">
+                        <div key={`${key}-${index}`} className="space-y-2">
                           <label className="block text-sm font-medium text-[#0A3D62]">
                             {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                           </label>
