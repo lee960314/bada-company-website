@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { useTranslation } from "react-i18next"
 import { useState, useEffect } from "react"
+import { safeTranslate } from "@/lib/translation-utils"
 
 export default function ProductsSection() {
   const [mounted, setMounted] = useState(false)

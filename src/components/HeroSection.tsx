@@ -6,6 +6,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
+import { safeTranslate } from "@/lib/translation-utils"
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -20,28 +21,28 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      title: t('hero_title') || 'Premium Flexible Packaging Solutions',
+      title: safeTranslate(t, 'hero_title', 'Premium Flexible Packaging Solutions'),
       subtitle: "",
       description: "",
-      content: t('hero_subtitle') || 'Innovative packaging solutions for your business needs',
+      content: safeTranslate(t, 'hero_subtitle', 'Innovative packaging solutions for your business needs'),
       image: "/desktop-heroimg1test.png",
       imageSize: "1980x800px"
     },
     {
       id: 2,
-      title: t('hero_slide2_title') || 'Advanced Manufacturing',
+      title: safeTranslate(t, 'hero_slide2_title', 'Advanced Manufacturing'),
       subtitle: "",
       description: "",
-      content: t('hero_slide2_content') || 'State-of-the-art production facilities',
+      content: safeTranslate(t, 'hero_slide2_content', 'State-of-the-art production facilities'),
       imagePlaceholder: "Hero Image 2",
       imageSize: "1980x800px"
     },
     {
       id: 3,
-      title: t('hero_slide3_title') || 'Quality Assurance',
+      title: safeTranslate(t, 'hero_slide3_title', 'Quality Assurance'),
       subtitle: "",
       description: "",
-      content: t('hero_slide3_content') || 'Certified quality standards',
+      content: safeTranslate(t, 'hero_slide3_content', 'Certified quality standards'),
       imagePlaceholder: "Hero Image 3",
       imageSize: "1980x800px"
     }
@@ -156,7 +157,7 @@ export default function HeroSection() {
                 size="lg" 
                 className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold touch-manipulation min-h-[48px] w-full sm:w-auto"
               >
-                {t('get_quote') || 'Get Quote'}
+                {safeTranslate(t, 'get_quote', 'Get Quote')}
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </Link>
@@ -166,7 +167,7 @@ export default function HeroSection() {
                 variant="outline" 
                 className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold touch-manipulation min-h-[48px] w-full sm:w-auto"
               >
-                {t('learn_more') || 'Learn More'}
+                {safeTranslate(t, 'learn_more', 'Learn More')}
               </Button>
             </Link>
           </div>

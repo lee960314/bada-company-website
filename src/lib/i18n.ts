@@ -335,6 +335,17 @@ i18n.use(initReactI18next).init({
     useSuspense: false,
   },
   debug: process.env.NODE_ENV === 'development',
+  // 번역 키가 없을 때 키 자체를 반환하지 않고 빈 문자열 반환
+  returnEmptyString: false,
+  returnNull: false,
+  // 초기화 완료까지 대기
+  initImmediate: false,
+  // 키가 없을 때 fallback 사용
+  keySeparator: false,
+  nsSeparator: false,
+  // 초기화 완료 후 즉시 사용 가능하도록 설정
+  load: 'languageOnly',
+  preload: ['en'],
 });
 
 // 언어 변경 시 HTML lang 속성 업데이트
@@ -346,14 +357,27 @@ i18n.on('languageChanged', (lng) => {
 
 // 클라이언트 사이드에서 JSON 파일 로드 (선택적)
 if (typeof window !== 'undefined') {
-  loadTranslations().then((loadedResources) => {
-    if (Object.keys(loadedResources).length > 0) {
-      i18n.addResourceBundle('en', 'common', loadedResources.en?.common || {}, true, true);
-      i18n.addResourceBundle('ko', 'common', loadedResources.ko?.common || {}, true, true);
-      i18n.addResourceBundle('zh-CN', 'common', loadedResources['zh-CN']?.common || {}, true, true);
-    }
-  }).catch((error) => {
-    console.warn('Failed to load additional translations:', error);
+  // 즉시 초기화 완료 상태로 설정
+  i18n.on('initialized', () => {
+    console.log('i18n initialized with language:', i18n.language);
+    // HTML lang 속성 즉시 설정
+    document.documentElement.lang = i18n.language;
+  });
+
+  // 초기화 완료 후 추가 번역 로드
+  i18n.on('initialized', () => {
+    loadTranslations().then((loadedResources) => {
+      if (Object.keys(loadedResources).length > 0) {
+        i18n.addResourceBundle('en', 'common', loadedResources.en?.common || {}, true, true);
+        i18n.addResourceBundle('ko', 'common', loadedResources.ko?.common || {}, true, true);
+        i18n.addResourceBundle('zh-CN', 'common', loadedResources['zh-CN']?.common || {}, true, true);
+        
+        // 언어 변경 이벤트 발생
+        i18n.emit('languageChanged', i18n.language);
+      }
+    }).catch((error) => {
+      console.warn('Failed to load additional translations:', error);
+    });
   });
 }
 
