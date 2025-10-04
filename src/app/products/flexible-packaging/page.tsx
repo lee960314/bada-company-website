@@ -6,7 +6,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import TabMenu from "@/components/TabMenu"
 import Link from "next/link"
-import { Package, Printer, Settings } from "lucide-react"
+import { Package, Printer } from "lucide-react"
 
 export default function Product2Page() {
   const { t, ready } = useTranslation('common')

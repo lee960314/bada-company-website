@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 // JSON 파일에서 번역 데이터를 동적으로 로드하는 함수
 const loadTranslations = async () => {
   const languages = ['en', 'ko', 'zh-CN'];
-  const resources: any = {};
+  const resources: Record<string, { common: Record<string, string> }> = {};
   
   try {
     // 모든 언어의 번역 파일을 병렬로 로드

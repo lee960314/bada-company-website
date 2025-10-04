@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, ChevronDown, Globe } from "lucide-react"
 import { useTranslation } from "react-i18next"
-import { useRouter, usePathname } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,7 +15,6 @@ export default function Header() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
   const { t, i18n, ready } = useTranslation('common')
   const router = useRouter()
-  const pathname = usePathname()
 
   // 번역이 준비되지 않았으면 로딩 상태 표시
   if (!ready) {

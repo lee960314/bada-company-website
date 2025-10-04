@@ -31,24 +31,6 @@ interface FormData {
 export default function QuoteForm() {
   const { t, ready } = useTranslation('common')
   const [currentStep, setCurrentStep] = useState(1)
-
-  // 번역이 준비되지 않았으면 로딩 상태 표시
-  if (!ready) {
-    return (
-      <div className="min-h-screen bg-[#F5F6FA] py-8 lg:py-4">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-center h-96">
-              <div className="text-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A3D62] mx-auto mb-4"></div>
-                <p className="text-[#0A3D62] text-lg">Loading...</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
   const [formData, setFormData] = useState<FormData>({
@@ -103,6 +85,24 @@ export default function QuoteForm() {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1)
     }
+  }
+
+  // 번역이 준비되지 않았으면 로딩 상태 표시
+  if (!ready) {
+    return (
+      <div className="min-h-screen bg-[#F5F6FA] py-8 lg:py-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-center h-96">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A3D62] mx-auto mb-4"></div>
+                <p className="text-[#0A3D62] text-lg">Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   const handleSubmit = async () => {
