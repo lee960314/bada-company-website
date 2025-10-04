@@ -20,28 +20,28 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      title: t('hero_title'),
+      title: t('hero_title') || 'Premium Flexible Packaging Solutions',
       subtitle: "",
       description: "",
-      content: t('hero_subtitle'),
+      content: t('hero_subtitle') || 'Innovative packaging solutions for your business needs',
       image: "/desktop-heroimg1test.png",
       imageSize: "1980x800px"
     },
     {
       id: 2,
-      title: t('hero_slide2_title'),
+      title: t('hero_slide2_title') || 'Advanced Manufacturing',
       subtitle: "",
       description: "",
-      content: t('hero_slide2_content'),
+      content: t('hero_slide2_content') || 'State-of-the-art production facilities',
       imagePlaceholder: "Hero Image 2",
       imageSize: "1980x800px"
     },
     {
       id: 3,
-      title: t('hero_slide3_title'),
+      title: t('hero_slide3_title') || 'Quality Assurance',
       subtitle: "",
       description: "",
-      content: t('hero_slide3_content'),
+      content: t('hero_slide3_content') || 'Certified quality standards',
       imagePlaceholder: "Hero Image 3",
       imageSize: "1980x800px"
     }
@@ -83,9 +83,10 @@ export default function HeroSection() {
   // 번역이 준비되지 않았거나 마운트되지 않았으면 로딩 상태 표시
   if (!ready || !mounted) {
     return (
-      <section className="relative h-screen bg-[#F5F6FA] flex items-center justify-center">
+      <section className="relative h-[800px] bg-[#F5F6FA] flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-pulse text-[#0A3D62] text-3xl font-bold mb-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0A3D62] mx-auto mb-4"></div>
+          <div className="text-[#0A3D62] text-xl font-semibold">
             Loading...
           </div>
         </div>
@@ -155,7 +156,7 @@ export default function HeroSection() {
                 size="lg" 
                 className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold touch-manipulation min-h-[48px] w-full sm:w-auto"
               >
-                {t('get_quote')}
+                {t('get_quote') || 'Get Quote'}
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </Link>
@@ -165,7 +166,7 @@ export default function HeroSection() {
                 variant="outline" 
                 className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold touch-manipulation min-h-[48px] w-full sm:w-auto"
               >
-                {t('learn_more')}
+                {t('learn_more') || 'Learn More'}
               </Button>
             </Link>
           </div>

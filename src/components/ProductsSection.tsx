@@ -20,7 +20,8 @@ export default function ProductsSection() {
       <section className="py-20 bg-[#F5F6FA]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="animate-pulse text-[#0A3D62] text-4xl font-bold mb-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A3D62] mx-auto mb-4"></div>
+            <div className="text-[#0A3D62] text-lg font-semibold">
               Loading...
             </div>
           </div>
@@ -31,24 +32,24 @@ export default function ProductsSection() {
   
   const products = [
     {
-      title: t('product_materials'),
-      subtitle: t('product_poly_bag'),
-      materials: t('product_materials_list'),
-      imagePlaceholder: t('product_materials_image'),
+      title: t('product_materials') || 'Materials',
+      subtitle: t('product_poly_bag') || 'Poly Bags',
+      materials: t('product_materials_list') || 'PE, PP, PET materials',
+      imagePlaceholder: t('product_materials_image') || 'Materials Image',
       imageSize: "400x300px"
     },
     {
-      title: t('product_functionalities'),
-      subtitle: t('product_flexible_package'), 
-      materials: t('product_functionalities_list'),
-      imagePlaceholder: t('product_flexible_image'),
+      title: t('product_functionalities') || 'Functionalities',
+      subtitle: t('product_flexible_package') || 'Flexible Package', 
+      materials: t('product_functionalities_list') || 'Barrier, Seal, Print',
+      imagePlaceholder: t('product_flexible_image') || 'Flexible Image',
       imageSize: "400x300px"
     },
     {
-      title: t('product_industries'),
+      title: t('product_industries') || 'Industries',
       subtitle: "-",
-      materials: t('product_industries_list'),
-      imagePlaceholder: t('product_injection_image'), 
+      materials: t('product_industries_list') || 'Food, Medical, Industrial',
+      imagePlaceholder: t('product_injection_image') || 'Injection Image', 
       imageSize: "400x300px"
     }
   ]
@@ -58,10 +59,10 @@ export default function ProductsSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A3D62] mb-3 md:mb-4 whitespace-pre-line">
-            {t('products_section_title')}
+            {t('products_section_title') || 'Flexible Packaging'}
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-[#555555] max-w-2xl mx-auto whitespace-pre-line">
-            {t('products_section_subtitle')}
+            {t('products_section_subtitle') || 'High-quality packaging solutions for various industries'}
           </p>
         </div>
 
@@ -71,7 +72,7 @@ export default function ProductsSection() {
               <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 text-center hover:bg-[#F5F6FA] transition-colors duration-300 border border-[#E5E5E5] hover:border-[#FFC312]">
                 {/* Product Image */}
                  <div className="aspect-video bg-[#F5F6FA] rounded-lg md:rounded-xl mb-4 md:mb-6 overflow-hidden">
-                   {product.title === t('product_materials') ? (
+                   {product.title === (t('product_materials') || 'Materials') ? (
                      <Image
                        src="/material_img.png"
                        alt="Materials"
@@ -107,7 +108,7 @@ export default function ProductsSection() {
                     size="lg" 
                     className="w-full bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] group-hover:bg-[#FFD93D] transition-colors duration-300 font-bold whitespace-pre-line text-sm md:text-base py-2 md:py-3"
                   >
-                    {t('learn_more')}
+                    {t('learn_more') || 'Learn More'}
                     <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
                   </Button>
                 </div>

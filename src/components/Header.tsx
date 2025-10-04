@@ -50,13 +50,13 @@ export default function Header() {
   }
 
   const navigation = [
-    { name: t('menu_home'), href: "/" },
-    { name: t('menu_about'), href: "/about" },
+    { name: t('menu_home') || 'Home', href: "/" },
+    { name: t('menu_about') || 'About', href: "/about" },
   ]
 
   const products = [
-    { name: t('menu_manufacturing'), href: "/manufacturing-process" },
-    { name: t('menu_flexible_packaging'), href: "/products/flexible-packaging" },
+    { name: t('menu_manufacturing') || 'Manufacturing', href: "/manufacturing-process" },
+    { name: t('menu_flexible_packaging') || 'Flexible Packaging', href: "/products/flexible-packaging" },
   ]
 
   const changeLanguage = (lng: string) => {
@@ -69,9 +69,9 @@ export default function Header() {
   }
 
   const languages = [
-    { code: 'en', name: t('language_en'), flag: '🇺🇸' },
-    { code: 'ko', name: t('language_ko'), flag: '🇰🇷' },
-    { code: 'zh-CN', name: t('language_zh'), flag: '🇨🇳' },
+    { code: 'en', name: t('language_en') || 'English', flag: '🇺🇸' },
+    { code: 'ko', name: t('language_ko') || '한국어', flag: '🇰🇷' },
+    { code: 'zh-CN', name: t('language_zh') || '中文', flag: '🇨🇳' },
   ]
 
   return (
@@ -111,7 +111,7 @@ export default function Header() {
               onMouseLeave={() => setIsProductsOpen(false)}
             >
               <button className="flex items-center space-x-1 text-white hover:text-[#FFC312] transition-colors duration-200 font-bold text-xl whitespace-pre-line">
-                <span className="whitespace-pre-line">{t('menu_products')}</span>
+                <span className="whitespace-pre-line">{t('menu_products') || 'Products'}</span>
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isProductsOpen ? 'rotate-180' : ''}`} />
               </button>
               
@@ -140,7 +140,7 @@ export default function Header() {
               href="/quote"
               className="text-white hover:text-[#FFC312] transition-colors duration-200 font-bold text-xl whitespace-pre-line"
             >
-              {t('menu_quote')}
+                {t('menu_quote') || 'Quote'}
             </Link>
 
             {/* 언어 선택 드롭다운 */}
@@ -183,7 +183,7 @@ export default function Header() {
           <div className="hidden md:flex items-center">
             <Link href="/contact">
               <Button size="lg" className="px-8 py-3 text-lg font-bold bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] whitespace-pre-line">
-                {t('menu_contact')}
+                {t('menu_contact') || 'Contact'}
               </Button>
             </Link>
           </div>
@@ -305,7 +305,7 @@ export default function Header() {
                         onClick={() => setIsProductsOpen(!isProductsOpen)}
                       >
                         <span className="relative">
-                          {t('menu_products')}
+                          {t('menu_products') || 'Products'}
                           {isProductsOpen && (
                             <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#FFC312]"></div>
                           )}
@@ -350,7 +350,7 @@ export default function Header() {
                         onClick={() => setIsOpen(false)}
                       >
                         <span className="relative">
-                          {t('menu_quote')}
+                          {t('menu_quote') || 'Quote'}
                           {pathname === '/quote' && (
                             <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#FFC312]"></div>
                           )}
@@ -368,7 +368,7 @@ export default function Header() {
                         onClick={() => setIsOpen(false)}
                       >
                         <span className="relative">
-                          {t('menu_contact')}
+                          {t('menu_contact') || 'Contact'}
                           {pathname === '/contact' && (
                             <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#FFC312]"></div>
                           )}

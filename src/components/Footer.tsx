@@ -22,7 +22,8 @@ export default function Footer() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-16">
             <div className="flex items-center justify-center h-32">
-              <div className="animate-pulse text-gray-300">Loading...</div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-4"></div>
+              <div className="text-white text-lg font-semibold ml-4">Loading...</div>
             </div>
           </div>
         </div>
@@ -48,7 +49,7 @@ export default function Footer() {
                 />
               </div>
               <p className="text-gray-300 text-base leading-relaxed whitespace-pre-line">
-                {t('footer_description')}
+                {t('footer_description') || 'A specialized company in flexible packaging materials, providing high-quality products and services.'}
               </p>
               <div className="flex space-x-3">
                 <Button variant="ghost" size="sm" className="p-2 text-gray-300 hover:text-[#FFC312] hover:bg-white/10 touch-manipulation min-h-[44px] min-w-[44px]">
@@ -65,16 +66,16 @@ export default function Footer() {
 
             {/* Products */}
             <div className="space-y-4">
-              <h3 className="text-lg md:text-xl font-semibold whitespace-pre-line">{t('footer_products')}</h3>
+              <h3 className="text-lg md:text-xl font-semibold whitespace-pre-line">{t('footer_products') || 'Products'}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/manufacturing-process" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
-                    {t('footer_manufacturing_process')}
+                    {t('footer_manufacturing_process') || 'Manufacturing Process'}
                   </Link>
                 </li>
                 <li>
                   <Link href="/products/flexible-packaging" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
-                    {t('footer_flexible_packaging')}
+                    {t('footer_flexible_packaging') || 'Flexible Packaging'}
                   </Link>
                 </li>
               </ul>
@@ -82,31 +83,31 @@ export default function Footer() {
 
             {/* Company */}
             <div className="space-y-4">
-              <h3 className="text-lg md:text-xl font-semibold whitespace-pre-line">{t('footer_company_info')}</h3>
+              <h3 className="text-lg md:text-xl font-semibold whitespace-pre-line">{t('footer_company_info') || 'Company Info'}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/about" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
-                    {t('footer_about_us')}
+                    {t('footer_about_us') || 'About Us'}
                   </Link>
                 </li>
                 <li>
                   <Link href="/materials" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
-                    {t('footer_materials')}
+                    {t('footer_materials') || 'Materials'}
                   </Link>
                 </li>
                 <li>
                   <Link href="/quote" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
-                    {t('footer_get_quote')}
+                    {t('footer_get_quote') || 'Get Quote'}
                   </Link>
                 </li>
                 <li>
                   <Link href="/contact" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
-                    {t('footer_contact')}
+                    {t('footer_contact') || 'Contact'}
                   </Link>
                 </li>
                 <li>
                   <Link href="/dashboard" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
-                    {t('footer_dashboard')}
+                    {t('footer_dashboard') || 'Dashboard'}
                   </Link>
                 </li>
               </ul>
@@ -114,7 +115,7 @@ export default function Footer() {
 
             {/* Contact */}
             <div className="space-y-4">
-              <h3 className="text-lg md:text-xl font-semibold whitespace-pre-line">{t('footer_contact')}</h3>
+              <h3 className="text-lg md:text-xl font-semibold whitespace-pre-line">{t('footer_contact') || 'Contact'}</h3>
               <div className="space-y-3">
                 <div className="flex items-start space-x-3">
                   <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 mt-0.5 flex-shrink-0" />
@@ -146,17 +147,17 @@ export default function Footer() {
         <div className="border-t border-gray-800 py-4 md:py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
             <div className="text-gray-400 text-sm md:text-base whitespace-pre-line text-center md:text-left">
-              © 2024 {t('footer_company')}. {t('footer_rights')}.
+              © 2024 {t('footer_company') || 'KJ FLEX PACK'}. {t('footer_rights') || 'All rights reserved'}.
             </div>
             <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
               <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation">
-                {t('footer_privacy_policy')}
+                {t('footer_privacy_policy') || 'Privacy Policy'}
               </Link>
               <Link href="/terms" className="text-gray-400 hover:text-white transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation">
-                {t('footer_terms_of_service')}
+                {t('footer_terms_of_service') || 'Terms of Service'}
               </Link>
               <Link href="/sitemap" className="text-gray-400 hover:text-white transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation">
-                {t('footer_sitemap')}
+                {t('footer_sitemap') || 'Sitemap'}
               </Link>
             </div>
           </div>
