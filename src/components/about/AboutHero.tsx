@@ -7,6 +7,14 @@ import Image from 'next/image';
 
 export default function AboutHero() {
   const { t, ready } = useTranslation('common')
+  const [counts, setCounts] = useState({
+    founded: 0,
+    orders: 0,
+    clients: 0
+  });
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   // 번역이 준비되지 않았으면 로딩 상태 표시
   if (!ready) {
@@ -20,14 +28,6 @@ export default function AboutHero() {
       </section>
     )
   }
-  const [counts, setCounts] = useState({
-    founded: 0,
-    orders: 0,
-    clients: 0
-  });
-
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
 
   const animateCount = useCallback((key: 'founded' | 'orders' | 'clients') => {
     const targetCounts = {

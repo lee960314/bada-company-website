@@ -50,6 +50,19 @@ interface SelectedItem extends QuoteRequestWithMemo {
 
 export default function DashboardPage() {
   const { t, ready } = useTranslation('common')
+  const [quoteRequests, setQuoteRequests] = useState<QuoteRequestWithMemo[]>([])
+  const [contacts, setContacts] = useState<ContactWithMemo[]>([])
+  const [loading, setLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState<'quotes' | 'contacts'>('quotes')
+  const [editingItem, setEditingItem] = useState<EditingItem | null>(null)
+  const [editDialogOpen, setEditDialogOpen] = useState(false)
+  const [memoDialogOpen, setMemoDialogOpen] = useState(false)
+  const [memoText, setMemoText] = useState("")
+  const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null)
+  const [showSensitiveData, setShowSensitiveData] = useState<{ [key: string]: boolean }>({})
+  const [error, setError] = useState<string | null>(null)
+  const [attachmentModalOpen, setAttachmentModalOpen] = useState(false)
+  const [selectedAttachment, setSelectedAttachment] = useState<QuoteRequestWithMemo | null>(null)
 
   // 번역이 준비되지 않았으면 로딩 상태 표시
   if (!ready) {
@@ -65,19 +78,6 @@ export default function DashboardPage() {
       </div>
     )
   }
-  const [quoteRequests, setQuoteRequests] = useState<QuoteRequestWithMemo[]>([])
-  const [contacts, setContacts] = useState<ContactWithMemo[]>([])
-  const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<'quotes' | 'contacts'>('quotes')
-  const [editingItem, setEditingItem] = useState<EditingItem | null>(null)
-  const [editDialogOpen, setEditDialogOpen] = useState(false)
-  const [memoDialogOpen, setMemoDialogOpen] = useState(false)
-  const [memoText, setMemoText] = useState("")
-  const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null)
-  const [showSensitiveData, setShowSensitiveData] = useState<{ [key: string]: boolean }>({})
-  const [error, setError] = useState<string | null>(null)
-  const [attachmentModalOpen, setAttachmentModalOpen] = useState(false)
-  const [selectedAttachment, setSelectedAttachment] = useState<QuoteRequestWithMemo | null>(null)
 
   // 데이터 로드
   const loadData = async () => {

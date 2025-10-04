@@ -10,6 +10,7 @@ import { Layers, Shield, Leaf, Sparkles, Droplets, Zap } from "lucide-react"
 
 export default function MaterialsPage() {
   const { t, ready } = useTranslation('common')
+  const [activeTab, setActiveTab] = useState('STRUCTURE')
 
   // 번역이 준비되지 않았으면 로딩 상태 표시
   if (!ready) {
@@ -25,7 +26,6 @@ export default function MaterialsPage() {
       </div>
     )
   }
-  const [activeTab, setActiveTab] = useState('STRUCTURE')
   
   const tabs = [t('materials_tab_structure'), t('materials_tab_properties'), t('materials_tab_applications')]
 
