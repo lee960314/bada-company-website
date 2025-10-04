@@ -64,21 +64,6 @@ export default function DashboardPage() {
   const [attachmentModalOpen, setAttachmentModalOpen] = useState(false)
   const [selectedAttachment, setSelectedAttachment] = useState<QuoteRequestWithMemo | null>(null)
 
-  // 번역이 준비되지 않았으면 로딩 상태 표시
-  if (!ready) {
-    return (
-      <div className="min-h-screen bg-[#F5F6FA]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center">
-            <div className="animate-pulse text-[#0A3D62] text-4xl font-bold mb-4">
-              Loading...
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   // 데이터 로드
   const loadData = async () => {
     setLoading(true)
@@ -120,8 +105,25 @@ export default function DashboardPage() {
   }
 
   useEffect(() => {
-    loadData()
-  }, [])
+    if (ready) {
+      loadData()
+    }
+  }, [ready])
+
+  // 번역이 준비되지 않았으면 로딩 상태 표시
+  if (!ready) {
+    return (
+      <div className="min-h-screen bg-[#F5F6FA]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center">
+            <div className="animate-pulse text-[#0A3D62] text-4xl font-bold mb-4">
+              Loading...
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   // 아이템 삭제
   const deleteItem = async (id: string, table: 'quote_requests' | 'contacts') => {

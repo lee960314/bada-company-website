@@ -16,19 +16,6 @@ export default function AboutHero() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  // 번역이 준비되지 않았으면 로딩 상태 표시
-  if (!ready) {
-    return (
-      <section className="relative h-screen bg-[#F5F6FA] flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-pulse text-[#0A3D62] text-3xl font-bold mb-4">
-            Loading...
-          </div>
-        </div>
-      </section>
-    )
-  }
-
   const animateCount = useCallback((key: 'founded' | 'orders' | 'clients') => {
     const targetCounts = {
       founded: 2003,
@@ -54,6 +41,8 @@ export default function AboutHero() {
   }, []);
 
   useEffect(() => {
+    if (!ready) return;
+    
     // 이미 애니메이션이 실행되었다면 중복 실행 방지
     if (hasAnimated) return;
 
@@ -80,6 +69,19 @@ export default function AboutHero() {
       clearTimeout(completeTimer);
     };
   }, [hasAnimated, animateCount]); // animateCount를 의존성으로 추가
+
+  // 번역이 준비되지 않았으면 로딩 상태 표시
+  if (!ready) {
+    return (
+      <section className="relative h-screen bg-[#F5F6FA] flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-pulse text-[#0A3D62] text-3xl font-bold mb-4">
+            Loading...
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <>
