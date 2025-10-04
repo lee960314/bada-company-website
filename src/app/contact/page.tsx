@@ -11,6 +11,14 @@ import { supabase, Contact } from "@/lib/supabase"
 
 export default function ContactPage() {
   const { t, ready } = useTranslation('common')
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    whatsapp: "",
+    message: ""
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
 
   // 번역이 준비되지 않았으면 로딩 상태 표시
   if (!ready) {
@@ -20,21 +28,13 @@ export default function ContactPage() {
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A3D62] mx-auto mb-4"></div>
-            <p className="text-[#0A3D62] text-lg">{t('quote_loading')}</p>
+            <p className="text-[#0A3D62] text-lg">Loading...</p>
           </div>
         </div>
         <Footer />
       </div>
     )
   }
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    whatsapp: "",
-    message: ""
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
