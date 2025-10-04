@@ -1,3 +1,8 @@
+/* Google Fonts import - 모든 @import는 최상단에 위치해야 함 */
+@import url('https://fonts.googleapis.com/css2?family=HarmonyOS+Sans+SC:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -119,6 +124,24 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* 언어별 폰트 설정 */
+  [lang="zh-CN"],
+  [lang="zh-TW"],
+  [lang="zh-HK"],
+  .font-chinese {
+    font-family: 'HarmonyOS Sans SC', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'SimHei', '黑体', sans-serif;
+  }
+  
+  [lang="ko"],
+  .font-korean {
+    font-family: 'Noto Sans KR', 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+  }
+  
+  [lang="en"],
+  .font-english {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   }
 }
 

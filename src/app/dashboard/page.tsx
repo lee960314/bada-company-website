@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { Button } from "@/components/ui/button"
@@ -48,6 +49,7 @@ interface SelectedItem extends QuoteRequestWithMemo {
 }
 
 export default function DashboardPage() {
+  const { t } = useTranslation('common')
   const [quoteRequests, setQuoteRequests] = useState<QuoteRequestWithMemo[]>([])
   const [contacts, setContacts] = useState<ContactWithMemo[]>([])
   const [loading, setLoading] = useState(true)
@@ -108,7 +110,7 @@ export default function DashboardPage() {
 
   // 아이템 삭제
   const deleteItem = async (id: string, table: 'quote_requests' | 'contacts') => {
-    if (!confirm('Are you sure you want to delete this item?')) return
+    if (!confirm(t('are_you_sure'))) return
 
     try {
       const { error } = await supabase
@@ -120,7 +122,7 @@ export default function DashboardPage() {
         console.error('Error deleting item:', error)
         alert('Error occurred while deleting item.')
       } else {
-        alert('Item deleted successfully.')
+        alert(t('item_deleted'))
         loadData()
       }
     } catch (error) {
@@ -261,7 +263,7 @@ export default function DashboardPage() {
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
             <RefreshCw className="h-8 w-8 animate-spin mx-auto mb-4 text-[#0A3D62]" />
-            <p className="text-[#0A3D62] text-lg">Loading data...</p>
+            <p className="text-[#0A3D62] text-lg">{t('loading_data')}</p>
           </div>
         </div>
         <Footer />
@@ -277,17 +279,17 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto">
           {/* 헤더 */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-[#0A3D62] mb-2">Admin Dashboard</h1>
-            <p className="text-[#555555]">Manage quote requests and inquiries</p>
+            <h1 className="text-3xl font-bold text-[#0A3D62] mb-2">{t('dashboard_title')}</h1>
+            <p className="text-[#555555]">{t('dashboard_subtitle')}</p>
           </div>
 
           {/* 에러 메시지 */}
           {error && (
             <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-              <p className="font-semibold">Data Load Error</p>
+              <p className="font-semibold">{t('data_load_error')}</p>
               <p>{error}</p>
               <p className="text-sm mt-2">
-                Admin permissions required or check RLS policies.
+                {t('admin_permissions_required')}
               </p>
               <details className="mt-3">
                 <summary className="cursor-pointer text-sm font-medium">
@@ -346,7 +348,7 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                 ? 'bg-[#0A3D62] text-white' 
                 : 'bg-white text-[#0A3D62] border-[#0A3D62]'}`}
             >
-              Quote Requests ({quoteRequests.length})
+              {t('quote_requests')} ({quoteRequests.length})
             </Button>
             <Button
               variant={activeTab === 'contacts' ? 'default' : 'outline'}
@@ -355,7 +357,7 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                 ? 'bg-[#0A3D62] text-white' 
                 : 'bg-white text-[#0A3D62] border-[#0A3D62]'}`}
             >
-              Inquiries ({contacts.length})
+              {t('contact_messages')} ({contacts.length})
             </Button>
             <div className="ml-auto flex space-x-2">
               <Button
@@ -367,7 +369,7 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                 className="px-4 py-2"
               >
                 <Download className="h-4 w-4 mr-2" />
-                Export CSV
+                {t('export_data')}
               </Button>
               <Button
                 onClick={loadData}
@@ -375,7 +377,7 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                 className="px-4 py-2"
               >
                 <RefreshCw className="h-4 w-4 mr-2" />
-                Refresh
+                {t('refresh')}
               </Button>
             </div>
           </div>

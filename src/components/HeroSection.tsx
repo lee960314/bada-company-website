@@ -5,36 +5,38 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useTranslation } from "react-i18next"
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
+  const { t } = useTranslation('common')
 
   const slides = [
     {
       id: 1,
-      title: "Premium Flexible Packaging Solutions",
+      title: t('hero_title'),
       subtitle: "",
       description: "",
-      content: "Protecting product freshness, quality, and brand trust worldwide.",
+      content: t('hero_subtitle'),
       image: "/desktop-heroimg1test.png",
       imageSize: "1980x800px"
     },
     {
       id: 2,
-      title: "From Food to Everyday Life and Beyond",
+      title: t('hero_slide2_title'),
       subtitle: "",
       description: "",
-      content: "Connecting producers and consumers with reliable packaging across industries.",
+      content: t('hero_slide2_content'),
       imagePlaceholder: "Hero Image 2",
       imageSize: "1980x800px"
     },
     {
       id: 3,
-      title: "Shaping the Future of Packaging",
+      title: t('hero_slide3_title'),
       subtitle: "",
       description: "",
-      content: "High-performance solutions with speed, precision, and consistency.",
+      content: t('hero_slide3_content'),
       imagePlaceholder: "Hero Image 3",
       imageSize: "1980x800px"
     }
@@ -112,7 +114,7 @@ export default function HeroSection() {
           <div className="space-y-6">
             <h1 
               key={`title-${currentSlide}`}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0A3D62] leading-tight animate-fade-in-up-enhanced mb-8"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0A3D62] leading-tight animate-fade-in-up-enhanced mb-8 whitespace-pre-line"
             >
               {currentSlideData.title}
             </h1>
@@ -132,13 +134,13 @@ export default function HeroSection() {
           >
             <Link href="/quote">
               <Button size="lg" className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-8 py-4 text-lg font-bold">
-                Get a Quote
+                {t('get_quote')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/products/flexible-packaging">
               <Button size="lg" variant="outline" className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-8 py-4 text-lg font-bold">
-                Learn More
+                {t('learn_more')}
               </Button>
             </Link>
           </div>

@@ -1,54 +1,57 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { TrendingUp, Factory, Layers, Globe } from "lucide-react"
 
 export default function CompanyHistory() {
+  const { t } = useTranslation('common')
   const [selectedPeriod, setSelectedPeriod] = useState(0)
 
   const historyPeriods = [
     {
-      period: "2003 ~ 2008",
-      title: "Foundation & Early Growth",
+      period: t('about_period_1'),
+      title: t('about_title_1'),
       achievements: [
-        "Founded as a family-operated workshop specializing in thermal transfer labels",
-        "Began manufacturing plastic packaging for local food and consumer goods companies",
-        "Built a foundation in flexible packaging by supplying regional distributors and manufacturers"
+        t('about_achievement_1_1'),
+        t('about_achievement_1_2'),
+        t('about_achievement_1_3')
       ],
       icon: Factory
     },
     {
-      period: "2009 ~ 2015",
-      title: "Expansion & Innovation",
+      period: t('about_period_2'),
+      title: t('about_title_2'),
       achievements: [
-        "Expanded facilities with new production halls and upgraded utilities to increase output capacity",
-        "Installed the first fully integrated flexible packaging production line",
-        "Introduced computerized printing and slitting equipment to improve precision and consistency",
-        "Designed custom packaging formats tailored to client specifications across food, retail, and industrial sectors",
-        "Formed long-term supply contracts with leading regional brands",
-        "Established standardized quality management and inspection procedures"
+        t('about_achievement_2_1'),
+        t('about_achievement_2_2'),
+        t('about_achievement_2_3'),
+        t('about_achievement_2_4'),
+        t('about_achievement_2_5'),
+        t('about_achievement_2_6')
       ],
       icon: Layers
     },
     {
-      period: "2016 ~ 2022",
-      title: "Global Reach & Technology Advancement",
+      period: t('about_period_3'),
+      title: t('about_title_3'),
       achievements: [
-        "Added high-speed 9-color rotogravure presses and solventless lamination systems",
-        "Increased pouch-making capacity with advanced converting machinery for stand-up and spouted pouches",
-        "Developed high-barrier films for extended shelf life and launched recyclable, eco-friendly packaging materials",
-        "Entered international markets through export partnerships in Asia, Europe, and North America",
-        "Strengthened R&D capabilities to support product innovation and regulatory compliance"
+        t('about_achievement_3_1'),
+        t('about_achievement_3_2'),
+        t('about_achievement_3_3'),
+        t('about_achievement_3_4'),
+        t('about_achievement_3_5'),
+        t('about_achievement_3_6')
       ],
       icon: Globe
     },
     {
-      period: "2023 ~ Present",
-      title: "Smart & Sustainable Growth",
+      period: t('about_period_4'),
+      title: t('about_title_4'),
       achievements: [
-        "Upgraded operations with smart manufacturing systems, including automated defect detection and inline quality inspection",
-        "Expanded product portfolio to serve global brands in food, beverage, pet food, household, and personal care industries",
-        "Positioning the company as a technology-driven packaging partner committed to customer success and long-term growth"
+        t('about_achievement_4_1'),
+        t('about_achievement_4_2'),
+        t('about_achievement_4_3')
       ],
       icon: TrendingUp
     }
@@ -61,10 +64,10 @@ export default function CompanyHistory() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0A3D62] mb-4">
-            Our Journey
+            {t('about_our_journey')}
           </h2>
           <p className="text-lg text-[#555555] max-w-2xl mx-auto">
-            A timeline of our growth, innovation, and commitment to excellence
+            {t('about_journey_description')}
           </p>
         </div>
 

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, Upload } from "lucide-react"
 import { supabase } from "@/lib/supabase"
@@ -28,7 +29,26 @@ interface FormData {
 }
 
 export default function QuoteForm() {
+  const { t, ready } = useTranslation('common')
   const [currentStep, setCurrentStep] = useState(1)
+
+  // 번역이 준비되지 않았으면 로딩 상태 표시
+  if (!ready) {
+    return (
+      <div className="min-h-screen bg-[#F5F6FA] py-8 lg:py-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-center h-96">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A3D62] mx-auto mb-4"></div>
+                <p className="text-[#0A3D62] text-lg">Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
   const [formData, setFormData] = useState<FormData>({
@@ -147,7 +167,7 @@ export default function QuoteForm() {
 
       setSubmitMessage({
         type: 'success',
-        text: 'Quote request submitted successfully! We will contact you soon.'
+        text: t('quote_submitted')
       })
 
       // Reset form
@@ -178,7 +198,7 @@ export default function QuoteForm() {
       console.error('Error submitting quote:', error)
       setSubmitMessage({
         type: 'error',
-        text: 'Failed to submit quote request. Please try again.'
+        text: t('quote_failed')
       })
     } finally {
       setIsSubmitting(false)
@@ -195,7 +215,7 @@ export default function QuoteForm() {
               {currentStep}/3
             </div>
             <div className="text-lg text-[#555555]">
-              Quote Request Form
+              {t('quote_form_title')}
             </div>
           </div>
 
@@ -203,9 +223,9 @@ export default function QuoteForm() {
             {/* Left Side Title */}
             <div className="mb-8 lg:mb-6">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0A3D62] leading-tight">
-                {currentStep === 1 && "Please provide your contact information."}
-                {currentStep === 2 && "Please provide the product type and printing method."}
-                {currentStep === 3 && "Please select the production options."}
+                {currentStep === 1 && t('step_contact_info')}
+                {currentStep === 2 && t('step_product_info')}
+                {currentStep === 3 && t('step_production_options')}
               </h1>
             </div>
 
@@ -216,53 +236,53 @@ export default function QuoteForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      Name *
+                      {t('name')} *
                     </label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => handleInputChange("name", e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
-                      placeholder="Enter your name"
+                      placeholder={t('enter_name')}
                     />
                   </div>
                   
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      Phone *
+                      {t('phone')} *
                     </label>
                     <input
                       type="text"
                       value={formData.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
-                      placeholder="Enter your phone number"
+                      placeholder={t('enter_phone')}
                     />
                   </div>
                   
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      Company Name
+                      {t('company')}
                     </label>
                     <input
                       type="text"
                       value={formData.companyName}
                       onChange={(e) => handleInputChange("companyName", e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
-                      placeholder="Enter your company name"
+                      placeholder={t('enter_company')}
                     />
                   </div>
                   
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      Email *
+                      {t('email')} *
                     </label>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
-                      placeholder="Enter your email"
+                      placeholder={t('enter_email')}
                     />
                   </div>
                 </div>
@@ -275,27 +295,27 @@ export default function QuoteForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                        Product Type
+                        {t('quote_product_type')}
                       </label>
                       <input
                         type="text"
                         value={formData.productType}
                         onChange={(e) => handleInputChange("productType", e.target.value)}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
-                        placeholder="e.g., Type 1, Type 2, etc."
+                        placeholder={t('quote_product_type_placeholder')}
                       />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                        Production Quantity
+                        {t('quote_production_quantity')}
                       </label>
                       <input
                         type="text"
                         value={formData.productionQuantity}
                         onChange={(e) => handleInputChange("productionQuantity", e.target.value)}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
-                        placeholder="Please enter the quantity"
+                        placeholder={t('quote_quantity_placeholder')}
                       />
                     </div>
                   </div>
@@ -304,11 +324,11 @@ export default function QuoteForm() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Size Information */}
                     <div>
-                      <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">Size</h3>
+                      <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">{t('quote_size')}</h3>
                       <div className="grid grid-cols-3 gap-3">
                         <div>
                           <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                            Width (mm)
+                            {t('quote_width_mm')}
                           </label>
                           <input
                             type="text"
@@ -319,7 +339,7 @@ export default function QuoteForm() {
                         </div>
                         <div>
                           <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                            Height (mm)
+                            {t('quote_height_mm')}
                           </label>
                           <input
                             type="text"
@@ -330,7 +350,7 @@ export default function QuoteForm() {
                         </div>
                         <div>
                           <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                            Bottom/Side (mm)
+                            {t('quote_bottom_side_mm')}
                           </label>
                           <input
                             type="text"
@@ -344,7 +364,7 @@ export default function QuoteForm() {
 
                     {/* Printing Method */}
                     <div>
-                      <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">Printing Method</h3>
+                      <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">{t('quote_printing_method')}</h3>
                       <div className="grid grid-cols-2 gap-3">
                         <label className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
                           formData.printingMethod === "gravure" 
@@ -359,7 +379,7 @@ export default function QuoteForm() {
                             onChange={(e) => handleInputChange("printingMethod", e.target.value)}
                             className="text-[#FFC312] focus:ring-[#FFC312]"
                           />
-                          <span>Gravure/Copper Plate</span>
+                          <span>{t('quote_printing_gravure')}</span>
                         </label>
                         <label className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
                           formData.printingMethod === "digital" 
@@ -374,7 +394,7 @@ export default function QuoteForm() {
                             onChange={(e) => handleInputChange("printingMethod", e.target.value)}
                             className="text-[#FFC312] focus:ring-[#FFC312]"
                           />
-                          <span>Digital/Non-Plate</span>
+                          <span>{t('quote_printing_digital')}</span>
                         </label>
                       </div>
                     </div>
@@ -382,23 +402,28 @@ export default function QuoteForm() {
 
                   {/* Function */}
                   <div>
-                    <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">Function</h3>
+                    <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">{t('quote_function')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                      {["General", "Refrigerated/Frozen", "Sterilized Retort", "Microwave"].map((option) => (
-                        <label key={option} className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
-                          formData.function === option.toLowerCase() 
+                      {[
+                        { label: t('quote_function_general'), value: 'general' },
+                        { label: t('quote_function_refrigerated'), value: 'refrigerated' },
+                        { label: t('quote_function_sterilized'), value: 'sterilized' },
+                        { label: t('quote_function_microwave'), value: 'microwave' }
+                      ].map((option) => (
+                        <label key={option.value} className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
+                          formData.function === option.value 
                             ? 'border-[#FFC312] bg-[#FFC312] text-white' 
                             : 'border-gray-300 hover:bg-gray-50 hover:border-[#FFC312]'
                         }`}>
                           <input
                             type="radio"
                             name="function"
-                            value={option.toLowerCase()}
-                            checked={formData.function === option.toLowerCase()}
+                            value={option.value}
+                            checked={formData.function === option.value}
                             onChange={(e) => handleInputChange("function", e.target.value)}
                             className="text-[#FFC312] focus:ring-[#FFC312]"
                           />
-                          <span>{option}</span>
+                          <span>{option.label}</span>
                         </label>
                       ))}
                     </div>
@@ -406,23 +431,28 @@ export default function QuoteForm() {
 
                   {/* Formulation */}
                   <div>
-                    <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">Formulation</h3>
+                    <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">{t('quote_formulation')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                      {["Powder", "Liquid", "Solid", "Mixed"].map((option) => (
-                        <label key={option} className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
-                          formData.formulation === option.toLowerCase() 
+                      {[
+                        { label: t('quote_formulation_powder'), value: 'powder' },
+                        { label: t('quote_formulation_liquid'), value: 'liquid' },
+                        { label: t('quote_formulation_solid'), value: 'solid' },
+                        { label: t('quote_formulation_mixed'), value: 'mixed' }
+                      ].map((option) => (
+                        <label key={option.value} className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
+                          formData.formulation === option.value 
                             ? 'border-[#FFC312] bg-[#FFC312] text-white' 
                             : 'border-gray-300 hover:bg-gray-50 hover:border-[#FFC312]'
                         }`}>
                           <input
                             type="radio"
                             name="formulation"
-                            value={option.toLowerCase()}
-                            checked={formData.formulation === option.toLowerCase()}
+                            value={option.value}
+                            checked={formData.formulation === option.value}
                             onChange={(e) => handleInputChange("formulation", e.target.value)}
                             className="text-[#FFC312] focus:ring-[#FFC312]"
                           />
-                          <span>{option}</span>
+                          <span>{option.label}</span>
                         </label>
                       ))}
                     </div>
@@ -431,26 +461,26 @@ export default function QuoteForm() {
                   {/* Material Dropdown */}
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      Material
+                      {t('quote_material')}
                     </label>
                     <select
                       value={formData.material}
                       onChange={(e) => handleInputChange("material", e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
                     >
-                      <option value="">Please select the material</option>
+                      <option value="">{t('quote_material_placeholder')}</option>
                       <option value="opp">OPP</option>
                       <option value="pp">PP</option>
                       <option value="pe">PE</option>
                       <option value="hdpe">HDPE</option>
-                      <option value="other">Other</option>
+                        <option value="other">{t('quote_material_other')}</option>
                     </select>
                   </div>
 
                   {/* Print Count */}
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      Print Count (Applies to Gravure/Copper Plate production. Leave blank if unknown.)
+                      {t('quote_print_count')}
                     </label>
                     <input
                       type="text"
@@ -463,35 +493,35 @@ export default function QuoteForm() {
                   {/* Product Information */}
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      Product Information
+                      {t('quote_product_info')}
                     </label>
                     <textarea
                       value={formData.productInformation}
                       onChange={(e) => handleInputChange("productInformation", e.target.value)}
                       rows={4}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
-                      placeholder="e.g., frozen dumplings, soups, face masks, etc."
+                        placeholder={t('quote_product_info_placeholder')}
                     />
                   </div>
 
                   {/* Additional Input */}
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      Additional Information
+                      {t('quote_additional_info')}
                     </label>
                     <textarea
                       value={formData.additionalInput}
                       onChange={(e) => handleInputChange("additionalInput", e.target.value)}
                       rows={4}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
-                      placeholder="Please enter the content"
+                        placeholder={t('quote_additional_info_placeholder')}
                     />
                   </div>
 
                   {/* File Upload */}
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      Attached File
+                      {t('quote_attached_file')}
                     </label>
                     <div className="flex items-center space-x-4">
                       <input
@@ -522,16 +552,16 @@ export default function QuoteForm() {
                 <div className="space-y-12">
                   {/* Shape Options */}
                   <div>
-                    <h3 className="text-2xl font-semibold text-[#0A3D62] mb-6">Shape</h3>
+                    <h3 className="text-2xl font-semibold text-[#0A3D62] mb-6">{t('quote_shape')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                       {[
-                        "Three-side seal",
-                        "Three-side seal stand", 
-                        "MM zipper",
-                        "MT type",
-                        "T-bag",
-                        "Auto roll",
-                        "Common shape"
+                        t('quote_shape_three_side_seal'),
+                        t('quote_shape_three_side_stand'), 
+                        t('quote_shape_mm_zipper'),
+                        t('quote_shape_mt_type'),
+                        t('quote_shape_t_bag'),
+                        t('quote_shape_auto_roll'),
+                        t('quote_shape_common_shape')
                       ].map((shape) => (
                         <label key={shape} className={`flex flex-col items-center p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
                           formData.shape === shape.toLowerCase().replace(/\s+/g, '-') 
@@ -565,9 +595,9 @@ export default function QuoteForm() {
 
                   {/* Surface Options */}
                   <div>
-                    <h3 className="text-2xl font-semibold text-[#0A3D62] mb-6">Surface</h3>
+                    <h3 className="text-2xl font-semibold text-[#0A3D62] mb-6">{t('quote_surface')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {["Glossy", "Matte"].map((surface) => (
+                      {[t('quote_surface_glossy'), t('quote_surface_matte')].map((surface) => (
                         <label key={surface} className={`flex flex-col items-center p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
                           formData.surface === surface.toLowerCase() 
                             ? 'border-[#FFC312] bg-[#FFC312] text-white' 
@@ -611,7 +641,7 @@ export default function QuoteForm() {
                   className="px-8 py-3 border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white"
                 >
                   <ChevronLeft className="mr-2 h-5 w-5" />
-                  Previous
+                  {t('quote_previous')}
                 </Button>
               ) : (
                 <div></div>
@@ -634,7 +664,7 @@ export default function QuoteForm() {
                   size="lg"
                   className="px-8 py-3 bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                  {isSubmitting ? t('quote_submitting') : t('quote_submit')}
                 </Button>
               )}
             </div>

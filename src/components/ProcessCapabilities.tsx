@@ -1,59 +1,62 @@
+import { useTranslation } from "react-i18next"
 import { Printer, Layers, Flame, Scissors, FileText, Droplet, Zap, Snowflake } from "lucide-react"
 
 const processSteps = [
   {
-    title: "Printing",
-    description: "Using engraved cylinders, the printing press reproduces customer-specified colors with precision on the packaging film.",
+    titleKey: "process_step_printing",
+    descriptionKey: "process_step_printing_desc",
     icon: Printer
   },
   {
-    title: "Dry Lamination",
-    description: "Adhesive is applied to the printed film surface and dried in a chamber before being laminated with secondary film layers.",
+    titleKey: "process_step_dry_lamination",
+    descriptionKey: "process_step_dry_lamination_desc",
     icon: Layers
   },
   {
-    title: "Extrusion Coating",
-    description: "Polyethylene is melted at over 300℃ and coated onto the printed film to enhance strength and barrier properties.",
+    titleKey: "process_step_extrusion_coating",
+    descriptionKey: "process_step_extrusion_coating_desc",
     icon: Flame
   },
   {
-    title: "Converting – Slitting",
-    description: "Large laminated rolls are slit into narrower reels for efficient handling in downstream production.",
+    titleKey: "process_step_converting_slitting",
+    descriptionKey: "process_step_converting_slitting_desc",
     icon: Scissors
   },
   {
-    title: "Converting – Cutting",
-    description: "Films are cut to precise dimensions, creating pouches or packaging formats tailored to customer specifications.",
+    titleKey: "process_step_converting_cutting",
+    descriptionKey: "process_step_converting_cutting_desc",
     icon: FileText
   },
   {
-    title: "Converting – Spout Insertion",
-    description: "Caps or spouts are attached to the pouch top after cutting, enabling functionality for liquid and beverage packaging.",
+    titleKey: "process_step_converting_spout",
+    descriptionKey: "process_step_converting_spout_desc",
     icon: Droplet
   },
   {
-    title: "Heat Sealing",
-    description: "The sealant layer of the laminated film is heat-pressed to form strong, leak-proof pouch seals.",
+    titleKey: "process_step_heat_sealing",
+    descriptionKey: "process_step_heat_sealing_desc",
     icon: Zap
   },
   {
-    title: "Cold Seal Process",
-    description: "A special adhesive is precisely applied to the inner surface of the film, allowing seal formation without heat—commonly used for snacks and confectionery.",
+    titleKey: "process_step_cold_seal",
+    descriptionKey: "process_step_cold_seal_desc",
     icon: Snowflake
   }
 ]
 
 export default function ProcessCapabilities() {
+  const { t } = useTranslation('common')
+  
   return (
     <section className="py-20 bg-[#F5F6FA]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#0A3D62] mb-4">
-              Production Capabilities
+              {t('production_capabilities_title')}
             </h2>
             <p className="text-lg text-[#555555] max-w-3xl mx-auto">
-              State-of-the-art equipment and rigorous quality standards
+              {t('production_capabilities_description')}
             </p>
           </div>
 
@@ -66,9 +69,9 @@ export default function ProcessCapabilities() {
                 <div className="w-16 h-16 bg-[#0A3D62] rounded-full flex items-center justify-center mx-auto mb-6">
                   <step.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#0A3D62] mb-4">{step.title}</h3>
+                <h3 className="text-xl font-bold text-[#0A3D62] mb-4">{t(step.titleKey)}</h3>
                 <p className="text-[#555555] leading-relaxed text-sm">
-                  {step.description}
+                  {t(step.descriptionKey)}
                 </p>
               </div>
             ))}

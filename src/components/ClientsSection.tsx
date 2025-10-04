@@ -1,6 +1,9 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
+import { useTranslation } from "react-i18next"
 
 const clientLogos = [
   { name: "Aushell", src: "/aushell_logo.png", width: 150, height: 100 },
@@ -18,15 +21,17 @@ const clientLogos = [
 ]
 
 export default function ClientsSection() {
+  const { t } = useTranslation('common')
+  
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="text-5xl sm:text-6xl font-bold text-[#0A3D62] mb-6">
-            Major Clients
+          <h2 className="text-5xl sm:text-6xl font-bold text-[#0A3D62] mb-6 whitespace-pre-line">
+            {t('clients_section_title')}
           </h2>
-          <p className="text-xl text-[#555555] max-w-3xl mx-auto">
-            Trusted by leading companies worldwide
+          <p className="text-xl text-[#555555] max-w-3xl mx-auto whitespace-pre-line">
+            {t('clients_section_subtitle')}
           </p>
         </div>
 
@@ -50,22 +55,22 @@ export default function ClientsSection() {
           
         {/* Contact Section */}
         <div className="bg-[#F5F6FA] rounded-2xl p-12 lg:p-16 text-center border border-[#E5E5E5]">
-          <h3 className="text-4xl sm:text-5xl font-bold text-[#0A3D62] mb-8">
-            Need assistance or a quote?
+          <h3 className="text-4xl sm:text-5xl font-bold text-[#0A3D62] mb-8 whitespace-pre-line">
+            {t('contact_section_title')}
           </h3>
-          <p className="text-xl text-[#555555] mb-10 max-w-4xl mx-auto">
-            Contact us through our consultation board. Our team is ready to help with friendly consultation.
+          <p className="text-xl text-[#555555] mb-10 max-w-4xl mx-auto whitespace-pre-line">
+            {t('contact_section_description')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/quote">
-              <Button size="lg" className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-10 py-4 text-lg font-bold">
-                Get Quote
+              <Button size="lg" className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-10 py-4 text-lg font-bold whitespace-pre-line">
+                {t('get_quote')}
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-10 py-4 text-lg font-bold">
-                Get Consultation
+              <Button size="lg" variant="outline" className="border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-10 py-4 text-lg font-bold whitespace-pre-line">
+                {t('get_consultation')}
               </Button>
             </Link>
           </div>

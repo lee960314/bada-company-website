@@ -1,41 +1,45 @@
+"use client"
+
 import { Shield, Award, CheckCircle, Star } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export default function Certifications() {
+  const { t } = useTranslation('common')
   const certifications = [
     {
-      title: "ISO 9001:2015",
-      description: "Quality Management System",
-      type: "International Standard",
+      title: t('cert_iso_9001'),
+      description: t('cert_iso_9001_desc'),
+      type: t('cert_iso_9001_type'),
       icon: Shield
     },
     {
-      title: "ISO 14001:2015",
-      description: "Environmental Management System",
-      type: "Environmental Standard",
+      title: t('cert_iso_14001'),
+      description: t('cert_iso_14001_desc'),
+      type: t('cert_iso_14001_type'),
       icon: Award
     },
     {
-      title: "GRS Certification",
-      description: "Global Recycled Standard",
-      type: "Sustainability Certification",
+      title: t('cert_grs'),
+      description: t('cert_grs_desc'),
+      type: t('cert_grs_type'),
       icon: CheckCircle
     },
     {
-      title: "FDA Approved",
-      description: "Food Contact Materials",
-      type: "Safety Certification",
+      title: t('cert_fda'),
+      description: t('cert_fda_desc'),
+      type: t('cert_fda_type'),
       icon: Star
     },
     {
-      title: "CE Marking",
-      description: "European Conformity",
-      type: "EU Standard",
+      title: t('cert_ce'),
+      description: t('cert_ce_desc'),
+      type: t('cert_ce_type'),
       icon: Shield
     },
     {
-      title: "SGS Certification",
-      description: "Third-party Quality Assurance",
-      type: "Quality Verification",
+      title: t('cert_sgs'),
+      description: t('cert_sgs_desc'),
+      type: t('cert_sgs_type'),
       icon: Award
     }
   ]
@@ -45,11 +49,10 @@ export default function Certifications() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0A3D62] mb-4">
-            Certifications & Standards
+            {t('about_certifications')}
           </h2>
-          <p className="text-lg text-[#555555] max-w-2xl mx-auto">
-            Our commitment to quality, safety, and environmental responsibility
-            is validated by industry-leading certifications
+          <p className="text-lg text-[#555555] max-w-2xl mx-auto whitespace-pre-line">
+            {t('about_certifications_description')}
           </p>
         </div>
 
@@ -70,12 +73,9 @@ export default function Certifications() {
 
         <div className="mt-16 text-center">
           <div className="bg-[#0A3D62] rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Quality Assurance</h3>
-            <p className="text-gray-300 max-w-3xl mx-auto">
-              All our products undergo rigorous testing and quality control processes. 
-              We maintain the highest standards in manufacturing, ensuring that every 
-              plastic packaging solution meets international quality requirements and 
-              customer specifications.
+            <h3 className="text-2xl font-bold mb-4">{t('about_quality_assurance')}</h3>
+            <p className="text-gray-300 max-w-3xl mx-auto whitespace-pre-line">
+              {t('about_quality_description')}
             </p>
           </div>
         </div>

@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function AboutHero() {
+  const { t } = useTranslation('common')
   const [counts, setCounts] = useState({
     founded: 0,
     orders: 0,
@@ -78,7 +80,7 @@ export default function AboutHero() {
                 <h1 className={`text-xl sm:text-4xl lg:text-3xl font-bold text-[#0A3D62] transition-all duration-1000 ease-out ${
                   isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                 }`}>
-                  About Us
+                  {t('menu_about')}
                 </h1>
               </div>
               
@@ -87,10 +89,10 @@ export default function AboutHero() {
                 isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
               }`}>
                 <span className="hover:text-[#0A3D62] transition-colors duration-200">
-                  <Link href="/">Home</Link>
+                  <Link href="/">{t('menu_home')}</Link>
                 </span>
                 <span className="mx-2 text-[#0A3D62]">•</span>
-                <span className="text-[#0A3D62] font-semibold">About Us</span>
+                <span className="text-[#0A3D62] font-semibold">{t('menu_about')}</span>
               </div>
             </div>
           </div>
@@ -126,7 +128,7 @@ export default function AboutHero() {
                   <h3 className={`text-2xl sm:text-3xl font-bold text-[#0A3D62] mb-6 transition-all duration-1000 ease-out delay-400 ${
                     isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                   }`}>
-                    Our Mission
+                    {t('about_our_mission')}
                   </h3>
      
                   {/* Company Goal */}
@@ -134,7 +136,7 @@ export default function AboutHero() {
                     <p className={`text-xl sm:text-2xl lg:text-3xl font-bold text-[#0A3D62] leading-relaxed transition-all duration-1000 ease-out delay-500 ${
                       isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                     }`}>
-                      We create innovative, sustainable flexible packaging that drives brand success and lasting partnerships worldwide.
+                      {t('about_mission_statement')}
                     </p>
                   </div>
                 </div>
@@ -143,22 +145,22 @@ export default function AboutHero() {
               {/* Column 3: Company Introduction/History */}
               <div className="lg:col-span-1">
                 <div className="space-y-4">
-                  <p className={`text-base sm:text-lg text-[#555555] leading-relaxed transition-all duration-1000 ease-out delay-800 ${
+                  <p className={`text-base sm:text-lg text-[#555555] leading-relaxed transition-all duration-1000 ease-out delay-800 whitespace-pre-line ${
                     isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                   }`}>
-                    Founded in 2003, KJ FLEX PACK is a global manufacturer of flexible packaging solutions, serving leading brands in food, beverage, pet care, household, and personal care.
+                    {t('about_company_intro_1')}
                   </p>
                   
-                  <p className={`text-base sm:text-lg text-[#555555] leading-relaxed transition-all duration-1000 ease-out delay-900 ${
+                  <p className={`text-base sm:text-lg text-[#555555] leading-relaxed transition-all duration-1000 ease-out delay-900 whitespace-pre-line ${
                     isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                   }`}>
-                    Equipped with high-speed 9-color printing, solventless lamination, and smart manufacturing systems, we deliver packaging that ensures product safety, shelf appeal, and supply chain efficiency.
+                    {t('about_company_intro_2')}
                   </p>
                   
-                  <p className={`text-base sm:text-lg text-[#555555] leading-relaxed transition-all duration-1000 ease-out delay-1000 ${
+                  <p className={`text-base sm:text-lg text-[#555555] leading-relaxed transition-all duration-1000 ease-out delay-1000 whitespace-pre-line ${
                     isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                   }`}>
-                    With a commitment to innovation and sustainability, we provide eco-friendly, high-barrier packaging solutions that strengthen our partners&apos; competitiveness in global markets.
+                    {t('about_company_intro_3')}
                   </p>
                 </div>
               </div>
@@ -171,15 +173,15 @@ export default function AboutHero() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="text-4xl font-bold text-[#0A3D62] mb-2">{counts.founded}</div>
-                  <div className="text-[#555555]">Founded</div>
+                  <div className="text-[#555555]">{t('about_founded')}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-4xl font-bold text-[#0A3D62] mb-2">{counts.orders.toLocaleString()}</div>
-                  <div className="text-[#555555]">Last Year Orders</div>
+                  <div className="text-[#555555]">{t('about_orders')}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-4xl font-bold text-[#0A3D62] mb-2">{counts.clients}</div>
-                  <div className="text-[#555555]">Last Year Clients</div>
+                  <div className="text-[#555555]">{t('about_clients')}</div>
                 </div>
               </div>
             </div>

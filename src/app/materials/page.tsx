@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import TabMenu from "@/components/TabMenu"
@@ -8,59 +9,60 @@ import Link from "next/link"
 import { Layers, Shield, Leaf, Sparkles, Droplets, Zap } from "lucide-react"
 
 export default function MaterialsPage() {
-  const [activeTab, setActiveTab] = useState("STRUCTURE")
+  const { t } = useTranslation('common')
+  const [activeTab, setActiveTab] = useState('STRUCTURE')
   
-  const tabs = ["STRUCTURE", "PROPERTIES", "APPLICATIONS"]
+  const tabs = [t('materials_tab_structure'), t('materials_tab_properties'), t('materials_tab_applications')]
 
   const materialTypes = [
     {
-      category: "High-Barrier Films",
-      description: "Multi-layer structures providing superior protection against oxygen, moisture, and light.",
+      category: t('materials_high_barrier'),
+      description: t('materials_high_barrier_desc'),
       icon: Shield,
       features: [
-        "Extended shelf life for sensitive products",
-        "Aluminum-free barrier options available",
-        "Suitable for food, pharma, and pet care"
+        t('materials_high_barrier_1'),
+        t('materials_high_barrier_2'),
+        t('materials_high_barrier_3')
       ]
     },
     {
-      category: "Recyclable & Compostable Materials",
-      description: "Eco-friendly packaging solutions designed for circular economy and sustainability goals.",
+      category: t('materials_recyclable'),
+      description: t('materials_recyclable_desc'),
       icon: Leaf,
       features: [
-        "Mono-material PE and PP structures",
-        "Certified compostable films",
-        "Reduced environmental footprint"
+        t('materials_recyclable_1'),
+        t('materials_recyclable_2'),
+        t('materials_recyclable_3')
       ]
     },
     {
-      category: "Transparent & Glossy Films",
-      description: "Crystal-clear films with excellent transparency and gloss for premium product presentation.",
+      category: t('materials_transparent'),
+      description: t('materials_transparent_desc'),
       icon: Sparkles,
       features: [
-        "High clarity for product visibility",
-        "Enhanced shelf appeal",
-        "Ideal for snacks, confectionery, and retail"
+        t('materials_transparent_1'),
+        t('materials_transparent_2'),
+        t('materials_transparent_3')
       ]
     },
     {
-      category: "Metalized Films",
-      description: "Metallized substrates offering superior barrier properties and striking visual appeal.",
+      category: t('materials_metalized'),
+      description: t('materials_metalized_desc'),
       icon: Zap,
       features: [
-        "Excellent oxygen and moisture barrier",
-        "Metallic finish for premium branding",
-        "Lightweight alternative to foil"
+        t('materials_metalized_1'),
+        t('materials_metalized_2'),
+        t('materials_metalized_3')
       ]
     },
     {
-      category: "Matte & Soft-Touch Films",
-      description: "Premium tactile finishes that deliver sophisticated look and feel for high-end products.",
+      category: t('materials_matte'),
+      description: t('materials_matte_desc'),
       icon: Droplets,
       features: [
-        "Soft, velvety surface texture",
-        "Anti-glare properties",
-        "Luxury brand positioning"
+        t('materials_matte_1'),
+        t('materials_matte_2'),
+        t('materials_matte_3')
       ]
     },
     {
