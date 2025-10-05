@@ -124,7 +124,7 @@ const fallbackResources = {
       "contact_error_message": "Failed to send message. Please try again.",
       "contact_sending": "Sending...",
       
-      // Contact 페이지 추가 키들
+      // Contact 페이지 추가 키들 (영어)
       "contact_page_title": "Contact Us",
       "contact_page_subtitle": "Get in touch with our team",
       "contact_form_name": "Name",
@@ -228,6 +228,15 @@ const fallbackResources = {
       "step_contact_info": "Please provide your contact information.",
       "step_product_info": "Please provide product type and printing method.",
       "step_production_options": "Please select production options.",
+      "quote_name": "Name",
+      "quote_company": "Company",
+      "quote_phone": "Phone",
+      "quote_email": "Email",
+      "quote_enter_name": "Enter your name",
+      "quote_enter_company": "Enter company",
+      "quote_enter_phone": "Enter phone",
+      "quote_enter_email": "Enter email",
+      "quote_next": "Next",
       "quote_product_type": "Product Type",
       "quote_production_quantity": "Production Quantity",
       "quote_size": "Size",
@@ -516,6 +525,15 @@ const fallbackResources = {
       "step_contact_info": "연락처 정보를 제공해 주세요.",
       "step_product_info": "제품 유형 및 인쇄 방법을 제공해 주세요.",
       "step_production_options": "생산 옵션을 선택해 주세요.",
+      "quote_name": "이름",
+      "quote_company": "회사",
+      "quote_phone": "전화",
+      "quote_email": "이메일",
+      "quote_enter_name": "이름을 입력하세요",
+      "quote_enter_company": "회사를 입력하세요",
+      "quote_enter_phone": "전화를 입력하세요",
+      "quote_enter_email": "이메일을 입력하세요",
+      "quote_next": "다음",
       "quote_product_type": "제품 유형",
       "quote_production_quantity": "생산 수량",
       "quote_size": "크기",
@@ -740,6 +758,7 @@ const fallbackResources = {
       "quote_form_title": "报价请求表单",
       "step_contact_info": "请提供您的联系信息。",
       "step_product_info": "请提供产品类型和印刷方法。",
+      "step_production_options": "请选择生产选项。",
       "step_review": "请检查您的信息。",
       "quote_name": "姓名",
       "quote_company": "公司",
@@ -757,7 +776,9 @@ const fallbackResources = {
       "quote_function": "功能",
       "quote_formulation": "配方",
       "quote_material": "材料",
+      "quote_material_placeholder": "请选择材料",
       "quote_print_count": "印刷数量",
+      "quote_printing_gravure": "凹版/凹印",
       "quote_gravure_intaglio": "凹版/凹印",
       "quote_digital_plate_free": "数字/无版",
       "quote_general": "一般",
@@ -782,6 +803,24 @@ const fallbackResources = {
       "quote_quantity_placeholder": "请输入数量",
       "quote_product_info_placeholder": "例如：冷冻饺子、汤品、面膜等",
       "quote_additional_info_placeholder": "请输入内容",
+      
+      // Contact 페이지 추가 키들 (중국어)
+      "contact_page_title": "联系我们",
+      "contact_page_subtitle": "与我们的团队联系",
+      "contact_form_name": "姓名",
+      "contact_form_email": "邮箱",
+      "contact_form_whatsapp": "WhatsApp",
+      "contact_form_message": "消息",
+      "contact_form_send": "发送消息",
+      "contact_placeholder_name": "输入您的姓名",
+      "contact_placeholder_email": "your.email@example.com",
+      "contact_placeholder_whatsapp": "输入您的联系方式",
+      "contact_placeholder_message": "告诉我们如何帮助您...",
+      "contact_business_hours": "周一至周五：上午9点 - 下午6点",
+      "contact_email_info": "info@kjflexpack.com",
+      "contact_whatsapp_info": "即时消息可用",
+      "contact_send_button": "发送消息",
+      "contact_get_touch": "联系我们",
       
       "manufacturing_process_title": "制造工艺",
       "manufacturing_process_breadcrumb": "制造工艺",
@@ -832,6 +871,7 @@ const fallbackResources = {
       "feature_precise_printing_desc": "我们通过最先进的印刷技术提供清晰耐用的印刷。",
       "feature_custom_manufacturing": "定制制造",
       "feature_custom_manufacturing_desc": "我们根据客户需求制造各种尺寸和设计。"
+ 
     }
   }
 };
