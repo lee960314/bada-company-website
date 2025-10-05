@@ -59,13 +59,27 @@ export default function Header() {
     { name: t('menu_flexible_packaging') || 'Flexible Packaging', href: "/products/flexible-packaging" },
   ]
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng)
-    // HTML lang 속성 즉시 업데이트
-    if (typeof document !== 'undefined') {
-      document.documentElement.lang = lng
+  const changeLanguage = async (lng: string) => {
+    try {
+      console.log('Changing language to:', lng);
+      console.log('Current language before change:', i18n.language);
+      
+      await i18n.changeLanguage(lng);
+      
+      console.log('Language after change:', i18n.language);
+      console.log('Translation test - menu_home:', t('menu_home'));
+      
+      // HTML lang 속성 즉시 업데이트
+      if (typeof document !== 'undefined') {
+        document.documentElement.lang = lng;
+        console.log('HTML lang attribute set to:', lng);
+      }
+      
+      setIsLanguageOpen(false);
+      console.log('Language change completed:', lng);
+    } catch (error) {
+      console.error('Failed to change language:', error);
     }
-    setIsLanguageOpen(false)
   }
 
   const languages = [

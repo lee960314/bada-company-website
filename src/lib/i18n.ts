@@ -41,8 +41,60 @@ const fallbackResources = {
     common: {
       "header_title": "KJ FLEX PACK",
       "menu_home": "Home",
+      "menu_about": "About",
       "menu_products": "Products",
+      "menu_manufacturing": "Manufacturing Process",
+      "menu_flexible_packaging": "Flexible Packaging",
+      "menu_quote": "Quote",
+      "menu_contact": "Contact",
       "welcome_message": "Welcome to KJ FLEX PACK",
+      "hero_title": "Premium Flexible \nPackaging Solutions",
+      "hero_subtitle": "Protecting product freshness, quality, and brand trust worldwide.",
+      "hero_slide2_title": "From Food to Everyday Life and Beyond",
+      "hero_slide2_content": "Connecting producers and consumers with reliable packaging across industries.",
+      "hero_slide3_title": "Shaping the Future of Packaging",
+      "hero_slide3_content": "High-performance solutions with speed, precision, and consistency.",
+      "get_quote": "Get a Quote",
+      "learn_more": "Learn More",
+      "service_intro_title": "From food to household goods,\neverything in flexible plastic packaging",
+      "service_intro_description": "The perfect flexible packaging solution tailored to your product.\nWith direct factory customization, we deliver competitive pricing,\nfast lead times, and consistent quality.",
+      "details": "Details",
+      "products_section_title": "Flexible Packaging",
+      "products_section_subtitle": "Comprehensive packaging solutions for all your business needs",
+      "product_materials": "Materials",
+      "product_poly_bag": "Poly Bag",
+      "product_materials_list": "OPP / PP / PE / HDPE / ETC",
+      "product_materials_image": "Plastic Bags Image",
+      "product_functionalities": "Functionalities",
+      "product_flexible_package": "Flexible Package",
+      "product_functionalities_list": "Three-side / Stand / M-side / T-side",
+      "product_flexible_image": "Flexible Packaging Image",
+      "product_industries": "Industries",
+      "product_industries_list": "Plastic / ETC",
+      "product_injection_image": "Injection Molding Image",
+      "clients_section_title": "Major Clients",
+      "clients_section_subtitle": "Trusted by leading companies worldwide",
+      "contact_section_title": "Need assistance or a quote?",
+      "contact_section_description": "Contact us through our consultation board. Our team is ready to help with friendly consultation.",
+      "get_consultation": "Get Consultation",
+      "footer_description": "A specialized company in flexible packaging materials, providing high-quality products and reliable services for all your packaging needs.",
+      "footer_products": "Products",
+      "footer_company_info": "Company",
+      "footer_contact": "Contact",
+      "footer_address": "Address",
+      "footer_phone": "Phone",
+      "footer_email": "Email",
+      "footer_manufacturing_process": "Manufacturing Process",
+      "footer_flexible_packaging": "Flexible Packaging",
+      "footer_about_us": "About Us",
+      "footer_materials": "Materials",
+      "footer_get_quote": "Get a Quote",
+      "footer_dashboard": "Dashboard",
+      "footer_privacy_policy": "Privacy Policy",
+      "footer_terms_of_service": "Terms of Service",
+      "footer_sitemap": "Sitemap",
+      "footer_company": "KJ FLEX PACK",
+      "footer_rights": "All rights reserved",
       "language_selector": "Language",
       "language_en": "English",
       "language_ko": "한국어",
@@ -135,8 +187,60 @@ const fallbackResources = {
     common: {
       "header_title": "KJ FLEX PACK",
       "menu_home": "홈",
+      "menu_about": "회사소개",
       "menu_products": "제품",
+      "menu_manufacturing": "제조공정",
+      "menu_flexible_packaging": "플렉시블 포장",
+      "menu_quote": "견적문의",
+      "menu_contact": "문의하기",
       "welcome_message": "KJ FLEX PACK에 오신 것을 환영합니다",
+      "hero_title": "프리미엄 플렉시블 \n포장 솔루션",
+      "hero_subtitle": "제품 신선도, 품질 및 브랜드 신뢰를 전 세계적으로 보호합니다.",
+      "hero_slide2_title": "식품부터 일상생활 그리고 그 너머까지",
+      "hero_slide2_content": "산업 전반에 걸쳐 신뢰할 수 있는 포장으로 생산자와 소비자를 연결합니다.",
+      "hero_slide3_title": "포장의 미래를 만들어가다",
+      "hero_slide3_content": "속도, 정확성, 일관성을 갖춘 고성능 솔루션.",
+      "get_quote": "견적 받기",
+      "learn_more": "더 알아보기",
+      "service_intro_title": "식품부터 생활용품까지,\n모든 것이 플렉시블 플라스틱 포장",
+      "service_intro_description": "제품에 맞춤화된 완벽한 플렉시블 포장 솔루션.\n직공장 맞춤 제작으로 경쟁력 있는 가격,\n빠른 납기와 일관된 품질을 제공합니다.",
+      "details": "자세히 보기",
+      "products_section_title": "플렉시블 포장",
+      "products_section_subtitle": "모든 비즈니스 요구사항에 대한 포괄적인 포장 솔루션",
+      "product_materials": "소재",
+      "product_poly_bag": "폴리백",
+      "product_materials_list": "OPP / PP / PE / HDPE / 기타",
+      "product_materials_image": "플라스틱 백 이미지",
+      "product_functionalities": "기능성",
+      "product_flexible_package": "플렉시블 패키지",
+      "product_functionalities_list": "3면 / 스탠드 / M면 / T면",
+      "product_flexible_image": "플렉시블 포장 이미지",
+      "product_industries": "산업군",
+      "product_industries_list": "플라스틱 / 기타",
+      "product_injection_image": "사출 성형 이미지",
+      "clients_section_title": "주요 고객사",
+      "clients_section_subtitle": "전 세계 주요 기업들의 신뢰를 받고 있습니다",
+      "contact_section_title": "도움이나 견적이 필요하신가요?",
+      "contact_section_description": "상담 게시판을 통해 문의해 주세요. 저희 팀이 친절한 상담으로 도와드리겠습니다.",
+      "get_consultation": "상담 받기",
+      "footer_description": "플렉시블 포장 소재 전문 기업으로, 모든 포장 요구사항에 대한 고품질 제품과 신뢰할 수 있는 서비스를 제공합니다.",
+      "footer_products": "제품",
+      "footer_company_info": "회사",
+      "footer_contact": "연락처",
+      "footer_address": "주소",
+      "footer_phone": "전화",
+      "footer_email": "이메일",
+      "footer_manufacturing_process": "제조공정",
+      "footer_flexible_packaging": "플렉시블 포장",
+      "footer_about_us": "회사소개",
+      "footer_materials": "소재",
+      "footer_get_quote": "견적 받기",
+      "footer_dashboard": "대시보드",
+      "footer_privacy_policy": "개인정보처리방침",
+      "footer_terms_of_service": "서비스 이용약관",
+      "footer_sitemap": "사이트맵",
+      "footer_company": "KJ FLEX PACK",
+      "footer_rights": "모든 권리 보유",
       "language_selector": "언어 선택",
       "language_en": "English",
       "language_ko": "한국어",
@@ -229,8 +333,60 @@ const fallbackResources = {
     common: {
       "header_title": "KJ FLEX PACK",
       "menu_home": "首页",
+      "menu_about": "关于我们",
       "menu_products": "产品",
+      "menu_manufacturing": "制造工艺",
+      "menu_flexible_packaging": "柔性包装",
+      "menu_quote": "报价",
+      "menu_contact": "联系我们",
       "welcome_message": "欢迎来到KJ FLEX PACK",
+      "hero_title": "优质柔性\n包装解决方案",
+      "hero_subtitle": "在全球范围内保护产品新鲜度、质量和品牌信任。",
+      "hero_slide2_title": "从食品到日常生活及更远",
+      "hero_slide2_content": "通过跨行业可靠的包装连接生产者和消费者。",
+      "hero_slide3_title": "塑造包装的未来",
+      "hero_slide3_content": "具有速度、精度和一致性的高性能解决方案。",
+      "get_quote": "获取报价",
+      "learn_more": "了解更多",
+      "service_intro_title": "从食品到日用品，\n一切都采用柔性塑料包装",
+      "service_intro_description": "为您的产品量身定制的完美柔性包装解决方案。\n通过直接工厂定制，我们提供有竞争力的价格，\n快速的交货时间和一致的质量。",
+      "details": "详情",
+      "products_section_title": "柔性包装",
+      "products_section_subtitle": "为您的所有业务需求提供全面的包装解决方案",
+      "product_materials": "材料",
+      "product_poly_bag": "塑料袋",
+      "product_materials_list": "OPP / PP / PE / HDPE / 其他",
+      "product_materials_image": "塑料袋图片",
+      "product_functionalities": "功能性",
+      "product_flexible_package": "柔性包装",
+      "product_functionalities_list": "三边 / 立式 / M边 / T边",
+      "product_flexible_image": "柔性包装图片",
+      "product_industries": "行业",
+      "product_industries_list": "塑料 / 其他",
+      "product_injection_image": "注塑成型图片",
+      "clients_section_title": "主要客户",
+      "clients_section_subtitle": "受到全球领先企业的信赖",
+      "contact_section_title": "需要帮助或报价吗？",
+      "contact_section_description": "通过我们的咨询板联系我们。我们的团队准备提供友好的咨询服务。",
+      "get_consultation": "获取咨询",
+      "footer_description": "专业的柔性包装材料公司，为您所有的包装需求提供高质量产品和可靠服务。",
+      "footer_products": "产品",
+      "footer_company_info": "公司",
+      "footer_contact": "联系方式",
+      "footer_address": "地址",
+      "footer_phone": "电话",
+      "footer_email": "邮箱",
+      "footer_manufacturing_process": "制造工艺",
+      "footer_flexible_packaging": "柔性包装",
+      "footer_about_us": "关于我们",
+      "footer_materials": "材料",
+      "footer_get_quote": "获取报价",
+      "footer_dashboard": "仪表板",
+      "footer_privacy_policy": "隐私政策",
+      "footer_terms_of_service": "服务条款",
+      "footer_sitemap": "网站地图",
+      "footer_company": "KJ FLEX PACK",
+      "footer_rights": "版权所有",
       "language_selector": "语言选择",
       "language_en": "English",
       "language_ko": "한국어",
@@ -321,11 +477,25 @@ const fallbackResources = {
   }
 };
 
+// zh 리소스 추가 (zh-CN과 동일한 내용)
+const zhResources = {
+  common: fallbackResources['zh-CN'].common
+};
+
 // i18n 초기화 - 더 안정적인 방식
 i18n.use(initReactI18next).init({
-  resources: fallbackResources,
+  resources: {
+    ...fallbackResources,
+    'zh': zhResources
+  },
   lng: 'en',
-  fallbackLng: 'en',
+  fallbackLng: {
+    'zh-CN': ['zh-CN', 'zh', 'en'],
+    'zh': ['zh', 'zh-CN', 'en'],
+    'ko': ['ko', 'en'],
+    'en': ['en']
+  },
+  supportedLngs: ['en', 'ko', 'zh', 'zh-CN'],
   defaultNS: 'common',
   ns: ['common'],
   interpolation: {
@@ -338,14 +508,19 @@ i18n.use(initReactI18next).init({
   // 번역 키가 없을 때 키 자체를 반환하지 않고 빈 문자열 반환
   returnEmptyString: false,
   returnNull: false,
-  // 초기화 완료까지 대기
-  initImmediate: false,
   // 키가 없을 때 fallback 사용
   keySeparator: false,
   nsSeparator: false,
   // 초기화 완료 후 즉시 사용 가능하도록 설정
   load: 'languageOnly',
   preload: ['en'],
+  // 번역이 없을 때 키를 그대로 반환하지 않도록 설정
+  saveMissing: false,
+  missingKeyHandler: (lng, ns, key) => {
+    console.warn(`Missing translation key: ${key} for language: ${lng}`);
+  },
+  // 즉시 초기화 완료 상태로 설정
+  initImmediate: true,
 });
 
 // 언어 변경 시 HTML lang 속성 업데이트
@@ -360,6 +535,8 @@ if (typeof window !== 'undefined') {
   // 즉시 초기화 완료 상태로 설정
   i18n.on('initialized', () => {
     console.log('i18n initialized with language:', i18n.language);
+    console.log('Available languages:', i18n.languages);
+    console.log('Current language resources:', Object.keys(i18n.getResourceBundle(i18n.language, 'common') || {}));
     // HTML lang 속성 즉시 설정
     document.documentElement.lang = i18n.language;
   });
@@ -368,9 +545,22 @@ if (typeof window !== 'undefined') {
   i18n.on('initialized', () => {
     loadTranslations().then((loadedResources) => {
       if (Object.keys(loadedResources).length > 0) {
+        console.log('Loading translations:', Object.keys(loadedResources));
+        console.log('English translations:', Object.keys(loadedResources.en?.common || {}).length, 'keys');
+        console.log('Korean translations:', Object.keys(loadedResources.ko?.common || {}).length, 'keys');
+        console.log('Chinese translations:', Object.keys(loadedResources['zh-CN']?.common || {}).length, 'keys');
+        
         i18n.addResourceBundle('en', 'common', loadedResources.en?.common || {}, true, true);
         i18n.addResourceBundle('ko', 'common', loadedResources.ko?.common || {}, true, true);
         i18n.addResourceBundle('zh-CN', 'common', loadedResources['zh-CN']?.common || {}, true, true);
+        i18n.addResourceBundle('zh', 'common', loadedResources['zh-CN']?.common || {}, true, true);
+        
+        console.log('Chinese translations loaded:', Object.keys(loadedResources['zh-CN']?.common || {}).length, 'keys');
+        console.log('Sample Chinese translations:', {
+          menu_home: loadedResources['zh-CN']?.common?.menu_home,
+          menu_about: loadedResources['zh-CN']?.common?.menu_about,
+          service_intro_title: loadedResources['zh-CN']?.common?.service_intro_title
+        });
         
         // 언어 변경 이벤트 발생
         i18n.emit('languageChanged', i18n.language);
@@ -378,6 +568,22 @@ if (typeof window !== 'undefined') {
     }).catch((error) => {
       console.warn('Failed to load additional translations:', error);
     });
+  });
+
+  // 언어 변경 이벤트 로깅
+  i18n.on('languageChanged', (lng) => {
+    console.log('Language changed to:', lng);
+    const bundle = i18n.getResourceBundle(lng, 'common');
+    console.log('Available translations for', lng, ':', Object.keys(bundle || {}));
+    
+    // 중국어 번역 테스트
+    if (lng === 'zh-CN' || lng === 'zh') {
+      console.log('Chinese translation test for', lng, ':');
+      console.log('- menu_home:', i18n.t('menu_home'));
+      console.log('- menu_about:', i18n.t('menu_about'));
+      console.log('- service_intro_title:', i18n.t('service_intro_title'));
+      console.log('- contact_section_title:', i18n.t('contact_section_title'));
+    }
   });
 }
 
