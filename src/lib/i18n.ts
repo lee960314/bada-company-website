@@ -145,6 +145,11 @@ const fallbackResources = {
       "about_contact": "Contact Us",
       
       // About 페이지 추가 키들
+      "about_our_mission": "Our Mission",
+      "about_mission_statement": "Creating innovative and sustainable flexible packaging that drives brand success and lasting partnerships",
+      "about_company_intro_1": "Founded in 2003, KJ FLEX PACK is a global manufacturing company providing flexible packaging solutions for major brands in food, beverage, pet care, household goods, and personal care sectors.",
+      "about_company_intro_2": "Equipped with high-speed 9-color printing, solvent-free lamination, and smart manufacturing systems, we deliver packaging that ensures product safety, display appeal, and supply chain efficiency.",
+      "about_company_intro_3": "With our commitment to innovation and sustainability, we provide eco-friendly high-barrier packaging solutions that enhance our partners' competitiveness in global markets.",
       "about_our_journey": "Our Journey",
       "about_journey_description": "Timeline of our commitment to growth, innovation, and excellence",
       "about_period_1": "2003 ~ 2008",
@@ -188,6 +193,9 @@ const fallbackResources = {
       "about_tel_content": "02-1234-5678~9",
       "about_fax_content": "02-1234-5677",
       "about_email_content": "info@bada.co.kr",
+      "about_founded": "Founded",
+      "about_orders": "Orders Last Year",
+      "about_clients": "Clients Last Year",
       
       // 인증서 관련 키들
       "cert_iso_9001": "ISO 9001:2015",
@@ -546,48 +554,11 @@ const fallbackResources = {
       "quote_surface": "표면",
       
       // About 페이지 추가 키들 (한국어) - 누락된 키들
-      "about_our_mission": "우리의 미션",
-      "about_mission_statement": "브랜드 성공과 지속적인 파트너십을 촉진하는 혁신적이고 지속가능한 플렉시블 포장을 창조합니다",
-      "about_company_intro_1": "2003년에 설립된 KJ FLEX PACK은 식품, 음료, 펫케어, 생활용품, 개인위생 분야의 주요 브랜드들을 위한 플렉시블 포장 솔루션을 제공하는 글로벌 제조업체입니다.",
-      "about_company_intro_2": "고속 9색 인쇄, 무용제 라미네이션, 스마트 제조 시스템을 갖춘 우리는 제품 안전성, 진열 매력, 공급망 효율성을 보장하는 포장을 제공합니다.",
-      "about_company_intro_3": "혁신과 지속가능성에 대한 약속으로, 파트너들이 글로벌 시장에서 경쟁력을 높일 수 있도록 하는 친환경 고차단 포장 솔루션을 제공합니다.",
-      "about_visit_facility": "시설 방문",
-      "about_facility_description": "서울 비즈니스 지구 중심에 위치한 우리의 현대적인 시설은 접근이 용이하며 최첨단 제조 장비를 갖추고 있습니다",
-      "about_certifications": "인증 및 표준",
-      "about_certifications_description": "품질, 안전, 환경 책임에 대한 우리의 약속은 업계 선도적인 인증으로 검증됩니다",
-      "about_quality_assurance": "품질 보증",
-      "about_quality_description": "모든 제품은 엄격한 테스트와 품질 관리 과정을 거칩니다. 모든 플라스틱 포장 솔루션이 국제 품질 요구사항과 고객 사양을 충족하도록 제조에서 최고 수준을 유지합니다.",
-      "about_address": "주소",
-      "about_tel": "전화",
-      "about_fax": "팩스",
-      "about_email": "이메일",
-      "about_address_content": "서울특별시 강남구\n테헤란로 123, 15층",
-      "about_tel_content": "02-1234-5678~9",
-      "about_fax_content": "02-1234-5677",
-      "about_email_content": "info@bada.co.kr",
       "about_founded": "설립",
       "about_orders": "작년 주문 수",
       "about_clients": "작년 고객 수",
       
-      // 인증 관련 키 (한국어)
-      "cert_iso_9001": "ISO 9001:2015",
-      "cert_iso_9001_desc": "품질경영시스템",
-      "cert_iso_9001_type": "국제 표준",
-      "cert_iso_14001": "ISO 14001:2015",
-      "cert_iso_14001_desc": "환경경영시스템",
-      "cert_iso_14001_type": "환경 표준",
-      "cert_grs": "GRS 인증",
-      "cert_grs_desc": "글로벌 리사이클 표준",
-      "cert_grs_type": "지속가능성 인증",
-      "cert_fda": "FDA 승인",
-      "cert_fda_desc": "식품 접촉 재료",
-      "cert_fda_type": "안전 인증",
-      "cert_ce": "CE 마킹",
-      "cert_ce_desc": "유럽 적합성",
-      "cert_ce_type": "EU 표준",
-      "cert_sgs": "SGS 인증",
-      "cert_sgs_desc": "제3자 품질 보증",
-      "cert_sgs_type": "품질 검증",
+  
       
       // Contact 페이지 추가 키들 (한국어)
       "contact_page_title": "문의하기",
@@ -818,7 +789,6 @@ const fallbackResources = {
       
       "production_capabilities_title": "生产能力",
       "production_capabilities_description": "最先进的设备和严格的质量标准",
-      
       "process_step_printing": "印刷",
       "process_step_printing_desc": "使用雕刻滚筒，印刷机在包装薄膜上精确再现客户指定的颜色。",
       "process_step_dry_lamination": "干式复合",
