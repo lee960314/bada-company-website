@@ -68,10 +68,10 @@ export default function ProcessCapabilities() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#0A3D62] mb-4">
-              {t('production_capabilities_title')}
+              {t('production_capabilities_title') || 'Production Capabilities'}
             </h2>
             <p className="text-lg text-[#555555] max-w-3xl mx-auto">
-              {t('production_capabilities_description')}
+              {t('production_capabilities_description') || 'Advanced manufacturing processes for flexible packaging solutions'}
             </p>
           </div>
 

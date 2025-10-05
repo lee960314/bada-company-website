@@ -19,7 +19,8 @@ export default function ServiceIntroSection() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="animate-pulse text-[#0A3D62] text-4xl font-bold mb-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A3D62] mx-auto mb-4"></div>
+            <div className="text-[#0A3D62] text-lg font-semibold">
               Loading...
             </div>
           </div>
@@ -48,11 +49,11 @@ export default function ServiceIntroSection() {
           {/* Content Section */}
           <div className="flex-1 lg:pl-8 xl:pl-20 text-center lg:text-left">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black leading-tight whitespace-pre-line">
-              {t('service_intro_title')}
+              {t('service_intro_title') || 'From food to household goods,\neverything in flexible plastic packaging'}
             </h2>
             
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-500 leading-relaxed mt-4 whitespace-pre-line">
-              {t('service_intro_description')}
+              {t('service_intro_description') || 'We provide high-quality flexible packaging solutions for various industries.'}
             </p>
             
             {/* Detail Link with Animation */}
@@ -61,7 +62,7 @@ export default function ServiceIntroSection() {
                 href="/products" 
                 className="inline-flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-300 group cursor-pointer touch-manipulation"
               >
-                <span className="text-lg sm:text-xl md:text-2xl font-medium whitespace-pre-line">{t('details')} </span>
+                <span className="text-lg sm:text-xl md:text-2xl font-medium whitespace-pre-line">{t('details') || 'Details'} </span>
                 <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </div>

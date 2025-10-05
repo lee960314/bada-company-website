@@ -35,7 +35,8 @@ export default function ClientsSection() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="animate-pulse text-[#0A3D62] text-4xl font-bold mb-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A3D62] mx-auto mb-4"></div>
+            <div className="text-[#0A3D62] text-lg font-semibold">
               Loading...
             </div>
           </div>
