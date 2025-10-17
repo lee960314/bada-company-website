@@ -33,21 +33,21 @@ export default function ProductsSection() {
   
   const products = [
     {
-      title: t('product_materials') || 'Materials',
+      title: t('product_materials') || 'Film Type',
       subtitle: "",
       materials: t('product_materials_list') || 'PE, PP, PET materials',
       imagePlaceholder: t('product_materials_image') || 'Materials Image',
       imageSize: "400x300px"
     },
     {
-      title: t('product_functionalities') || 'Functionalities',
+      title: t('product_functionalities') || 'Shape Type',
       subtitle: "", 
       materials: t('product_functionalities_list') || 'Barrier, Seal, Print',
       imagePlaceholder: t('product_flexible_image') || 'Flexible Image',
       imageSize: "400x300px"
     },
     {
-      title: t('product_industries') || 'Industries',
+      title: t('product_industries') || 'Functional Features',
       subtitle: "",
       materials: t('product_industries_list') || 'Food, Medical, Industrial',
       imagePlaceholder: t('product_injection_image') || 'Injection Image', 
@@ -73,7 +73,7 @@ export default function ProductsSection() {
               <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 text-center hover:bg-[#F5F6FA] transition-colors duration-300 border border-[#E5E5E5] hover:border-[#FFC312] h-full flex flex-col">
                 {/* Product Image */}
                  <div className="aspect-video bg-[#F5F6FA] rounded-lg md:rounded-xl mb-4 md:mb-6 overflow-hidden">
-                   {product.title === (t('product_materials') || 'Materials') ? (
+                    {product.title === (t('product_materials') || 'Film Type') ? (
                      <Image
                        src="/materials_img.jpg"
                        alt="Materials"
@@ -81,7 +81,7 @@ export default function ProductsSection() {
                        height={300}
                        className="w-full h-full object-cover"
                      />
-                   ) : product.title === (t('product_functionalities') || 'Functionalities') ? (
+                    ) : product.title === (t('product_functionalities') || 'Shape Type') ? (
                      <Image
                        src="/functionalities_img.png"
                        alt="Functionalities"
@@ -89,7 +89,7 @@ export default function ProductsSection() {
                        height={300}
                        className="w-full h-full object-cover"
                      />
-                   ) : product.title === (t('product_industries') || 'Industries') ? (
+                    ) : product.title === (t('product_industries') || 'Functional Features') ? (
                      <Image
                        src="/industries_img.jpg"
                        alt="Industries"

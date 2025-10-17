@@ -36,7 +36,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* 메인 푸터 콘텐츠 */}
         <div className="py-12 md:py-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
             {/* 회사 정보 */}
             <div className="space-y-4">
               <div className="flex items-center">
@@ -120,24 +120,80 @@ export default function Footer() {
                 <div className="flex items-start space-x-3">
                   <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-gray-300 text-sm sm:text-base">+82-2-1234-5678</p>
-                    <p className="text-gray-400 text-xs sm:text-sm">Mon-Fri 09:00 - 18:00</p>
+                    <p className="text-gray-300 text-sm sm:text-base">{t('footer_phone_number') || '+86-13666066192'}</p>
+                    <p className="text-gray-400 text-xs sm:text-sm">{t('footer_business_hours') || 'Mon-Fri 09:00 - 18:00'}</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-gray-300 text-sm sm:text-base">info@kjflexpack.com</p>
-                    <p className="text-gray-400 text-xs sm:text-sm">24/7 Available</p>
+                    <p className="text-gray-300 text-sm sm:text-base">{t('footer_email_address') || 'info@kjflexpack.com'}</p>
+                    <p className="text-gray-400 text-xs sm:text-sm">{t('footer_email_available') || '24/7 Available'}</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-gray-300 text-sm sm:text-base">Gangnam-gu, Seoul</p>
-                    <p className="text-gray-400 text-xs sm:text-sm">KJ Flex Pack Building</p>
+                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                      {t('footer_address_full') || t('footer_address') || 'No. 23 Siming Industrial Park, Meixi Road, Tongan District, Xiamen City, Fujian, China'}
+                    </p>
+                    <p className="text-gray-400 text-xs sm:text-sm mt-1">{t('footer_whatsapp_wechat') || 'WhatsApp / WeChat: (+86) 13666066192'}</p>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* QR Codes - 데스크톱에서만 표시 */}
+            <div className="hidden lg:flex lg:flex-col lg:items-center space-y-4">
+              <h3 className="text-lg md:text-xl font-semibold whitespace-pre-line">Contact QR</h3>
+              <div className="flex flex-col space-y-4">
+                <div className="text-center">
+                  <Image
+                    src="/KJ_Wechat_img.png"
+                    alt="WeChat QR Code"
+                    width={120}
+                    height={120}
+                    className="mx-auto rounded-lg shadow-lg"
+                  />
+                  <p className="text-gray-300 text-sm mt-2">WeChat</p>
+                </div>
+                <div className="text-center">
+                  <Image
+                    src="/KJ_Whatapp_img.png"
+                    alt="WhatsApp QR Code"
+                    width={120}
+                    height={120}
+                    className="mx-auto rounded-lg shadow-lg"
+                  />
+                  <p className="text-gray-300 text-sm mt-2">WhatsApp</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* QR Codes - 모바일에서만 표시 */}
+          <div className="lg:hidden mt-8 flex flex-col items-center">
+            <h3 className="text-lg font-semibold text-center mb-6">Contact QR</h3>
+            <div className="flex justify-center space-x-8">
+              <div className="text-center">
+                <Image
+                  src="/KJ_Wechat_img.png"
+                  alt="WeChat QR Code"
+                  width={100}
+                  height={100}
+                  className="mx-auto rounded-lg shadow-lg"
+                />
+                <p className="text-gray-300 text-sm mt-2">WeChat</p>
+              </div>
+              <div className="text-center">
+                <Image
+                  src="/KJ_Whatapp_img.png"
+                  alt="WhatsApp QR Code"
+                  width={100}
+                  height={100}
+                  className="mx-auto rounded-lg shadow-lg"
+                />
+                <p className="text-gray-300 text-sm mt-2">WhatsApp</p>
               </div>
             </div>
           </div>
