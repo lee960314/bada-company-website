@@ -1,6 +1,6 @@
 "use client"
 
-import { Shield, Award, CheckCircle, Star } from "lucide-react"
+import Image from "next/image"
 import { useTranslation } from "react-i18next"
 
 export default function Certifications() {
@@ -22,40 +22,12 @@ export default function Certifications() {
   }
   const certifications = [
     {
-      title: t('cert_iso_9001'),
-      description: t('cert_iso_9001_desc'),
-      type: t('cert_iso_9001_type'),
-      icon: Shield
+      image: "/certi_img1.png",
+      alt: "Industrial Product Production License"
     },
     {
-      title: t('cert_iso_14001'),
-      description: t('cert_iso_14001_desc'),
-      type: t('cert_iso_14001_type'),
-      icon: Award
-    },
-    {
-      title: t('cert_grs'),
-      description: t('cert_grs_desc'),
-      type: t('cert_grs_type'),
-      icon: CheckCircle
-    },
-    {
-      title: t('cert_fda'),
-      description: t('cert_fda_desc'),
-      type: t('cert_fda_type'),
-      icon: Star
-    },
-    {
-      title: t('cert_ce'),
-      description: t('cert_ce_desc'),
-      type: t('cert_ce_type'),
-      icon: Shield
-    },
-    {
-      title: t('cert_sgs'),
-      description: t('cert_sgs_desc'),
-      type: t('cert_sgs_type'),
-      icon: Award
+      image: "/certi_img2.png", 
+      alt: "Food Grade Plastic Packaging Certificate"
     }
   ]
 
@@ -71,17 +43,20 @@ export default function Certifications() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* 인증서 이미지 그리드 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {certifications.map((cert, index) => (
-            <div key={index} className="bg-[#F5F6FA] rounded-xl p-8 text-center group hover:bg-white transition-colors duration-300 border border-[#E5E5E5] hover:border-[#FFC312]">
-              <div className="w-16 h-16 bg-[#0A3D62] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#FFC312] transition-colors duration-300">
-                <cert.icon className="h-8 w-8 text-white group-hover:text-[#0A3D62]" />
+            <div key={index} className="group">
+              <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white border border-[#E5E5E5]">
+                <Image
+                  src={cert.image}
+                  alt={cert.alt}
+                  width={600}
+                  height={800}
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              <h3 className="text-xl font-bold text-[#0A3D62] mb-2">{cert.title}</h3>
-              <p className="text-[#555555] mb-3">{cert.description}</p>
-              <span className="inline-block bg-white text-[#0A3D62] px-3 py-1 rounded-full text-sm font-medium border border-[#E5E5E5]">
-                {cert.type}
-              </span>
             </div>
           ))}
         </div>
