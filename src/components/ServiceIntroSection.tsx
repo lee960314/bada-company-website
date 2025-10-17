@@ -31,7 +31,7 @@ export default function ServiceIntroSection() {
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* Image Section */}
           <div className="w-full lg:w-auto lg:flex-shrink-0">
             <div className="w-full max-w-md lg:w-[500px] h-[250px] sm:h-[300px] lg:h-[350px] rounded-lg overflow-hidden mx-auto lg:mx-0">
@@ -46,13 +46,13 @@ export default function ServiceIntroSection() {
           </div>
 
           {/* Content Section */}
-          <div className="flex-1 lg:pl-8 xl:pl-20 text-center lg:text-left">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black leading-tight whitespace-pre-line">
+          <div className="flex-1 lg:pl-8 xl:pl-20 text-center lg:text-left flex flex-col justify-center">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#0A3D62] leading-tight whitespace-pre-line">
               {t('service_intro_title') || 'From food to household goods,\neverything in flexible plastic packaging'}
             </h2>
             
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-500 leading-relaxed mt-4 whitespace-pre-line">
-              {t('service_intro_description') || 'We provide high-quality flexible packaging solutions for various industries.'}
+              {t('service_intro_description') || 'The perfect flexible packaging solution tailored to your product.\nWith direct factory customization, we deliver competitive pricing,\nfast lead times, and consistent quality.'}
             </p>
           </div>
         </div>
