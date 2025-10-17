@@ -34,7 +34,7 @@ export default function Header() {
                 alt="KJ FLEX PACK"
                 width={400}
                 height={200}
-                className="h-16 md:h-20 lg:h-24 w-auto"
+                className="h-24 md:h-32 lg:h-36 w-auto"
                 priority
               />
             </div>
@@ -100,7 +100,7 @@ export default function Header() {
                 alt="KJ FLEX PACK"
                 width={400}
                 height={200}
-                className="h-16 md:h-20 lg:h-24 w-auto"
+                className="h-24 md:h-32 lg:h-36 w-auto"
                 priority
               />
             </Link>

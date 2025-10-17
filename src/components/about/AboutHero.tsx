@@ -140,11 +140,6 @@ export default function AboutHero() {
               {/* Column 2: Company Mission/Goal */}
               <div className="lg:col-span-1">
                 <div className="space-y-6">
-                  <h3 className={`text-2xl sm:text-3xl font-bold text-[#0A3D62] mb-6 transition-all duration-1000 ease-out delay-400 ${
-                    isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
-                  }`}>
-                    {t('about_our_mission')}
-                  </h3>
      
                   {/* Company Goal */}
                   <div className="space-y-2">

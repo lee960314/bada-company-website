@@ -43,9 +43,9 @@ export default function Footer() {
                 <Image
                   src="/header_logo.png"
                   alt="KJ FLEX PACK"
-                  width={350}
-                  height={175}
-                  className="h-20 w-auto"
+                  width={400}
+                  height={200}
+                  className="h-24 md:h-28 lg:h-32 w-auto"
                 />
               </div>
               <p className="text-gray-300 text-base leading-relaxed whitespace-pre-line">
