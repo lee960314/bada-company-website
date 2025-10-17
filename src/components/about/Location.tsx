@@ -2,6 +2,7 @@
 
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { useTranslation } from "react-i18next"
+import Link from "next/link"
 
 export default function Location() {
   const { t, ready } = useTranslation('common')
@@ -99,12 +100,18 @@ export default function Location() {
               {t('about_facility_description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-8 py-3 rounded-lg font-bold transition-colors duration-300">
+              <Link 
+                href="/quote"
+                className="bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] px-8 py-3 rounded-lg font-bold transition-colors duration-300 text-center"
+              >
                 {t('get_quote')}
-              </button>
-              <button className="border-2 border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-8 py-3 rounded-lg font-bold transition-colors duration-300">
+              </Link>
+              <Link 
+                href="/contact"
+                className="border-2 border-[#0A3D62] text-[#0A3D62] hover:bg-[#0A3D62] hover:text-white px-8 py-3 rounded-lg font-bold transition-colors duration-300 text-center"
+              >
                 {t('menu_contact')}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

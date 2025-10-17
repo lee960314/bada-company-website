@@ -83,9 +83,9 @@ export default function Header() {
   }
 
   const languages = [
-    { code: 'en', name: t('language_en') || 'English', flag: '🇺🇸' },
-    { code: 'ko', name: t('language_ko') || '한국어', flag: '🇰🇷' },
-    { code: 'zh-CN', name: t('language_zh') || '中文', flag: '🇨🇳' },
+    { code: 'en', name: 'English', flag: '' },
+    { code: 'ko', name: '한국어', flag: '' },
+    { code: 'zh-CN', name: '中文', flag: '' },
   ]
 
   return (
@@ -165,7 +165,7 @@ export default function Header() {
             >
               <button className="flex items-center space-x-2 text-white hover:text-[#FFC312] transition-colors duration-200 font-bold text-xl">
                 <Globe className="h-5 w-5" />
-                <span>{languages.find(lang => lang.code === i18n.language)?.flag}</span>
+                <span>{languages.find(lang => lang.code === i18n.language)?.name}</span>
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isLanguageOpen ? 'rotate-180' : ''}`} />
               </button>
               

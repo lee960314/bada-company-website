@@ -25,7 +25,7 @@ export default function HeroSection() {
       subtitle: "",
       description: "",
       content: safeTranslate(t, 'hero_subtitle', 'Innovative packaging solutions for your business needs'),
-      image: "/desktop-heroimg1test.png",
+      image: "/hero_img1.png",
       imageSize: "1980x800px"
     },
     {
@@ -34,7 +34,7 @@ export default function HeroSection() {
       subtitle: "",
       description: "",
       content: safeTranslate(t, 'hero_slide2_content', 'State-of-the-art production facilities'),
-      imagePlaceholder: "Hero Image 2",
+      image: "/hero_img2.jpg",
       imageSize: "1980x800px"
     },
     {
@@ -43,7 +43,7 @@ export default function HeroSection() {
       subtitle: "",
       description: "",
       content: safeTranslate(t, 'hero_slide3_content', 'Certified quality standards'),
-      imagePlaceholder: "Hero Image 3",
+      video: "/hero-video.mp4.mp4",
       imageSize: "1980x800px"
     }
   ]
@@ -97,7 +97,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-[800px] flex items-center justify-center overflow-hidden bg-[#F5F6FA]">
-      {/* Background Images */}
+      {/* Background Images/Video */}
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
           <div
@@ -106,20 +106,50 @@ export default function HeroSection() {
               index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            {slide.image ? (
-              <Image
-                src={slide.image}
-                alt={`Hero Image ${slide.id}`}
-                fill
-                className="object-cover"
-                priority={index === 0}
-              />
+            {slide.video ? (
+              // 3번째 슬라이드: 동영상 배경
+              <div className="relative w-full h-full">
+                {/* 대체 배경 (동영상이 로드되지 않을 경우) */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800"></div>
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover opacity-70"
+                  onError={(e) => {
+                    console.error('Video failed to load:', e);
+                    // 동영상 로드 실패 시 대체 배경 표시
+                    e.currentTarget.style.display = 'none';
+                  }}
+                  onLoadStart={() => console.log('Video loading started')}
+                  onCanPlay={() => console.log('Video can play')}
+                >
+                  <source src={slide.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                {/* 하얀 불투명한 오버레이 */}
+                <div className="absolute inset-0 bg-white/40"></div>
+              </div>
+            ) : slide.image ? (
+              // 1번째, 2번째 슬라이드: 이미지 배경
+              <div className="relative w-full h-full">
+                <Image
+                  src={slide.image}
+                  alt={`Hero Image ${slide.id}`}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                />
+                {/* 흰색 투명한 오버레이 */}
+                <div className="absolute inset-0 bg-white/40"></div>
+              </div>
             ) : (
+              // 대체 배경 (이미지나 동영상이 없는 경우)
               <div className="w-full h-full bg-white flex items-center justify-center">
-                {/* TODO: Add hero background image here - Size: 1980x800px */}
                 <div className="text-center text-gray-400">
-                  <p className="font-semibold">{slide.imagePlaceholder}</p>
-                  <p className="text-sm">{slide.imageSize}</p>
+                  <p className="font-semibold">Hero Background</p>
+                  <p className="text-sm">1980x800px</p>
                 </div>
               </div>
             )}

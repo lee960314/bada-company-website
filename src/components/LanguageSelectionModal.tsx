@@ -13,21 +13,21 @@ const languages = [
     code: 'en', 
     name: 'English', 
     nativeName: 'English',
-    flag: '🇺🇸',
+    flag: '',
     description: 'English language'
   },
   { 
     code: 'ko', 
-    name: 'Korean', 
+    name: '한국어', 
     nativeName: '한국어',
-    flag: '🇰🇷',
+    flag: '',
     description: '한국어'
   },
   { 
     code: 'zh-CN', 
-    name: 'Chinese', 
+    name: '中文', 
     nativeName: '中文',
-    flag: '🇨🇳',
+    flag: '',
     description: '中文'
   }
 ];

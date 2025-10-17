@@ -19,7 +19,7 @@ interface FormData {
   printingMethod: string
   function: string
   formulation: string
-  material: string
+  materials: string[]
   printCount: string
   productInformation: string
   additionalInput: string
@@ -49,7 +49,7 @@ export default function QuoteForm() {
     printingMethod: "",
     function: "",
     formulation: "",
-    material: "",
+    materials: [],
     printCount: "",
     productInformation: "",
     additionalInput: "",
@@ -62,6 +62,16 @@ export default function QuoteForm() {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
+  }
+
+  // Material 선택 핸들러 추가
+  const handleMaterialChange = (material: string, checked: boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      materials: checked 
+        ? [...prev.materials, material]
+        : prev.materials.filter(m => m !== material)
+    }))
   }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,7 +157,7 @@ export default function QuoteForm() {
             printing_method: formData.printingMethod,
             function: formData.function,
             formulation: formData.formulation,
-            material: formData.material,
+            materials: formData.materials,
             print_count: formData.printCount,
             product_information: formData.productInformation,
             additional_input: formData.additionalInput,
@@ -184,7 +194,7 @@ export default function QuoteForm() {
         printingMethod: "",
         function: "",
         formulation: "",
-        material: "",
+        materials: [],
         printCount: "",
         productInformation: "",
         additionalInput: "",
@@ -362,42 +372,6 @@ export default function QuoteForm() {
                       </div>
                     </div>
 
-                    {/* Printing Method */}
-                    <div>
-                      <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">{t('quote_printing_method')}</h3>
-                      <div className="grid grid-cols-2 gap-3">
-                        <label className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
-                          formData.printingMethod === "gravure" 
-                            ? 'border-[#FFC312] bg-[#FFC312] text-white' 
-                            : 'border-gray-300 hover:bg-gray-50 hover:border-[#FFC312]'
-                        }`}>
-                          <input
-                            type="radio"
-                            name="printingMethod"
-                            value="gravure"
-                            checked={formData.printingMethod === "gravure"}
-                            onChange={(e) => handleInputChange("printingMethod", e.target.value)}
-                            className="text-[#FFC312] focus:ring-[#FFC312]"
-                          />
-                          <span>{t('quote_printing_gravure')}</span>
-                        </label>
-                        <label className={`flex items-center space-x-3 p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
-                          formData.printingMethod === "digital" 
-                            ? 'border-[#FFC312] bg-[#FFC312] text-white' 
-                            : 'border-gray-300 hover:bg-gray-50 hover:border-[#FFC312]'
-                        }`}>
-                          <input
-                            type="radio"
-                            name="printingMethod"
-                            value="digital"
-                            checked={formData.printingMethod === "digital"}
-                            onChange={(e) => handleInputChange("printingMethod", e.target.value)}
-                            className="text-[#FFC312] focus:ring-[#FFC312]"
-                          />
-                          <span>{t('quote_printing_digital')}</span>
-                        </label>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Function */}
@@ -458,23 +432,30 @@ export default function QuoteForm() {
                     </div>
                   </div>
 
-                  {/* Material Dropdown */}
+                  {/* Material Multi-Select */}
                   <div>
                     <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
-                      {t('quote_material')}
+                      {t('quote_materials') || 'Materials (Select multiple)'}
                     </label>
-                    <select
-                      value={formData.material}
-                      onChange={(e) => handleInputChange("material", e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
-                    >
-                      <option value="">{t('quote_material_placeholder')}</option>
-                      <option value="opp">OPP</option>
-                      <option value="pp">PP</option>
-                      <option value="pe">PE</option>
-                      <option value="hdpe">HDPE</option>
-                        <option value="other">{t('quote_material_other')}</option>
-                    </select>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+                      {[
+                        { value: "opp", label: "OPP" },
+                        { value: "pp", label: "PP" },
+                        { value: "pe", label: "PE" },
+                        { value: "hdpe", label: "HDPE" },
+                        { value: "other", label: t('quote_material_other') }
+                      ].map((option) => (
+                        <label key={option.value} className="flex items-center space-x-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+                          <input
+                            type="checkbox"
+                            checked={formData.materials.includes(option.value)}
+                            onChange={(e) => handleMaterialChange(option.value, e.target.checked)}
+                            className="w-4 h-4 text-[#0A3D62] border-gray-300 rounded focus:ring-[#FFC312] focus:ring-2"
+                          />
+                          <span className="text-sm text-[#555555] font-medium">{option.label}</span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Print Count */}
@@ -654,7 +635,7 @@ export default function QuoteForm() {
                   size="lg"
                   className="px-8 py-3 bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Next
+                  {t('quote_next')}
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
               ) : (

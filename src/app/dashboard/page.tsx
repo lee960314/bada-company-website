@@ -253,6 +253,10 @@ export default function DashboardPage() {
       ...data.map(row => 
         headers.map(header => {
           const value = (row as unknown as Record<string, unknown>)[header]
+          // materials 필드는 배열을 문자열로 변환
+          if (header === 'materials' && Array.isArray(value)) {
+            return `"${value.join(', ')}"`
+          }
           // CSV에서 쉼표나 따옴표가 포함된 값은 따옴표로 감싸기
           if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
             return `"${value.replace(/"/g, '""')}"`
@@ -594,6 +598,23 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                               className="w-full px-3 py-2 border rounded-md h-24 resize-none"
                               placeholder={`Enter ${key.replace(/_/g, ' ')}...`}
                             />
+                          ) : key === 'materials' ? (
+                            <input
+                              type="text"
+                              value={Array.isArray((editingItem as unknown as Record<string, unknown>)[key]) 
+                                ? ((editingItem as unknown as Record<string, unknown>)[key] as string[]).join(', ')
+                                : (editingItem as unknown as Record<string, unknown>)[key] as string || ''
+                              }
+                              onChange={(e) => {
+                                const materialsArray = e.target.value.split(',').map(m => m.trim()).filter(m => m.length > 0)
+                                setEditingItem({
+                                  ...editingItem,
+                                  [key]: materialsArray
+                                } as EditingItem)
+                              }}
+                              className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-[#0A3D62] focus:border-transparent"
+                              placeholder="Enter materials separated by commas (e.g., opp, pp, pe)"
+                            />
                           ) : (
                             <input
                               type={key === 'email' ? 'email' : key === 'phone' ? 'tel' : 'text'}
@@ -694,7 +715,11 @@ CREATE POLICY "Anyone can delete contact messages" ON contacts
                         <div><strong>Product Type:</strong> {selectedAttachment.product_type || '-'}</div>
                         <div><strong>Quantity:</strong> {selectedAttachment.production_quantity || '-'}</div>
                         <div><strong>Dimensions:</strong> {selectedAttachment.width || '-'} x {selectedAttachment.height || '-'}</div>
-                        <div><strong>Material:</strong> {selectedAttachment.material || '-'}</div>
+                        <div><strong>Materials:</strong> {
+                          selectedAttachment.materials && Array.isArray(selectedAttachment.materials) && selectedAttachment.materials.length > 0
+                            ? selectedAttachment.materials.join(', ')
+                            : '-'
+                        }</div>
                       </div>
                     </div>
                   </div>

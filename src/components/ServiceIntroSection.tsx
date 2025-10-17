@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import { ChevronRight } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { useState, useEffect } from "react"
 
@@ -37,7 +36,7 @@ export default function ServiceIntroSection() {
           <div className="w-full lg:w-auto lg:flex-shrink-0">
             <div className="w-full max-w-md lg:w-[500px] h-[250px] sm:h-[300px] lg:h-[350px] rounded-lg overflow-hidden mx-auto lg:mx-0">
               <Image
-                src="/serviceintro_img1.png"
+                src="/serviceintro_img1.jpg"
                 alt="Flexible packaging solutions"
                 width={500}
                 height={350}
@@ -55,17 +54,6 @@ export default function ServiceIntroSection() {
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-500 leading-relaxed mt-4 whitespace-pre-line">
               {t('service_intro_description') || 'We provide high-quality flexible packaging solutions for various industries.'}
             </p>
-            
-            {/* Detail Link with Animation */}
-            <div className="mt-6 md:mt-8">
-              <a 
-                href="/products" 
-                className="inline-flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-300 group cursor-pointer touch-manipulation"
-              >
-                <span className="text-lg sm:text-xl md:text-2xl font-medium whitespace-pre-line">{t('details') || 'Details'} </span>
-                <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-            </div>
           </div>
         </div>
       </div>

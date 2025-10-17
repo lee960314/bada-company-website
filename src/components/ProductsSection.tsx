@@ -34,21 +34,21 @@ export default function ProductsSection() {
   const products = [
     {
       title: t('product_materials') || 'Materials',
-      subtitle: t('product_poly_bag') || 'Poly Bags',
+      subtitle: "",
       materials: t('product_materials_list') || 'PE, PP, PET materials',
       imagePlaceholder: t('product_materials_image') || 'Materials Image',
       imageSize: "400x300px"
     },
     {
       title: t('product_functionalities') || 'Functionalities',
-      subtitle: t('product_flexible_package') || 'Flexible Package', 
+      subtitle: "", 
       materials: t('product_functionalities_list') || 'Barrier, Seal, Print',
       imagePlaceholder: t('product_flexible_image') || 'Flexible Image',
       imageSize: "400x300px"
     },
     {
       title: t('product_industries') || 'Industries',
-      subtitle: "-",
+      subtitle: "",
       materials: t('product_industries_list') || 'Food, Medical, Industrial',
       imagePlaceholder: t('product_injection_image') || 'Injection Image', 
       imageSize: "400x300px"
@@ -69,14 +69,30 @@ export default function ProductsSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {products.map((product, index) => (
-            <div key={index} className="group">
-              <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 text-center hover:bg-[#F5F6FA] transition-colors duration-300 border border-[#E5E5E5] hover:border-[#FFC312]">
+            <div key={index} className="group h-full">
+              <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 text-center hover:bg-[#F5F6FA] transition-colors duration-300 border border-[#E5E5E5] hover:border-[#FFC312] h-full flex flex-col">
                 {/* Product Image */}
                  <div className="aspect-video bg-[#F5F6FA] rounded-lg md:rounded-xl mb-4 md:mb-6 overflow-hidden">
                    {product.title === (t('product_materials') || 'Materials') ? (
                      <Image
-                       src="/material_img.png"
+                       src="/materials_img.jpg"
                        alt="Materials"
+                       width={400}
+                       height={300}
+                       className="w-full h-full object-cover"
+                     />
+                   ) : product.title === (t('product_functionalities') || 'Functionalities') ? (
+                     <Image
+                       src="/functionalities_img.png"
+                       alt="Functionalities"
+                       width={400}
+                       height={300}
+                       className="w-full h-full object-cover"
+                     />
+                   ) : product.title === (t('product_industries') || 'Industries') ? (
+                     <Image
+                       src="/industries_img.jpg"
+                       alt="Industries"
                        width={400}
                        height={300}
                        className="w-full h-full object-cover"
@@ -92,22 +108,24 @@ export default function ProductsSection() {
                  </div>
 
                 {/* Product Info */}
-                <div className="space-y-2 md:space-y-4">
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#0A3D62] whitespace-pre-line">
-                    {product.title}
-                  </h3>
-                  
-                  <h4 className="text-sm md:text-base lg:text-xl font-semibold text-[#0A3D62] whitespace-pre-line">
-                    {product.subtitle}
-                  </h4>
-                  
-                  <p className="text-xs md:text-sm lg:text-base text-[#555555] whitespace-pre-line">
-                    {product.materials}
-                  </p>
+                <div className="flex-grow flex flex-col justify-between">
+                  <div className="space-y-2 md:space-y-4">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#0A3D62] whitespace-pre-line">
+                      {product.title}
+                    </h3>
+                    
+                    <h4 className="text-sm md:text-base lg:text-xl font-semibold text-[#0A3D62] whitespace-pre-line">
+                      {product.subtitle}
+                    </h4>
+                    
+                    <p className="text-xs md:text-sm lg:text-base text-[#555555] whitespace-pre-line">
+                      {product.materials}
+                    </p>
+                  </div>
 
                   <Button 
                     size="lg" 
-                    className="w-full bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] group-hover:bg-[#FFD93D] transition-colors duration-300 font-bold whitespace-pre-line text-sm md:text-base py-2 md:py-3"
+                    className="w-full bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] group-hover:bg-[#FFD93D] transition-colors duration-300 font-bold whitespace-pre-line text-sm md:text-base py-2 md:py-3 mt-4"
                   >
                     {t('learn_more') || 'Learn More'}
                     <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />

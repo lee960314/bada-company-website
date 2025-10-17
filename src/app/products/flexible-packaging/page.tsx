@@ -9,9 +9,9 @@ import Link from "next/link"
 
 export default function Product2Page() {
   const { t, ready } = useTranslation('common')
-  const [activeTab, setActiveTab] = useState("MATERIALS")
+  const [activeTab, setActiveTab] = useState("Film Type")
   
-  const tabs = ["MATERIALS", "SHAPE", "FUNCTIONALITIES", "INDUSTRY"]
+  const tabs = ["Film Type", "Shape Type", "Functional Features"]
 
   // 번역이 준비되지 않았으면 로딩 상태 표시
   if (!ready) {

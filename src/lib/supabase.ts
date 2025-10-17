@@ -36,7 +36,7 @@ export interface QuoteRequest {
   printing_method: string
   function: string
   formulation: string
-  material: string
+  materials: string[]
   print_count: string
   product_information: string
   additional_input: string
