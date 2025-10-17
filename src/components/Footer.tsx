@@ -45,7 +45,7 @@ export default function Footer() {
                   alt="KJ FLEX PACK"
                   width={400}
                   height={200}
-                  className="h-24 md:h-28 lg:h-32 w-auto"
+                  className="h-36 md:h-42 lg:h-48 w-auto"
                 />
               </div>
               <p className="text-gray-300 text-base leading-relaxed whitespace-pre-line">
