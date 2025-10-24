@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useTranslation } from "react-i18next"
+import { useSearchParams } from 'next/navigation'
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import TabMenu from "@/components/TabMenu"
@@ -13,10 +14,26 @@ import Link from "next/link"
 
 export default function Product2Page() {
   const { t, ready } = useTranslation('common')
+  const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState("Film Type")
   const [selectedFilter, setSelectedFilter] = useState("vacuum")
   
   const tabs = ["Film Type", "Pouch Type", "Industry", "Functional Features"]
+
+  // URL 파라미터에서 탭 설정
+  useEffect(() => {
+    const tabParam = searchParams.get('tab')
+    if (tabParam) {
+      const tabMap: Record<string, string> = {
+        'film-type': 'Film Type',
+        'pouch-type': 'Pouch Type', 
+        'functional-features': 'Functional Features'
+      }
+      if (tabMap[tabParam]) {
+        setActiveTab(tabMap[tabParam])
+      }
+    }
+  }, [searchParams])
 
   // Film type data
   const filmTypes = [

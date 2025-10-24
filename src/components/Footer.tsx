@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react"
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { useState, useEffect } from "react"
 
@@ -38,28 +38,41 @@ export default function Footer() {
         <div className="py-12 md:py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
             {/* 회사 정보 */}
-            <div className="space-y-4">
-              <div className="flex items-center">
+            <div className="space-y-4 lg:space-y-6">
+              <div className="flex items-center justify-center lg:justify-start lg:items-start lg:pt-0">
                 <Image
                   src="/header_logo.png"
                   alt="KJ FLEX PACK"
                   width={400}
                   height={200}
-                  className="h-36 md:h-42 lg:h-48 w-auto"
+                  className="h-36 md:h-44 lg:h-56 xl:h-64 w-auto"
                 />
               </div>
-              <p className="text-gray-300 text-base leading-relaxed whitespace-pre-line">
-                {t('footer_description') || 'A specialized company in flexible packaging materials, providing high-quality products and services.'}
+              <p className="text-gray-300 text-base lg:text-lg leading-relaxed whitespace-pre-line text-center lg:text-left">
+                {t('footer_description') || 'A specialized company in flexible packaging materials, providing high-quality products and reliable services for all your packaging needs.'}
               </p>
-              <div className="flex space-x-3">
+              <div className="flex space-x-3 justify-center lg:justify-start">
                 <Button variant="ghost" size="sm" className="p-2 text-gray-300 hover:text-[#FFC312] hover:bg-white/10 touch-manipulation min-h-[44px] min-w-[44px]">
                   <Facebook className="h-4 w-4" />
                 </Button>
                 <Button variant="ghost" size="sm" className="p-2 text-gray-300 hover:text-[#FFC312] hover:bg-white/10 touch-manipulation min-h-[44px] min-w-[44px]">
                   <Instagram className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="sm" className="p-2 text-gray-300 hover:text-[#FFC312] hover:bg-white/10 touch-manipulation min-h-[44px] min-w-[44px]">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="p-2 text-gray-300 hover:text-[#FFC312] hover:bg-white/10 touch-manipulation min-h-[44px] min-w-[44px]"
+                  onClick={() => window.open('https://www.linkedin.com/company/kj-flexpack', '_blank', 'noopener,noreferrer')}
+                >
                   <Linkedin className="h-4 w-4" />
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="p-2 text-gray-300 hover:text-[#FFC312] hover:bg-white/10 touch-manipulation min-h-[44px] min-w-[44px]"
+                  onClick={() => window.open('http://www.youtube.com/@KJFLEXPACKOfficial', '_blank', 'noopener,noreferrer')}
+                >
+                  <Youtube className="h-4 w-4" />
                 </Button>
               </div>
             </div>
@@ -88,11 +101,6 @@ export default function Footer() {
                 <li>
                   <Link href="/about" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
                     {t('footer_about_us') || 'About Us'}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/materials" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
-                    {t('footer_materials') || 'Materials'}
                   </Link>
                 </li>
                 <li>
@@ -128,7 +136,6 @@ export default function Footer() {
                   <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-gray-300 text-sm sm:text-base">{t('footer_email_address') || 'info@kjflexpack.com'}</p>
-                    <p className="text-gray-400 text-xs sm:text-sm">{t('footer_email_available') || '24/7 Available'}</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">

@@ -6,6 +6,7 @@ import Image from "next/image"
 import { useTranslation } from "react-i18next"
 import { useState, useEffect } from "react"
 import { safeTranslate } from "@/lib/translation-utils"
+import Link from "next/link"
 
 export default function ProductsSection() {
   const [mounted, setMounted] = useState(false)
@@ -37,21 +38,24 @@ export default function ProductsSection() {
       subtitle: "",
       materials: t('product_materials_list') || 'PE, PP, PET materials',
       imagePlaceholder: t('product_materials_image') || 'Materials Image',
-      imageSize: "400x300px"
+      imageSize: "400x300px",
+      tabSlug: 'film-type'
     },
     {
-      title: t('product_functionalities') || 'Shape Type',
+      title: t('product_functionalities') || 'Pouch Type',
       subtitle: "", 
       materials: t('product_functionalities_list') || 'Barrier, Seal, Print',
       imagePlaceholder: t('product_flexible_image') || 'Flexible Image',
-      imageSize: "400x300px"
+      imageSize: "400x300px",
+      tabSlug: 'pouch-type'
     },
     {
       title: t('product_industries') || 'Functional Features',
       subtitle: "",
       materials: t('product_industries_list') || 'Food, Medical, Industrial',
       imagePlaceholder: t('product_injection_image') || 'Injection Image', 
-      imageSize: "400x300px"
+      imageSize: "400x300px",
+      tabSlug: 'functional-features'
     }
   ]
 
@@ -123,13 +127,18 @@ export default function ProductsSection() {
                     </p>
                   </div>
 
-                  <Button 
-                    size="lg" 
-                    className="w-full bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] group-hover:bg-[#FFD93D] transition-colors duration-300 font-bold whitespace-pre-line text-sm md:text-base py-2 md:py-3 mt-4"
+                  <Link 
+                    href={`/products/flexible-packaging?tab=${product.tabSlug}`}
+                    className="w-full"
                   >
-                    {t('learn_more') || 'Learn More'}
-                    <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
-                  </Button>
+                    <Button 
+                      size="lg" 
+                      className="w-full bg-[#FFC312] hover:bg-[#FFD93D] text-[#0A3D62] group-hover:bg-[#FFD93D] transition-colors duration-300 font-bold whitespace-pre-line text-sm md:text-base py-2 md:py-3 mt-4"
+                    >
+                      {t('learn_more') || 'Learn More'}
+                      <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

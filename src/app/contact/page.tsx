@@ -150,7 +150,16 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-[#0A3D62] mb-2">{t('contact_form_whatsapp')}</h3>
-                      <p className="text-[#555555]">{t('contact_whatsapp_info')}</p>
+                      <p className="text-[#555555]">
+                        <a 
+                          href="https://wa.me/message/54CGSYDNTPOGP1" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-[#0A3D62] hover:text-[#FFC312] transition-colors duration-200 underline"
+                        >
+                          {t('contact_whatsapp_info')}
+                        </a>
+                      </p>
                     </div>
                   </div>
 
