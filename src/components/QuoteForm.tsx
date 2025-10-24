@@ -16,6 +16,7 @@ interface FormData {
   width: string
   height: string
   bottomSide: string
+  productWeight: string
   printingMethod: string
   function: string
   formulation: string
@@ -46,6 +47,7 @@ export default function QuoteForm() {
     width: "",
     height: "",
     bottomSide: "",
+    productWeight: "",
     printingMethod: "",
     function: "",
     formulation: "",
@@ -154,6 +156,7 @@ export default function QuoteForm() {
             width: formData.width,
             height: formData.height,
             bottom_side: formData.bottomSide,
+            product_weight: formData.productWeight,
             printing_method: formData.printingMethod,
             function: formData.function,
             formulation: formData.formulation,
@@ -191,6 +194,7 @@ export default function QuoteForm() {
         width: "",
         height: "",
         bottomSide: "",
+        productWeight: "",
         printingMethod: "",
         function: "",
         formulation: "",
@@ -330,12 +334,12 @@ export default function QuoteForm() {
                     </div>
                   </div>
 
-                  {/* Size and Printing Method in one row */}
+                  {/* Size and Product Weight in one row */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Size Information */}
-                    <div>
+                    <div className="flex flex-col">
                       <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">{t('quote_size')}</h3>
-                      <div className="grid grid-cols-3 gap-3">
+                      <div className="grid grid-cols-3 gap-3 flex-1">
                         <div>
                           <label className="block text-sm font-semibold text-[#0A3D62] mb-2">
                             {t('quote_width_mm')}
@@ -372,6 +376,19 @@ export default function QuoteForm() {
                       </div>
                     </div>
 
+                    {/* Product Weight / Volume */}
+                    <div className="flex flex-col">
+                      <h3 className="text-lg font-semibold text-[#0A3D62] mb-4">{t('quote_product_weight_volume')}</h3>
+                      <div className="flex-1 flex items-end">
+                        <input
+                          type="text"
+                          value={formData.productWeight}
+                          onChange={(e) => handleInputChange("productWeight", e.target.value)}
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFC312] focus:border-transparent"
+                          placeholder="Enter weight/volume (e.g., 500g, 250ml)"
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   {/* Function */}

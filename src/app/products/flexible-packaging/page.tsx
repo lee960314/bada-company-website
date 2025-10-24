@@ -18,6 +18,7 @@ export default function Product2Page() {
   const [activeTab, setActiveTab] = useState("Film Type")
   const [selectedFilter, setSelectedFilter] = useState("vacuum")
   
+  
   const tabs = ["Film Type", "Pouch Type", "Industry", "Functional Features"]
 
   // URL 파라미터에서 탭 설정
@@ -34,6 +35,13 @@ export default function Product2Page() {
       }
     }
   }, [searchParams])
+
+
+  // 탭 클릭 시 해당 섹션으로 스크롤 (스크롤 없이 탭만 변경)
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab)
+    // 스크롤 없이 탭만 변경
+  }
 
   // Film type data
   const filmTypes = [
@@ -163,15 +171,28 @@ export default function Product2Page() {
         </div>
       </section>
 
-      {/* Tab Menu Section */}
-      <section className="py-12 bg-white">
+      {/* Sticky Tab Menu Section */}
+      <section className="sticky top-0 z-50 py-4 bg-white shadow-sm border-b border-gray-200">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <TabMenu 
               tabs={tabs}
               activeTab={activeTab}
-              onTabChange={setActiveTab}
+              onTabChange={handleTabChange}
             />
+            
+            {/* 탐색 가이드 문구 */}
+            <div className="text-left mt-4">
+              <div className="flex items-center gap-2 text-gray-600 text-sm">
+                <span className="text-yellow-500">💡</span>
+                <span>{t('explore_other_options')}</span>
+                <span className="text-[#0A3D62] font-medium">Pouch Type</span>
+                <span className="text-gray-400">•</span>
+                <span className="text-[#0A3D62] font-medium">Industry</span>
+                <span className="text-gray-400">•</span>
+                <span className="text-[#0A3D62] font-medium">Functional Features</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -180,8 +201,10 @@ export default function Product2Page() {
       <section className="py-12 bg-[#F5F6FA]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            {activeTab === "Film Type" && (
-              <div className="bg-white rounded-xl shadow-lg p-8">
+            {/* Film Type Section */}
+            <div id="film-type">
+              {activeTab === "Film Type" && (
+                <div className="bg-white rounded-xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold text-[#0A3D62] mb-6">Film Type Materials</h2>
                 {/* 데스크톱 테이블 */}
                 <div className="hidden md:block overflow-x-auto">
@@ -435,18 +458,28 @@ export default function Product2Page() {
                 </div>
               </div>
             )}
+            </div>
 
-            {activeTab === "Pouch Type" && (
-              <PouchTypeSection />
-            )}
+            {/* Pouch Type Section */}
+            <div id="pouch-type">
+              {activeTab === "Pouch Type" && (
+                <PouchTypeSection />
+              )}
+            </div>
 
-            {activeTab === "Industry" && (
-              <IndustrySection />
-            )}
+            {/* Industry Section */}
+            <div id="industry">
+              {activeTab === "Industry" && (
+                <IndustrySection />
+              )}
+            </div>
 
-            {activeTab === "Functional Features" && (
-              <FunctionalFeaturesSection />
-            )}
+            {/* Functional Features Section */}
+            <div id="functional-features">
+              {activeTab === "Functional Features" && (
+                <FunctionalFeaturesSection />
+              )}
+            </div>
           </div>
         </div>
       </section>

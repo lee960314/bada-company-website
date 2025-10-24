@@ -315,6 +315,7 @@
   "quote_width_mm": "宽度 (mm)",
   "quote_height_mm": "高度 (mm)",
   "quote_bottom_side_mm": "底部/侧面 (mm)",
+  "quote_product_weight_volume": "产品重量 / 体积 (克 / 毫升)",
   
   "quote_shape_three_side_seal": "三边封口",
   "quote_shape_three_side_stand": "三边封口立式",

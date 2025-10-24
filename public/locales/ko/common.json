@@ -315,6 +315,7 @@
   "quote_width_mm": "폭 (mm)",
   "quote_height_mm": "높이 (mm)",
   "quote_bottom_side_mm": "바닥/측면 (mm)",
+  "quote_product_weight_volume": "제품 무게 / 용량 (그램 / 밀리리터)",
   
   "quote_shape_three_side_seal": "3면 밀봉",
   "quote_shape_three_side_stand": "3면 밀봉 스탠드",

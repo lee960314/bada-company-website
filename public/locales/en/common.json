@@ -314,7 +314,8 @@
   "quote_submitting": "Submitting...",
   "quote_width_mm": "Width (mm)",
   "quote_height_mm": "Height (mm)",
-  "quote_bottom_side_mm": "Bottom/Side (mm)",
+    "quote_bottom_side_mm": "Bottom/Side (mm)",
+    "quote_product_weight_volume": "Product Weight / Volume (gram / ml)",
   
   "quote_shape_three_side_seal": "Three-side seal",
   "quote_shape_three_side_stand": "Three-side seal stand",

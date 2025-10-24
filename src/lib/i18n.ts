@@ -118,6 +118,8 @@ const fallbackResources = {
       "quote_width_mm": "Width (mm)",
       "quote_height_mm": "Height (mm)",
       "quote_bottom_side_mm": "Bottom/Side (mm)",
+      "quote_product_weight_volume": "Product Weight / Volume (gram / ml)",
+      "explore_other_options": "Check out other options:",
       
       "quote_shape_three_side_seal": "Three-side seal",
       "quote_shape_mm_zipper": "MM zipper",
@@ -429,6 +431,8 @@ const fallbackResources = {
       "quote_width_mm": "폭 (mm)",
       "quote_height_mm": "높이 (mm)",
       "quote_bottom_side_mm": "바닥/측면 (mm)",
+      "quote_product_weight_volume": "제품 무게 / 용량 (그램 / 밀리리터)",
+      "explore_other_options": "다른 옵션도 확인해보세요:",
       "contact_description": "플렉시블 포장 솔루션에 대한 질문이 있으신가요? 저희 팀이 도와드리겠습니다. 양식을 작성해 주시면 가능한 한 빨리 연락드리겠습니다.",
       "contact_success_message": "문의해 주셔서 감사합니다! 곧 연락드리겠습니다.",
       "contact_error_message": "메시지 전송에 실패했습니다. 다시 시도해 주세요.",
@@ -741,6 +745,8 @@ const fallbackResources = {
       "quote_width_mm": "宽度 (mm)",
       "quote_height_mm": "高度 (mm)",
       "quote_bottom_side_mm": "底部/侧面 (mm)",
+      "quote_product_weight_volume": "产品重量 / 体积 (克 / 毫升)",
+      "explore_other_options": "查看其他选项:",
       
       "quote_shape_three_side_stand": "三边封口立式",
       "quote_shape_mm_zipper": "MM拉链",
