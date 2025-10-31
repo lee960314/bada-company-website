@@ -71,6 +71,7 @@ npm run dev
 | width | TEXT | 너비 |
 | height | TEXT | 높이 |
 | bottom_side | TEXT | 하단 측면 |
+| product_weight | TEXT | 제품 무게/용량 (gram/ml) |
 | printing_method | TEXT | 인쇄 방법 |
 | function | TEXT | 기능 |
 | formulation | TEXT | 조제 |

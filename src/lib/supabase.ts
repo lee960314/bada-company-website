@@ -33,6 +33,7 @@ export interface QuoteRequest {
   width: string
   height: string
   bottom_side: string
+  product_weight: string
   printing_method: string
   function: string
   formulation: string

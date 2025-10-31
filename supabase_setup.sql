@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS quote_requests (
   width TEXT,
   height TEXT,
   bottom_side TEXT,
+  product_weight TEXT,
   printing_method TEXT,
   function TEXT,
   formulation TEXT,
