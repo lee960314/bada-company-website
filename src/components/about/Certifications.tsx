@@ -28,6 +28,10 @@ export default function Certifications() {
     {
       image: "/certi_img2.png", 
       alt: "Food Grade Plastic Packaging Certificate"
+    },
+    {
+      image: "/ISO_img.png",
+      alt: "ISO 9001:2015 Quality Management System Certification"
     }
   ]
 
@@ -44,7 +48,7 @@ export default function Certifications() {
         </div>
 
         {/* 인증서 이미지 그리드 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {certifications.map((cert, index) => (
             <div key={index} className="group">
               <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white border border-[#E5E5E5]">

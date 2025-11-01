@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, Upload } from "lucide-react"
 import { supabase } from "@/lib/supabase"
+import Image from "next/image"
 
 interface FormData {
   name: string
@@ -551,41 +552,66 @@ export default function QuoteForm() {
                   {/* Shape Options */}
                   <div>
                     <h3 className="text-2xl font-semibold text-[#0A3D62] mb-6">{t('quote_shape')}</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {[
-                        t('quote_shape_three_side_seal'),
-                        t('quote_shape_three_side_stand'), 
-                        t('quote_shape_mm_zipper'),
-                        t('quote_shape_mt_type'),
-                        t('quote_shape_t_bag'),
-                        t('quote_shape_auto_roll'),
-                        t('quote_shape_common_shape')
+                        { 
+                          key: 'three-side-seal-pouch',
+                          title: t('quote_shape_three_side_seal_pouch'),
+                          image: '/Three-side Seal Pouch_img.png'
+                        },
+                        { 
+                          key: 'stand-up-pouch',
+                          title: t('quote_shape_stand_up_pouch'),
+                          image: '/Stand-up Pouch_img.png'
+                        },
+                        { 
+                          key: 'm-side-gusset-pouch',
+                          title: t('quote_shape_m_side_gusset_pouch'),
+                          image: '/M-side Gusset Pouch_img.png'
+                        },
+                        { 
+                          key: 'roll-stock-film',
+                          title: t('quote_shape_roll_stock_film'),
+                          image: '/Roll Stock Film_img.png'
+                        },
+                        { 
+                          key: 'spout-pouch',
+                          title: t('quote_shape_spout_pouch'),
+                          image: '/Spout Pouch_img.png'
+                        },
+                        { 
+                          key: 'special-shape-pouch',
+                          title: t('quote_shape_special_shape_pouch'),
+                          image: '/Special Shape Pouch_img.png'
+                        }
                       ].map((shape) => (
-                        <label key={shape} className={`flex flex-col items-center p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
-                          formData.shape === shape.toLowerCase().replace(/\s+/g, '-') 
+                        <label key={shape.key} className={`flex flex-col items-center p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
+                          formData.shape === shape.key
                             ? 'border-[#FFC312] bg-[#FFC312] text-white' 
                             : 'border-gray-300 hover:bg-gray-50 hover:border-[#FFC312]'
                         }`}>
-                          <div className={`w-16 h-16 rounded-lg mb-4 flex items-center justify-center transition-colors duration-300 ${
-                            formData.shape === shape.toLowerCase().replace(/\s+/g, '-') 
+                          <div className={`w-full aspect-square max-w-[200px] rounded-lg mb-4 flex items-center justify-center overflow-hidden transition-colors duration-300 ${
+                            formData.shape === shape.key
                               ? 'bg-white' 
                               : 'bg-gray-200'
                           }`}>
-                            <span className={`text-xs transition-colors duration-300 ${
-                              formData.shape === shape.toLowerCase().replace(/\s+/g, '-') 
-                                ? 'text-gray-500' 
-                                : 'text-gray-500'
-                            }`}>Image</span>
+                            <Image
+                              src={shape.image}
+                              alt={shape.title}
+                              width={200}
+                              height={200}
+                              className="object-cover w-full h-full"
+                            />
                           </div>
                           <input
                             type="radio"
                             name="shape"
-                            value={shape.toLowerCase().replace(/\s+/g, '-')}
-                            checked={formData.shape === shape.toLowerCase().replace(/\s+/g, '-')}
+                            value={shape.key}
+                            checked={formData.shape === shape.key}
                             onChange={(e) => handleInputChange("shape", e.target.value)}
                             className="text-[#FFC312] focus:ring-[#FFC312]"
                           />
-                          <span className="text-sm font-medium text-center mt-2">{shape}</span>
+                          <span className="text-sm font-medium text-center mt-2">{shape.title}</span>
                         </label>
                       ))}
                     </div>

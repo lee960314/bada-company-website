@@ -325,6 +325,13 @@
   "quote_shape_auto_roll": "自动卷装",
   "quote_shape_common_shape": "常见形状",
   
+  "quote_shape_three_side_seal_pouch": "三边封口袋",
+  "quote_shape_stand_up_pouch": "自立袋",
+  "quote_shape_m_side_gusset_pouch": "M侧折边袋",
+  "quote_shape_roll_stock_film": "卷装薄膜",
+  "quote_shape_spout_pouch": "带嘴袋",
+  "quote_shape_special_shape_pouch": "特殊形状袋",
+  
   "quote_surface_glossy": "光泽",
   "quote_surface_matte": "哑光",
   

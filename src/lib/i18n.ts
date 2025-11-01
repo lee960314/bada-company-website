@@ -128,6 +128,13 @@ const fallbackResources = {
       "quote_shape_auto_roll": "Auto roll",
       "quote_shape_common_shape": "Common shape",
       
+      "quote_shape_three_side_seal_pouch": "Three-side Seal Pouch",
+      "quote_shape_stand_up_pouch": "Stand-up Pouch",
+      "quote_shape_m_side_gusset_pouch": "M-side Gusset Pouch",
+      "quote_shape_roll_stock_film": "Roll Stock Film",
+      "quote_shape_spout_pouch": "Spout Pouch",
+      "quote_shape_special_shape_pouch": "Special Shape Pouch",
+      
       "quote_surface_glossy": "Glossy",
       "quote_surface_matte": "Matte",
       
@@ -618,6 +625,14 @@ const fallbackResources = {
       "quote_shape_t_bag": "T백",
       "quote_shape_auto_roll": "자동 롤",
       "quote_shape_common_shape": "일반 모양",
+      
+      "quote_shape_three_side_seal_pouch": "3면 밀봉 파우치",
+      "quote_shape_stand_up_pouch": "스탠드업 파우치",
+      "quote_shape_m_side_gusset_pouch": "M사이드 거싯 파우치",
+      "quote_shape_roll_stock_film": "롤 스톡 필름",
+      "quote_shape_spout_pouch": "스파우트 파우치",
+      "quote_shape_special_shape_pouch": "특수 모양 파우치",
+      
       "quote_surface_glossy": "광택",
       "quote_surface_matte": "매트",
       
@@ -754,6 +769,13 @@ const fallbackResources = {
       "quote_shape_t_bag": "T袋",
       "quote_shape_auto_roll": "自动卷装",
       "quote_shape_common_shape": "常见形状",
+      
+      "quote_shape_three_side_seal_pouch": "三边封口袋",
+      "quote_shape_stand_up_pouch": "自立袋",
+      "quote_shape_m_side_gusset_pouch": "M侧折边袋",
+      "quote_shape_roll_stock_film": "卷装薄膜",
+      "quote_shape_spout_pouch": "带嘴袋",
+      "quote_shape_special_shape_pouch": "特殊形状袋",
       
       "contact_description": "对我们的柔性包装解决方案有疑问吗？我们的团队随时为您提供帮助。填写表格，我们会尽快回复您。",
       "contact_success_message": "感谢您的联系！我们会尽快回复您。",

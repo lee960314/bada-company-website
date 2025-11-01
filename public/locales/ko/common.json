@@ -325,6 +325,13 @@
   "quote_shape_auto_roll": "자동 롤",
   "quote_shape_common_shape": "일반 모양",
   
+  "quote_shape_three_side_seal_pouch": "3면 밀봉 파우치",
+  "quote_shape_stand_up_pouch": "스탠드업 파우치",
+  "quote_shape_m_side_gusset_pouch": "M사이드 거싯 파우치",
+  "quote_shape_roll_stock_film": "롤 스톡 필름",
+  "quote_shape_spout_pouch": "스파우트 파우치",
+  "quote_shape_special_shape_pouch": "특수 모양 파우치",
+  
   "quote_surface_glossy": "광택",
   "quote_surface_matte": "매트",
   

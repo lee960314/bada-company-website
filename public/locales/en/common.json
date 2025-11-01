@@ -325,6 +325,13 @@
   "quote_shape_auto_roll": "Auto roll",
   "quote_shape_common_shape": "Common shape",
   
+  "quote_shape_three_side_seal_pouch": "Three-side Seal Pouch",
+  "quote_shape_stand_up_pouch": "Stand-up Pouch",
+  "quote_shape_m_side_gusset_pouch": "M-side Gusset Pouch",
+  "quote_shape_roll_stock_film": "Roll Stock Film",
+  "quote_shape_spout_pouch": "Spout Pouch",
+  "quote_shape_special_shape_pouch": "Special Shape Pouch",
+  
   "quote_surface_glossy": "Glossy",
   "quote_surface_matte": "Matte",
   
