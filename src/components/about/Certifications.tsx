@@ -28,6 +28,13 @@ export default function Certifications() {
     {
       image: "/certi_img2.png", 
       alt: "Food Grade Plastic Packaging Certificate"
+    }
+  ]
+
+  const isoCertifications = [
+    {
+      image: "/ISO 9001 CN with frame.png",
+      alt: "ISO 9001 CN Quality Management System Certification"
     },
     {
       image: "/ISO_img.png",
@@ -47,10 +54,10 @@ export default function Certifications() {
           </p>
         </div>
 
-        {/* 인증서 이미지 그리드 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* 첫 번째 행: 일반 인증서 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8">
           {certifications.map((cert, index) => (
-            <div key={index} className="group">
+            <div key={index} className="group flex flex-col">
               <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white border border-[#E5E5E5]">
                 <Image
                   src={cert.image}
@@ -59,8 +66,26 @@ export default function Certifications() {
                   height={800}
                   className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
+              <div className="hidden lg:block mt-2 h-2 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-xl" />
+            </div>
+          ))}
+        </div>
+
+        {/* 두 번째 행: ISO 인증서 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {isoCertifications.map((cert, index) => (
+            <div key={index} className="group flex flex-col">
+              <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white border border-[#E5E5E5]">
+                <Image
+                  src={cert.image}
+                  alt={cert.alt}
+                  width={600}
+                  height={800}
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="hidden lg:block mt-2 h-2 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-xl" />
             </div>
           ))}
         </div>

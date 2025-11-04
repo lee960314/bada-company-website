@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from 'next/navigation'
 import Header from "@/components/Header"
@@ -15,26 +15,38 @@ import Link from "next/link"
 export default function Product2Page() {
   const { t, ready } = useTranslation('common')
   const searchParams = useSearchParams()
-  const [activeTab, setActiveTab] = useState("Film Type")
+  const [activeTab, setActiveTab] = useState("")
   const [selectedFilter, setSelectedFilter] = useState("vacuum")
   
+  // 번역이 준비되면 기본 탭 설정
+  useEffect(() => {
+    if (ready && !activeTab) {
+      setActiveTab(t('tab_film_type'))
+    }
+  }, [ready, t, activeTab])
   
-  const tabs = ["Film Type", "Pouch Type", "Industry", "Functional Features"]
+  const tabs = [
+    t('tab_film_type'),
+    t('tab_pouch_type'),
+    t('tab_industry'),
+    t('tab_functional_features')
+  ]
 
   // URL 파라미터에서 탭 설정
   useEffect(() => {
+    if (!ready) return
     const tabParam = searchParams.get('tab')
     if (tabParam) {
       const tabMap: Record<string, string> = {
-        'film-type': 'Film Type',
-        'pouch-type': 'Pouch Type', 
-        'functional-features': 'Functional Features'
+        'film-type': t('tab_film_type'),
+        'pouch-type': t('tab_pouch_type'), 
+        'functional-features': t('tab_functional_features')
       }
       if (tabMap[tabParam]) {
         setActiveTab(tabMap[tabParam])
       }
     }
-  }, [searchParams])
+  }, [searchParams, t, ready])
 
 
   // 탭 클릭 시 해당 섹션으로 스크롤 (스크롤 없이 탭만 변경)
@@ -43,81 +55,81 @@ export default function Product2Page() {
     // 스크롤 없이 탭만 변경
   }
 
-  // Film type data
-  const filmTypes = [
+  // Film type data with translations
+  const filmTypes = useMemo(() => [
     {
       id: 1,
       filmType: "PET + AL + PE",
-      mainFeatures: "Excellent barrier & moisture resistance",
-      applications: ["Frozen food", "Dry snacks", "Pet treats"],
+      mainFeatures: t('film_type_1_features'),
+      applications: [t('film_type_1_app_1'), t('film_type_1_app_2'), t('film_type_1_app_3')],
       vacuumAble: true,
       tags: ["Excellent barrier", "Moisture resistance"]
     },
     {
       id: 2,
       filmType: "PET + PE",
-      mainFeatures: "Flexible and lightweight, excellent sealing",
-      applications: ["General food pouches", "Frozen food"],
+      mainFeatures: t('film_type_2_features'),
+      applications: [t('film_type_2_app_1'), t('film_type_2_app_2')],
       vacuumAble: true,
       tags: ["Flexibility", "Lightweight"]
     },
     {
       id: 3,
       filmType: "PET + NY + AL + RCPP",
-      mainFeatures: "Heat resistant, multilayer retort structure",
-      applications: ["Retort pouches", "Ready-to-eat meals"],
+      mainFeatures: t('film_type_3_features'),
+      applications: [t('film_type_3_app_1'), t('film_type_3_app_2')],
       vacuumAble: true,
       tags: ["Heat resistant", "Multilayer structure"]
     },
     {
       id: 4,
       filmType: "PET + AL + RCPP",
-      mainFeatures: "Strong barrier and heat sterilization capable",
-      applications: ["Sauces", "Soups", "High-temp products"],
+      mainFeatures: t('film_type_4_features'),
+      applications: [t('film_type_4_app_1'), t('film_type_4_app_2'), t('film_type_4_app_3')],
       vacuumAble: true,
       tags: ["Barrier", "Heat sterilization"]
     },
     {
       id: 5,
       filmType: "NY + RCPP",
-      mainFeatures: "Cost-effective, withstands sterilization up to 121°C",
-      applications: ["Retort foods", "Semi-ready meals"],
+      mainFeatures: t('film_type_5_features'),
+      applications: [t('film_type_5_app_1'), t('film_type_5_app_2')],
       vacuumAble: true,
       tags: ["Cost effective", "Sterilization resistant"]
     },
     {
       id: 6,
       filmType: "NY + PE",
-      mainFeatures: "High puncture resistance, ideal for vacuum sealing",
-      applications: ["Vacuum bags", "Meat", "Seafood"],
+      mainFeatures: t('film_type_6_features'),
+      applications: [t('film_type_6_app_1'), t('film_type_6_app_2'), t('film_type_6_app_3')],
       vacuumAble: true,
       tags: ["Puncture resistance", "Vacuum sealing"]
     },
     {
       id: 7,
       filmType: "PET + VM + PE",
-      mainFeatures: "Metalized film with oxygen & light barrier",
-      applications: ["Coffee pouches", "Snacks", "Vacuum packaging"],
+      mainFeatures: t('film_type_7_features'),
+      applications: [t('film_type_7_app_1'), t('film_type_7_app_2'), t('film_type_7_app_3')],
       vacuumAble: false,
       tags: ["Metalized", "Oxygen barrier"]
     },
     {
       id: 8,
       filmType: "PET + NY + PE",
-      mainFeatures: "Strong and flexible, suitable for freezing & vacuum",
-      applications: ["Frozen food", "Seafood", "Vacuum pouches"],
+      mainFeatures: t('film_type_8_features'),
+      applications: [t('film_type_8_app_1'), t('film_type_8_app_2'), t('film_type_8_app_3')],
       vacuumAble: true,
       tags: ["Strong", "Freezing suitable"]
     },
     {
       id: 9,
       filmType: "PET + AL + NY + RCPP",
-      mainFeatures: "Extremely durable, strong barrier & heat resistance",
-      applications: ["Meat packaging", "Pet food", "Sauces"],
+      mainFeatures: t('film_type_9_features'),
+      applications: [t('film_type_9_app_1'), t('film_type_9_app_2'), t('film_type_9_app_3')],
       vacuumAble: true,
       tags: ["Durability", "Strong barrier"]
     }
-  ]
+  ], [t])
 
   // Filtered data
   const filteredFilmTypes = filmTypes.filter(film => {
@@ -186,11 +198,11 @@ export default function Product2Page() {
               <div className="flex items-center gap-2 text-gray-600 text-sm">
                 <span className="text-yellow-500">💡</span>
                 <span>{t('explore_other_options')}</span>
-                <span className="text-[#0A3D62] font-medium">Pouch Type</span>
+                <span className="text-[#0A3D62] font-medium">{t('tab_pouch_type')}</span>
                 <span className="text-gray-400">•</span>
-                <span className="text-[#0A3D62] font-medium">Industry</span>
+                <span className="text-[#0A3D62] font-medium">{t('tab_industry')}</span>
                 <span className="text-gray-400">•</span>
-                <span className="text-[#0A3D62] font-medium">Functional Features</span>
+                <span className="text-[#0A3D62] font-medium">{t('tab_functional_features')}</span>
               </div>
             </div>
           </div>
@@ -203,49 +215,49 @@ export default function Product2Page() {
           <div className="max-w-7xl mx-auto">
             {/* Film Type Section */}
             <div id="film-type">
-              {activeTab === "Film Type" && (
+              {activeTab === t('tab_film_type') && (
                 <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-[#0A3D62] mb-6">Film Type Materials</h2>
+                <h2 className="text-2xl font-bold text-[#0A3D62] mb-6">{t('film_materials_title')}</h2>
                 {/* 데스크톱 테이블 */}
                 <div className="hidden md:block overflow-x-auto">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="bg-[#0A3D62] text-white">
-                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Code</th>
-                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Full Name</th>
-                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Function</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">{t('film_materials_code')}</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">{t('film_materials_full_name')}</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">{t('film_materials_function')}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr className="hover:bg-gray-50">
                         <td className="border border-gray-300 px-4 py-3 font-medium">PET</td>
-                        <td className="border border-gray-300 px-4 py-3">Polyethylene Terephthalate</td>
-                        <td className="border border-gray-300 px-4 py-3">Strength, printability (outer layer)</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_pet_name')}</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_pet_function')}</td>
                       </tr>
                       <tr className="hover:bg-gray-50">
                         <td className="border border-gray-300 px-4 py-3 font-medium">NY</td>
-                        <td className="border border-gray-300 px-4 py-3">Nylon / Polyamide</td>
-                        <td className="border border-gray-300 px-4 py-3">Puncture resistance, flexibility</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_ny_name')}</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_ny_function')}</td>
                       </tr>
                       <tr className="hover:bg-gray-50">
                         <td className="border border-gray-300 px-4 py-3 font-medium">AL</td>
-                        <td className="border border-gray-300 px-4 py-3">Aluminum Foil</td>
-                        <td className="border border-gray-300 px-4 py-3">Excellent oxygen & moisture barrier</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_al_name')}</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_al_function')}</td>
                       </tr>
                       <tr className="hover:bg-gray-50">
                         <td className="border border-gray-300 px-4 py-3 font-medium">VM PET/CPP/OPP</td>
-                        <td className="border border-gray-300 px-4 py-3">Vacuum Metallized PET/CPP/OPP</td>
-                        <td className="border border-gray-300 px-4 py-3">Lightweight metalized barrier film</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_vm_pet_cpp_opp_name')}</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_vm_pet_cpp_opp_function')}</td>
                       </tr>
                       <tr className="hover:bg-gray-50">
                         <td className="border border-gray-300 px-4 py-3 font-medium">PE</td>
-                        <td className="border border-gray-300 px-4 py-3">Polyethylene</td>
-                        <td className="border border-gray-300 px-4 py-3">Sealing, flexibility (inner layer)</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_pe_name')}</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_pe_function')}</td>
                       </tr>
                       <tr className="hover:bg-gray-50">
                         <td className="border border-gray-300 px-4 py-3 font-medium">RCPP</td>
-                        <td className="border border-gray-300 px-4 py-3">Retortable Cast Polypropylene</td>
-                        <td className="border border-gray-300 px-4 py-3">Heat-resistant sealing layer</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_rcpp_name')}</td>
+                        <td className="border border-gray-300 px-4 py-3">{t('material_rcpp_function')}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -255,33 +267,33 @@ export default function Product2Page() {
                 <div className="md:hidden space-y-4">
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="font-bold text-[#0A3D62] mb-2">PET</div>
-                    <div className="text-sm text-gray-600 mb-1">Polyethylene Terephthalate</div>
-                    <div className="text-xs text-gray-500">Strength, printability (outer layer)</div>
+                    <div className="text-sm text-gray-600 mb-1">{t('material_pet_name')}</div>
+                    <div className="text-xs text-gray-500">{t('material_pet_function')}</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="font-bold text-[#0A3D62] mb-2">NY</div>
-                    <div className="text-sm text-gray-600 mb-1">Nylon / Polyamide</div>
-                    <div className="text-xs text-gray-500">Puncture resistance, flexibility</div>
+                    <div className="text-sm text-gray-600 mb-1">{t('material_ny_name')}</div>
+                    <div className="text-xs text-gray-500">{t('material_ny_function')}</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="font-bold text-[#0A3D62] mb-2">AL</div>
-                    <div className="text-sm text-gray-600 mb-1">Aluminum Foil</div>
-                    <div className="text-xs text-gray-500">Excellent oxygen & moisture barrier</div>
+                    <div className="text-sm text-gray-600 mb-1">{t('material_al_name')}</div>
+                    <div className="text-xs text-gray-500">{t('material_al_function')}</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="font-bold text-[#0A3D62] mb-2">VM PET/CPP/OPP</div>
-                    <div className="text-sm text-gray-600 mb-1">Vacuum Metallized PET/CPP/OPP</div>
-                    <div className="text-xs text-gray-500">Lightweight metalized barrier film</div>
+                    <div className="text-sm text-gray-600 mb-1">{t('material_vm_pet_cpp_opp_name')}</div>
+                    <div className="text-xs text-gray-500">{t('material_vm_pet_cpp_opp_function')}</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="font-bold text-[#0A3D62] mb-2">PE</div>
-                    <div className="text-sm text-gray-600 mb-1">Polyethylene</div>
-                    <div className="text-xs text-gray-500">Sealing, flexibility (inner layer)</div>
+                    <div className="text-sm text-gray-600 mb-1">{t('material_pe_name')}</div>
+                    <div className="text-xs text-gray-500">{t('material_pe_function')}</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="font-bold text-[#0A3D62] mb-2">RCPP</div>
-                    <div className="text-sm text-gray-600 mb-1">Retortable Cast Polypropylene</div>
-                    <div className="text-xs text-gray-500">Heat-resistant sealing layer</div>
+                    <div className="text-sm text-gray-600 mb-1">{t('material_rcpp_name')}</div>
+                    <div className="text-xs text-gray-500">{t('material_rcpp_function')}</div>
                   </div>
                 </div>
                 
@@ -298,7 +310,7 @@ export default function Product2Page() {
 
                 {/* Film Type Table Section */}
                 <div className="mt-12">
-                  <h3 className="text-xl font-bold text-[#0A3D62] mb-6">Film Type Details</h3>
+                  <h3 className="text-xl font-bold text-[#0A3D62] mb-6">{t('film_type_details')}</h3>
                   
                   {/* Filter Buttons */}
                   <div className="flex flex-wrap gap-2 mb-8">
@@ -310,7 +322,7 @@ export default function Product2Page() {
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
-                      Vacuum Capable
+                      {t('filter_vacuum_capable')}
                     </button>
                     <button
                       onClick={() => setSelectedFilter("heat")}
@@ -320,7 +332,7 @@ export default function Product2Page() {
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
-                      Heat Resistant
+                      {t('filter_heat_resistant')}
                     </button>
                     <button
                       onClick={() => setSelectedFilter("barrier")}
@@ -330,7 +342,7 @@ export default function Product2Page() {
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
-                      Excellent Barrier
+                      {t('filter_excellent_barrier')}
                     </button>
                   </div>
 
@@ -339,10 +351,10 @@ export default function Product2Page() {
                     <table className="w-full border-collapse bg-white rounded-lg shadow-lg">
                       <thead>
                         <tr className="bg-[#0A3D62] text-white">
-                          <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Film Type</th>
-                          <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Main Features</th>
-                          <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Typical Applications</th>
-                          <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Vacuum able?</th>
+                          <th className="border border-gray-300 px-4 py-3 text-left font-semibold">{t('table_film_type')}</th>
+                          <th className="border border-gray-300 px-4 py-3 text-left font-semibold">{t('table_main_features')}</th>
+                          <th className="border border-gray-300 px-4 py-3 text-left font-semibold">{t('table_typical_applications')}</th>
+                          <th className="border border-gray-300 px-4 py-3 text-left font-semibold">{t('table_vacuum_able')}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -362,7 +374,7 @@ export default function Product2Page() {
                             </td>
                             <td className="border border-gray-300 px-4 py-3 text-center">
                               <span className="text-sm font-medium">
-                                {film.vacuumAble ? "Yes" : "No"}
+                                {film.vacuumAble ? t('yes') : t('no')}
                               </span>
                             </td>
                           </tr>
@@ -376,10 +388,10 @@ export default function Product2Page() {
                     <table className="w-full border-collapse bg-white rounded-lg shadow-lg">
                       <thead>
                         <tr className="bg-[#0A3D62] text-white">
-                          <th className="border border-gray-300 px-3 py-2 text-left font-semibold text-sm">Film Type</th>
-                          <th className="border border-gray-300 px-3 py-2 text-left font-semibold text-sm">Features</th>
-                          <th className="border border-gray-300 px-3 py-2 text-left font-semibold text-sm">Applications</th>
-                          <th className="border border-gray-300 px-3 py-2 text-left font-semibold text-sm">Vacuum</th>
+                          <th className="border border-gray-300 px-3 py-2 text-left font-semibold text-sm">{t('table_film_type')}</th>
+                          <th className="border border-gray-300 px-3 py-2 text-left font-semibold text-sm">{t('table_main_features')}</th>
+                          <th className="border border-gray-300 px-3 py-2 text-left font-semibold text-sm">{t('table_typical_applications')}</th>
+                          <th className="border border-gray-300 px-3 py-2 text-left font-semibold text-sm">{t('vacuum')}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -416,18 +428,18 @@ export default function Product2Page() {
                           <div className="flex-1">
                             <h4 className="font-bold text-[#0A3D62] text-sm mb-2">{film.filmType}</h4>
                             <span className="text-xs font-medium">
-                              Vacuum: {film.vacuumAble ? "Yes" : "No"}
+                              {t('vacuum')}: {film.vacuumAble ? t('yes') : t('no')}
                             </span>
                           </div>
                         </div>
                         
                         <div className="mb-3">
-                          <h5 className="text-xs font-semibold text-gray-700 mb-1">Main Features</h5>
+                          <h5 className="text-xs font-semibold text-gray-700 mb-1">{t('main_features')}</h5>
                           <p className="text-xs text-gray-600">{film.mainFeatures}</p>
                         </div>
                         
                         <div>
-                          <h5 className="text-xs font-semibold text-gray-700 mb-1">Typical Applications</h5>
+                          <h5 className="text-xs font-semibold text-gray-700 mb-1">{t('typical_applications')}</h5>
                           <ul className="text-xs text-gray-600 space-y-1">
                             {film.applications.map((app, index) => (
                               <li key={index} className="flex items-center">
@@ -445,13 +457,13 @@ export default function Product2Page() {
                   {filteredFilmTypes.length === 0 && (
                     <div className="text-center py-12">
                       <div className="text-gray-500 text-lg">
-                        No film types found for the selected filter.
+                        {t('no_film_types_found')}
                       </div>
                       <button
                         onClick={() => setSelectedFilter("vacuum")}
                         className="mt-4 px-6 py-2 bg-[#0A3D62] text-white rounded-lg hover:bg-[#0A3D62]/90 transition-colors duration-200"
                       >
-                        Show All
+                        {t('show_all')}
                       </button>
                     </div>
                   )}
@@ -462,21 +474,21 @@ export default function Product2Page() {
 
             {/* Pouch Type Section */}
             <div id="pouch-type">
-              {activeTab === "Pouch Type" && (
+              {activeTab === t('tab_pouch_type') && (
                 <PouchTypeSection />
               )}
             </div>
 
             {/* Industry Section */}
             <div id="industry">
-              {activeTab === "Industry" && (
+              {activeTab === t('tab_industry') && (
                 <IndustrySection />
               )}
             </div>
 
             {/* Functional Features Section */}
             <div id="functional-features">
-              {activeTab === "Functional Features" && (
+              {activeTab === t('tab_functional_features') && (
                 <FunctionalFeaturesSection />
               )}
             </div>
