@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Upload } from "lucide-react"
+import { ChevronLeft, ChevronRight, Upload, CheckCircle2, FileText } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import Image from "next/image"
 
@@ -27,7 +27,19 @@ interface FormData {
   additionalInput: string
   attachedFile: File | null
   shape: string
-  surface: string
+  // New quote options fields
+  shapeType: string
+  sizeWidth: string
+  sizeLength: string
+  hasPrinting: string
+  purpose: string
+  hasZipper: string
+  hangHole: string
+  corner: string
+  inlet: string
+  quantity: string
+  designFile: File | null
+  details: string
 }
 
 export default function QuoteForm() {
@@ -60,7 +72,19 @@ export default function QuoteForm() {
     
     // Section 3: Production Options
     shape: "",
-    surface: ""
+    // Quote Options
+    shapeType: "",
+    sizeWidth: "",
+    sizeLength: "",
+    hasPrinting: "",
+    purpose: "",
+    hasZipper: "",
+    hangHole: "",
+    corner: "",
+    inlet: "",
+    quantity: "",
+    designFile: null,
+    details: ""
   })
 
   const handleInputChange = (field: string, value: string) => {
@@ -84,9 +108,16 @@ export default function QuoteForm() {
     }
   }
 
+  const handleDesignFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (file) {
+      setFormData(prev => ({ ...prev, designFile: file }))
+    }
+  }
+
   const isStep1Valid = formData.name && formData.phone && formData.email
   const isStep2Valid = formData.productType && formData.productionQuantity && formData.width && formData.height && formData.bottomSide
-  const isStep3Valid = formData.shape && formData.surface
+  const isStep3Valid = !!formData.shape && !!formData.shapeType
 
   const nextStep = () => {
     if (currentStep < 3) {
@@ -123,8 +154,10 @@ export default function QuoteForm() {
     setSubmitMessage(null)
 
     try {
-      // Upload file to Supabase Storage if exists
+      // Upload files to Supabase Storage if exists
       let fileUrl = null
+      let designFileUrl = null
+      
       if (formData.attachedFile) {
         const fileName = `${Date.now()}_${formData.attachedFile.name}`
         const { error: fileError } = await supabase.storage
@@ -139,6 +172,22 @@ export default function QuoteForm() {
             .from('quote-attachments')
             .getPublicUrl(fileName)
           fileUrl = publicUrl
+        }
+      }
+
+      if (formData.designFile) {
+        const fileName = `${Date.now()}_design_${formData.designFile.name}`
+        const { error: fileError } = await supabase.storage
+          .from('quote-attachments')
+          .upload(fileName, formData.designFile)
+
+        if (fileError) {
+          console.error('Design file upload error:', fileError)
+        } else {
+          const { data: { publicUrl } } = supabase.storage
+            .from('quote-attachments')
+            .getPublicUrl(fileName)
+          designFileUrl = publicUrl
         }
       }
 
@@ -167,7 +216,19 @@ export default function QuoteForm() {
             additional_input: formData.additionalInput,
             attached_file_url: fileUrl,
             shape: formData.shape,
-            surface: formData.surface,
+            // New quote options fields
+            shape_type: formData.shapeType,
+            size_width: formData.sizeWidth,
+            size_length: formData.sizeLength,
+            has_printing: formData.hasPrinting,
+            purpose: formData.purpose,
+            has_zipper: formData.hasZipper,
+            hang_hole: formData.hangHole,
+            corner: formData.corner,
+            inlet: formData.inlet,
+            quantity: formData.quantity,
+            details: formData.details,
+            design_file_url: designFileUrl,
           }
         ])
         .select()
@@ -205,7 +266,18 @@ export default function QuoteForm() {
         additionalInput: "",
         attachedFile: null,
         shape: "",
-        surface: ""
+        shapeType: "",
+        sizeWidth: "",
+        sizeLength: "",
+        hasPrinting: "",
+        purpose: "",
+        hasZipper: "",
+        hangHole: "",
+        corner: "",
+        inlet: "",
+        quantity: "",
+        designFile: null,
+        details: ""
       })
       setCurrentStep(1)
 
@@ -617,40 +689,271 @@ export default function QuoteForm() {
                     </div>
                   </div>
 
-                  {/* Surface Options */}
-                  <div>
-                    <h3 className="text-2xl font-semibold text-[#0A3D62] mb-6">{t('quote_surface')}</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {[t('quote_surface_glossy'), t('quote_surface_matte')].map((surface) => (
-                        <label key={surface} className={`flex flex-col items-center p-4 border rounded-lg cursor-pointer transition-all duration-300 ${
-                          formData.surface === surface.toLowerCase() 
-                            ? 'border-[#FFC312] bg-[#FFC312] text-white' 
-                            : 'border-gray-300 hover:bg-gray-50 hover:border-[#FFC312]'
-                        }`}>
-                          <div className={`w-16 h-16 rounded-lg mb-4 flex items-center justify-center transition-colors duration-300 ${
-                            formData.surface === surface.toLowerCase() 
-                              ? 'bg-white' 
-                              : 'bg-gray-200'
-                          }`}>
-                            <span className={`text-xs transition-colors duration-300 ${
-                              formData.surface === surface.toLowerCase() 
-                                ? 'text-gray-500' 
-                                : 'text-gray-500'
-                            }`}>Image</span>
+                  {/* Quote Options & Details Section - Table Layout */}
+                  <div className="bg-white rounded-lg border border-gray-200 mt-8">
+                    {/* Quote Options Section */}
+                    <div className="border-b border-gray-200">
+                      <div className="flex items-center space-x-3 px-6 py-4 bg-[#F8F8FA]">
+                        <CheckCircle2 className="h-6 w-6 text-[#0A3D62]" />
+                        <h3 className="text-2xl font-semibold text-[#0A3D62]">{t('quote_options_title')}</h3>
+                      </div>
+
+                      <div className="divide-y divide-gray-200">
+                        {/* Shape Type */}
+                        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 px-6 py-4">
+                          <label className="text-base font-semibold text-[#0A3D62] flex items-center">{t('quote_shape_type')}</label>
+                          <div className="flex flex-wrap gap-4">
+                            {[
+                              { value: '3side', label: t('quote_shape_type_3side') },
+                              { value: '3side_stand', label: t('quote_shape_type_3side_stand') },
+                              { value: 'm', label: t('quote_shape_type_m') },
+                              { value: 't', label: t('quote_shape_type_t') }
+                            ].map((option) => (
+                              <label key={option.value} className="flex items-center space-x-2 cursor-pointer group">
+                                <input
+                                  type="radio"
+                                  name="shapeType"
+                                  value={option.value}
+                                  checked={formData.shapeType === option.value}
+                                  onChange={(e) => handleInputChange("shapeType", e.target.value)}
+                                  className="w-4 h-4 text-[#0A3D62] border-gray-300 focus:ring-[#0A3D62] focus:ring-2"
+                                />
+                                <span className="text-sm text-[#555555] group-hover:text-[#0A3D62]">{option.label}</span>
+                              </label>
+                            ))}
                           </div>
-                          <input
-                            type="radio"
-                            name="surface"
-                            value={surface.toLowerCase()}
-                            checked={formData.surface === surface.toLowerCase()}
-                            onChange={(e) => handleInputChange("surface", e.target.value)}
-                            className="text-[#FFC312] focus:ring-[#FFC312]"
-                          />
-                          <span className="text-sm font-medium text-center mt-2">{surface}</span>
-                        </label>
-                      ))}
+                        </div>
+
+                        {/* Size */}
+                        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 px-6 py-4">
+                          <label className="text-base font-semibold text-[#0A3D62] flex items-center">{t('quote_size')}</label>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <input
+                              type="text"
+                              value={formData.sizeWidth}
+                              onChange={(e) => handleInputChange("sizeWidth", e.target.value)}
+                              placeholder={t('quote_size_width')}
+                              className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0A3D62] focus:border-[#0A3D62] text-sm"
+                            />
+                            <span className="text-sm text-gray-500">mm</span>
+                            <span className="text-gray-400">×</span>
+                            <input
+                              type="text"
+                              value={formData.sizeLength}
+                              onChange={(e) => handleInputChange("sizeLength", e.target.value)}
+                              placeholder={t('quote_size_length')}
+                              className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0A3D62] focus:border-[#0A3D62] text-sm"
+                            />
+                            <span className="text-sm text-gray-500">mm</span>
+                          </div>
+                        </div>
+
+                        {/* Printing */}
+                        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 px-6 py-4">
+                          <label className="text-base font-semibold text-[#0A3D62] flex items-center">{t('quote_has_printing')}</label>
+                          <div className="flex gap-4">
+                            {[
+                              { value: 'yes', label: t('quote_has_printing_yes') },
+                              { value: 'no', label: t('quote_has_printing_no') }
+                            ].map((option) => (
+                              <label key={option.value} className="flex items-center space-x-2 cursor-pointer group">
+                                <input
+                                  type="radio"
+                                  name="hasPrinting"
+                                  value={option.value}
+                                  checked={formData.hasPrinting === option.value}
+                                  onChange={(e) => handleInputChange("hasPrinting", e.target.value)}
+                                  className="w-4 h-4 text-[#0A3D62] border-gray-300 focus:ring-[#0A3D62] focus:ring-2"
+                                />
+                                <span className="text-sm text-[#555555] group-hover:text-[#0A3D62]">{option.label}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Purpose */}
+                        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 px-6 py-4">
+                          <label className="text-base font-semibold text-[#0A3D62] flex items-center">{t('quote_purpose')}</label>
+                          <div className="flex flex-wrap gap-4">
+                            {[
+                              { value: 'apparel', label: t('quote_purpose_apparel') },
+                              { value: 'food', label: t('quote_purpose_food') },
+                              { value: 'industrial', label: t('quote_purpose_industrial') },
+                              { value: 'other', label: t('quote_purpose_other') }
+                            ].map((option) => (
+                              <label key={option.value} className="flex items-center space-x-2 cursor-pointer group">
+                                <input
+                                  type="radio"
+                                  name="purpose"
+                                  value={option.value}
+                                  checked={formData.purpose === option.value}
+                                  onChange={(e) => handleInputChange("purpose", e.target.value)}
+                                  className="w-4 h-4 text-[#0A3D62] border-gray-300 focus:ring-[#0A3D62] focus:ring-2"
+                                />
+                                <span className="text-sm text-[#555555] group-hover:text-[#0A3D62]">{option.label}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Post-processing */}
+                        <div className="px-6 py-4">
+                          <label className="text-base font-semibold text-[#0A3D62] mb-4 block">{t('quote_post_processing')}</label>
+                          
+                          <div className="space-y-3">
+                            {/* Zipper */}
+                            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
+                              <label className="text-sm text-[#555555] flex items-center">{t('quote_post_zipper')}</label>
+                              <div className="flex gap-4">
+                                {[
+                                  { value: 'yes', label: t('quote_post_zipper_yes') },
+                                  { value: 'no', label: t('quote_post_zipper_no') }
+                                ].map((option) => (
+                                  <label key={option.value} className="flex items-center space-x-2 cursor-pointer group">
+                                    <input
+                                      type="radio"
+                                      name="hasZipper"
+                                      value={option.value}
+                                      checked={formData.hasZipper === option.value}
+                                      onChange={(e) => handleInputChange("hasZipper", e.target.value)}
+                                      className="w-4 h-4 text-[#0A3D62] border-gray-300 focus:ring-[#0A3D62] focus:ring-2"
+                                    />
+                                    <span className="text-sm text-[#555555] group-hover:text-[#0A3D62]">{option.label}</span>
+                                  </label>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Hang Hole */}
+                            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
+                              <label className="text-sm text-[#555555] flex items-center">{t('quote_post_hang_hole')}</label>
+                              <div className="flex gap-4">
+                                {[
+                                  { value: 'round', label: t('quote_post_hang_hole_round') },
+                                  { value: 'hat', label: t('quote_post_hang_hole_hat') },
+                                  { value: 'none', label: t('quote_post_hang_hole_none') }
+                                ].map((option) => (
+                                  <label key={option.value} className="flex items-center space-x-2 cursor-pointer group">
+                                    <input
+                                      type="radio"
+                                      name="hangHole"
+                                      value={option.value}
+                                      checked={formData.hangHole === option.value}
+                                      onChange={(e) => handleInputChange("hangHole", e.target.value)}
+                                      className="w-4 h-4 text-[#0A3D62] border-gray-300 focus:ring-[#0A3D62] focus:ring-2"
+                                    />
+                                    <span className="text-sm text-[#555555] group-hover:text-[#0A3D62]">{option.label}</span>
+                                  </label>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Corner */}
+                            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
+                              <label className="text-sm text-[#555555] flex items-center">{t('quote_post_corner')}</label>
+                              <div className="flex gap-4">
+                                {[
+                                  { value: 'right', label: t('quote_post_corner_right') },
+                                  { value: 'rounded', label: t('quote_post_corner_rounded') }
+                                ].map((option) => (
+                                  <label key={option.value} className="flex items-center space-x-2 cursor-pointer group">
+                                    <input
+                                      type="radio"
+                                      name="corner"
+                                      value={option.value}
+                                      checked={formData.corner === option.value}
+                                      onChange={(e) => handleInputChange("corner", e.target.value)}
+                                      className="w-4 h-4 text-[#0A3D62] border-gray-300 focus:ring-[#0A3D62] focus:ring-2"
+                                    />
+                                    <span className="text-sm text-[#555555] group-hover:text-[#0A3D62]">{option.label}</span>
+                                  </label>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Inlet */}
+                            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4">
+                              <label className="text-sm text-[#555555] flex items-center">{t('quote_post_inlet')}</label>
+                              <div className="flex gap-4">
+                                {[
+                                  { value: 'top', label: t('quote_post_inlet_top') },
+                                  { value: 'bottom', label: t('quote_post_inlet_bottom') }
+                                ].map((option) => (
+                                  <label key={option.value} className="flex items-center space-x-2 cursor-pointer group">
+                                    <input
+                                      type="radio"
+                                      name="inlet"
+                                      value={option.value}
+                                      checked={formData.inlet === option.value}
+                                      onChange={(e) => handleInputChange("inlet", e.target.value)}
+                                      className="w-4 h-4 text-[#0A3D62] border-gray-300 focus:ring-[#0A3D62] focus:ring-2"
+                                    />
+                                    <span className="text-sm text-[#555555] group-hover:text-[#0A3D62]">{option.label}</span>
+                                  </label>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Quantity */}
+                        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 px-6 py-4">
+                          <label className="text-base font-semibold text-[#0A3D62] flex items-center">{t('quote_quantity')}</label>
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2">
+                              <input
+                                type="text"
+                                value={formData.quantity}
+                                onChange={(e) => handleInputChange("quantity", e.target.value)}
+                                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0A3D62] focus:border-[#0A3D62] text-sm"
+                              />
+                              <span className="text-sm text-gray-500">{t('quote_quantity_unit')}</span>
+                            </div>
+                            <p className="text-xs text-gray-500">{t('quote_quantity_minimum')}</p>
+                          </div>
+                        </div>
+
+                        {/* Design Attachment */}
+                        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 px-6 py-4">
+                          <label className="text-base font-semibold text-[#0A3D62] flex items-center">{t('quote_design_attachment')}</label>
+                          <div className="flex items-center gap-4 flex-wrap">
+                            <input
+                              type="file"
+                              onChange={handleDesignFileChange}
+                              className="hidden"
+                              id="design-file-upload"
+                            />
+                            <label
+                              htmlFor="design-file-upload"
+                              className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors text-sm"
+                            >
+                              <Upload className="h-4 w-4" />
+                              <span>{t('quote_design_file_find')}</span>
+                            </label>
+                            <span className="text-sm text-gray-500">
+                              {formData.designFile ? formData.designFile.name : t('quote_design_file_none')}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Details Section */}
+                    <div className="px-6 py-6">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <FileText className="h-6 w-6 text-[#0A3D62]" />
+                        <h3 className="text-2xl font-semibold text-[#0A3D62]">{t('quote_details_title')}</h3>
+                      </div>
+                      <textarea
+                        value={formData.details}
+                        onChange={(e) => handleInputChange("details", e.target.value)}
+                        rows={6}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0A3D62] focus:border-[#0A3D62] resize-none"
+                        placeholder={t('quote_details_placeholder')}
+                      />
                     </div>
                   </div>
+
                 </div>
               )}
             </div>

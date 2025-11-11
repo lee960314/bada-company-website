@@ -113,11 +113,6 @@ export default function Footer() {
                     {t('footer_contact') || 'Contact'}
                   </Link>
                 </li>
-                <li>
-                  <Link href="/dashboard" className="text-gray-300 hover:text-[#FFC312] transition-colors text-sm md:text-base whitespace-pre-line touch-manipulation min-h-[44px] flex items-center">
-                    {t('footer_dashboard') || 'Dashboard'}
-                  </Link>
-                </li>
               </ul>
             </div>
 
